@@ -1,62 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+### 目的
+あくまで技術力、自力の証明によるポテンシャルアピール
+```
+1 必要な要件を作成し、一旦laravelで作る
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+2 SPAを採用して一旦Reactで作る
 
-## About Laravel
+3 Rubyでlaravelと同じものを作る
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+4 そこにフロントを合わせる
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+5 マイクロサービスっていうほどでもないが、Vueで＋α作成
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+6 それらをインフラ構築する
+```
+### 方針
 
-## Learning Laravel
+### やらないこと
+凝ったアイデアを実現することや<br/>
+サービスを見せることが目的ではない
+```
+・凝ったデザインは見せないしやらない
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+・SP版に特化した部分は見せない
+→時間あればできるポテンシャル優先
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+・法律周りはざっくりで
 
-## Laravel Sponsors
+・全部作るのは無理なのでシステム的に本質な部分を扱う
+```
+### 題材選択理由
+```
+1 実際に作っているものに近いサービスを開発することで<br/>
+より温度感の理解と難しいだろうなという仕様の発見や<br/>
+自分のアイディアを育成するため。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+2 コードの書き方などが理解しやすいので性格とか開発者が理解しやすいし、
+題材の関係上話もしやすい
 
-### Premium Partners
+3 技術力があり時間があって行動さえすれば、
+いつでも作れるし、すぐ行動する力を持っているので
+現時点(未熟な段階)でもアイディアの実現は一旦保留
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+## 要件定義
+```
+管理者が入力依頼を送る(TODOでプロセスがわかる)
+従業員本人　入力
+管理者がそのデータを管理
+場合によっては書類作成などを行う
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+それらをサービスを管理する管理画面
+```
 
-## Code of Conduct
+管理画面とクライアントサイド側に２つ
+### 最低限必要なもの
+・クライアントサイド
+```
+・従業員認証
+・通知を受け取る
+・従業員情報登録 Form => users
+・preview機能
+```
+・クライアント管理画面
+```
+・従業員管理データ一覧
+・申請通知送信機能
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+・入退社手続き
+　・users :
+　・役職テーブル、部署、
 
-## Security Vulnerabilities
+```
+・サービス管理画面
+```
+・会社一覧
+・ID発行
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## あったらいいな
+```
+・年末調整
+・雇用契約
+・Web給与明細
+・各種労務手続き、電子申請
+・分析レポート?
+```
+## table 
+```
+companies
+・会社名、住所、tel、代表、会社ID、商号、業種、取引判定、契約期間、etc...
+履歴？？
 
-## License
+Service_users
+姓、名、カナ、生年月日、性別、プロフィール画像、本人確認書類、ミドルネーム、tel、email
+入社予定日、社員番号、雇用形態、役職、部署、特筆
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+// todo 認証
+Service_Administrators -- users
+姓、名、カナ、性別、プロフィール画像、本人確認書類、ミドルネーム、tel、email
+入社予定日、社員番号、雇用形態、役職、部署、特筆
+
+posts or positions
+役職名、
+
+Departments
+部署名、
+
+
+```
