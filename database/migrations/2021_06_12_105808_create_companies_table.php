@@ -14,8 +14,7 @@ class CreateCompaniesTable extends Migration
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->bigIncrements();
-            $table->bigInteger('')->comment('会社ID');
+            $table->bigIncrements('id')->comment('会社ID');
             $table->string('name')->default('')->comment('会社名(商号)');
             $table->string('zipcode')->default('')->comment('郵便番号');
             $table->string('address')->default('')->comment('住所');
