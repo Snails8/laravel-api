@@ -11,4 +11,11 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware('auth:admin')->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
+
+    Route::resource('company', CompanyController::class)->except([
+        'show',
+    ])->names('admin.company');
+//    Route::prefix('company')->group(function () {
+//        Route::get()
+//    });
 });
