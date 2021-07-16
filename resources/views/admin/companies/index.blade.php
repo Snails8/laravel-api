@@ -1,7 +1,7 @@
 @extends('admin._layouts.app')
 @section('title', $title)
 @section('content')
-  @includeWhen(session('flash_message'), 'admin._components.flash_message_success')
+  @includeWhen(session('flash_message'), 'admin._partials.flash_message_success')
   <h4 class="c-grey-900 mT-10 mB-30">{{ $title }}</h4>
   {{ Form::open(['route' => ['admin.companies.index'], 'class' => 'pb-3 border-bottom', 'method' => 'GET']) }}
   <table class="table table-striped table-bordered table-search">
