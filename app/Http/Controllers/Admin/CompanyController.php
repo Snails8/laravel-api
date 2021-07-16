@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CompanyPostRequest;
 use App\Models\Company;
+use App\Services\CompanyService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,23 +18,41 @@ use Illuminate\Support\Facades\Log;
  */
 class CompanyController extends Controller
 {
+    const SELECT_LIMIT = 15;
+    private $companyService;
+
     /**
-     * 一覧標示
+     * CompanyController constructor injection.
+     * @param CompanyService $companyService
+     */
+    public function __construct(CompanyService $companyService)
+    {
+        $this->companyService = $companyService;
+    }
+
+    /**
+     * 一覧表示
+     * @param Request $request
      * @return View
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $title = '会社一覧';
+        $params = $this->companyService->initIndexParamsForAdmin($request);
+        $companies = $this->companyService->getSearchResultAtPager($params, self::SELECT_LIMIT);
+
+        $title = '取引先一覧';
 
         $data = [
-            'title' => $title,
+            'params'    => $params,
+            'companies' => $companies,
+            'title'     => $title,
         ];
 
         return view('admin.companies.index', $data);
     }
 
     /**
-     * 新規作成画面標示
+     * 新規作成画面表示
      * @param Company $company
      * @return View
      */
@@ -49,7 +68,7 @@ class CompanyController extends Controller
     }
 
     /**
-     * 編集画面標示
+     * 編集画面表示
      * @param Company $company
      * @return View
      */
@@ -59,6 +78,7 @@ class CompanyController extends Controller
 
         $data = [
             'title' => $title,
+            'company' => $company,
         ];
 
         return view('admin.companies.edit', $data);

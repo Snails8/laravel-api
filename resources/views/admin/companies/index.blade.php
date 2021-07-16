@@ -31,30 +31,30 @@
     <thead class="thead-dark">
     <tr>
       <th scope="col" class="id">ID</th>
-      <th scope="col" class="date">公開日</th>
+{{--      <th scope="col" class="date">公開日</th>--}}
       <th scope="col" class="work-name">タイトル</th>
       <th scope="col" class="display">HP公開</th>
       <th scope="col" class="operation">操作</th>
     </tr>
     </thead>
     <tbody>
-{{--    @foreach($companies as $work)--}}
-{{--      <tr>--}}
-{{--        <td >{{ $work->id }}</td>--}}
-{{--        <td >{{ $work->public_date->format('Y-m-d') }}</td>--}}
-{{--        <td >{{ $work->title}}</td>--}}
-{{--        <td class="display">--}}
+    @foreach($companies as $company)
+      <tr>
+        <td >{{ $company->id }}</td>
+{{--        <td >{{ $company->public_date->format('Y-m-d') }}</td>--}}
+        <td >{{ $company->name}}</td>
+        <td class="display">
 {{--          <is-public-component--}}
-{{--              :update-id="{{ $work->id }}"--}}
-{{--              :is-public="{{ (int)$work->is_public }}"--}}
+{{--              :update-id="{{ $company->id }}"--}}
+{{--              :is-public="{{ (int)$company->is_public }}"--}}
 {{--              :target="{{ json_encode('companies') }}" >--}}
 {{--          </is-public-component>--}}
-{{--        </td>--}}
-{{--        <td class="operation">--}}
-{{--          <a class="btn btn-outline-success" href="{{ route('admin.companies.edit', ['work' => $work->id]) }}">編集</a>--}}
-{{--        </td>--}}
-{{--      </tr>--}}
-{{--    @endforeach--}}
+        </td>
+        <td class="operation">
+          <a class="btn btn-outline-success" href="{{ route('admin.companies.edit', ['company' => $company->id]) }}">編集</a>
+        </td>
+      </tr>
+    @endforeach
     </tbody>
   </table>
   <div class="d-flex justify-content-center py-4">

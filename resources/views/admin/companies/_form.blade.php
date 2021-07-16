@@ -11,7 +11,7 @@
     <th class="bg-dark text-white border-white"><span class="p-5 mr-2 badge badge-danger">必須</span>公開日</th>
     <td colspan="3">
       @includeWhen($errors->get('public_date'), 'admin._partials.validation_error', ['errors' => $errors->get('public_date')])
-      <date-picker-form-component :target="'public_date'" :value="{{ json_encode(old('public_date', $company->public_date ? $company->public_date->format('Y.m.d') : '')) }}"></date-picker-form-component>
+{{--      <date-picker-form-component :target="'public_date'" :value="{{ json_encode(old('public_date', $company->public_date ? $company->public_date->format('Y.m.d') : '')) }}"></date-picker-form-component>--}}
     </td>
   </tr>
   <tr>
@@ -24,15 +24,15 @@
   <tr>
     <th class="bg-dark text-white border-white"><span class="p-5 mr-2 badge badge-danger">必須</span>施工タグ</th>
     <td colspan="3">
-      @includeWhen($errors->get('tags'), 'admin._partials.validation_error', ['errors' => $errors->get('tags')])
-      <div class="row">
-        @foreach($companyTags as $key => $val)
-          <div class="col-md-2 py-1 ml-4 my-auto">
-            {{ Form::checkbox('tags[]', $key, in_array($key, old('tags', $company->workTags->pluck('id')->toArray())), ['id' => 'tag'.$key, 'class' => 'form-check-input']) }}
-            {{ Form::label('tag'.$key, $val, ['class' => 'form-check-label']) }}
-          </div>
-        @endforeach
-      </div>
+{{--      @includeWhen($errors->get('tags'), 'admin._partials.validation_error', ['errors' => $errors->get('tags')])--}}
+{{--      <div class="row">--}}
+{{--        @foreach($companyTags as $key => $val)--}}
+{{--          <div class="col-md-2 py-1 ml-4 my-auto">--}}
+{{--            {{ Form::checkbox('tags[]', $key, in_array($key, old('tags', $company->workTags->pluck('id')->toArray())), ['id' => 'tag'.$key, 'class' => 'form-check-input']) }}--}}
+{{--            {{ Form::label('tag'.$key, $val, ['class' => 'form-check-label']) }}--}}
+{{--          </div>--}}
+{{--        @endforeach--}}
+{{--      </div>--}}
     </td>
   </tr>
   </tbody>
