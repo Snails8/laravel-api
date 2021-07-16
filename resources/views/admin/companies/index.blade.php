@@ -1,4 +1,4 @@
-@extends('admin._layouts.adminlte_layout')
+@extends('admin._layouts.app')
 @section('title', $title)
 @section('content')
   @includeWhen(session('flash_message'), 'admin._components.flash_message_success')

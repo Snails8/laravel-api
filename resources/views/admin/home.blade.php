@@ -1,4 +1,4 @@
-@extends('admin._layouts.adminlte_layout')
+@extends('admin.resources.views.admin._partials.adminlte_layout')
 
 @section('content')
   <div class="container">
