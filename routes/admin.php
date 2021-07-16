@@ -13,7 +13,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
 
-    Route::resource('company', CompanyController::class)->except([
+    Route::resource('companies', CompanyController::class)->except([
         'show',
     ])->names('admin.companies');
 //    Route::prefix('company')->group(function () {
