@@ -4,8 +4,8 @@
       <div class="navbar-brand nav-item">
         <a class="navbar-brand" href="#">{{ config('app.name', 'Act') }}</a>
       </div>
-      <a class="nav-item nav-link navbar-menu" href="">
-        <div>勤怠検索</div>
+      <a class="nav-item nav-link navbar-menu" href="{{ route('admin.companies.index') }}">
+        <div>会社管理</div>
       </a>
       <a class="nav-item nav-link navbar-menu" href="">
         <div>労務管理</div>

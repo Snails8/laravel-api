@@ -1,4 +1,4 @@
-@extends('admin.auth.resources.views.admin._partials.layout')
+@extends('admin._layouts.auth')
 
 @section('content')
 <div class="container">
