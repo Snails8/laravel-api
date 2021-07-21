@@ -39,21 +39,21 @@
   <tr>
     <th class="bg-dark text-white border-white">電話番号</th>
     <td colspan="3">
-      @includeWhen($errors->get('tel'), '_components.validation_error', ['errors' => $errors->get('tel')])
+      @includeWhen($errors->get('tel'), 'admin._partials.validation_error', ['errors' => $errors->get('tel')])
       {{ Form::text('tel', old('tel'), ['placeholder' => '例）09012345678 ※ハイフン不要','maxlength' => '32', 'required' => 'required']) }}
     </td>
   </tr>
   <tr>
     <th class="bg-dark text-white border-white">メールアドレス</th>
     <td colspan="3">
-      @includeWhen($errors->get('email'), '_components.validation_error', ['errors' => $errors->get('email')])
+      @includeWhen($errors->get('email'), 'admin._partials.validation_error', ['errors' => $errors->get('email')])
       {{ Form::text('email', old('email'), ['placeholder' => '例）xxxxxxx@holidays.com', 'required' => 'required']) }}
     </td>
   </tr>
   <tr>
     <th class="bg-dark text-white border-white"><span class="p-5 mr-2 badge badge-danger">必須</span>代表者名</th>
     <td colspan="3">
-      @includeWhen($errors->get('representative_name'), '_partials.validation_error', ['errors' => $errors->get('representative_name')])
+      @includeWhen($errors->get('representative_name'), 'admin._partials.validation_error', ['errors' => $errors->get('representative_name')])
       {{ Form::text('representative_name', old('representative_name', $company->representative_name ?? ''), ['class' => 'form-control', 'required' => 'required']) }}
     </td>
   </tr>
