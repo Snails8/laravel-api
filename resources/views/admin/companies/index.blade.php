@@ -44,11 +44,11 @@
 {{--        <td >{{ $company->public_date->format('Y-m-d') }}</td>--}}
         <td >{{ $company->name}}</td>
         <td class="display">
-{{--          <is-public-component--}}
-{{--              :update-id="{{ $company->id }}"--}}
-{{--              :is-public="{{ (int)$company->is_public }}"--}}
-{{--              :target="{{ json_encode('companies') }}" >--}}
-{{--          </is-public-component>--}}
+          <is-contract-component
+              :update-id="{{ $company->id }}"
+              :is-contract="{{ (int)$company->is_public }}"
+              :target="{{ json_encode('companies') }}" >
+          </is-contract-component>
         </td>
         <td class="operation">
           <a class="btn btn-outline-success" href="{{ route('admin.companies.edit', ['company' => $company->id]) }}">編集</a>
