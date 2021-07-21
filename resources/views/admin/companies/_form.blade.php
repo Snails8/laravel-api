@@ -11,28 +11,50 @@
     <th class="bg-dark text-white border-white"><span class="p-5 mr-2 badge badge-danger">必須</span>公開日</th>
     <td colspan="3">
       @includeWhen($errors->get('public_date'), 'admin._partials.validation_error', ['errors' => $errors->get('public_date')])
-{{--      <date-picker-form-component :target="'public_date'" :value="{{ json_encode(old('public_date', $company->public_date ? $company->public_date->format('Y.m.d') : '')) }}"></date-picker-form-component>--}}
+      {{ Form::text('name', old('name', $hoge->name ?? ''), ['placeholder' => '例）たにし 太郎','class' => 'form-control', 'required' => 'required']) }}
     </td>
   </tr>
   <tr>
-    <th class="bg-dark text-white border-white"><span class="p-5 mr-2 badge badge-danger">必須</span>タイトル</th>
+{{--    zipcode--}}
+    <th class="bg-dark text-white border-white"><span class="p-5 mr-2 badge badge-danger">必須</span>公開日</th>
     <td colspan="3">
-      @includeWhen($errors->get('title'), 'admin._partials.validation_error', ['errors' => $errors->get('title')])
-      {{ Form::text('title', old('title', $company->title ?? ''), ['class' => 'form-control', 'required' => 'required']) }}
+      @includeWhen($errors->get('public_date'), 'admin._partials.validation_error', ['errors' => $errors->get('public_date')])
+      {{ Form::text('name', old('name', $hoge->name ?? ''), ['placeholder' => '例）たにし 太郎','class' => 'form-control', 'required' => 'required']) }}
     </td>
   </tr>
   <tr>
-    <th class="bg-dark text-white border-white"><span class="p-5 mr-2 badge badge-danger">必須</span>施工タグ</th>
+    <th class="bg-dark text-white border-white"><span class="p-5 mr-2 badge badge-danger">必須</span>住所</th>
     <td colspan="3">
-{{--      @includeWhen($errors->get('tags'), 'admin._partials.validation_error', ['errors' => $errors->get('tags')])--}}
-{{--      <div class="row">--}}
-{{--        @foreach($companyTags as $key => $val)--}}
-{{--          <div class="col-md-2 py-1 ml-4 my-auto">--}}
-{{--            {{ Form::checkbox('tags[]', $key, in_array($key, old('tags', $company->workTags->pluck('id')->toArray())), ['id' => 'tag'.$key, 'class' => 'form-check-input']) }}--}}
-{{--            {{ Form::label('tag'.$key, $val, ['class' => 'form-check-label']) }}--}}
-{{--          </div>--}}
-{{--        @endforeach--}}
-{{--      </div>--}}
+      @includeWhen($errors->get('address'), 'admin._partials.validation_error', ['errors' => $errors->get('address')])
+      {{ Form::text('address', old('address', $hoge->address ?? ''), ['placeholder' => '例）たにし 太郎','class' => 'form-control', 'required' => 'required']) }}
+    </td>
+  </tr>
+  <tr>
+    <th class="bg-dark text-white border-white"><span class="p-5 mr-2 badge badge-danger">必須</span>以下番地</th>
+    <td colspan="3">
+      @includeWhen($errors->get('address_other'), 'admin._partials.validation_error', ['errors' => $errors->get('address_other')])
+      {{ Form::text('address_other', old('address_other', $hoge->address_other ?? ''), ['placeholder' => '例）たにし 太郎','class' => 'form-control', 'required' => 'required']) }}
+    </td>
+  </tr>
+  <tr>
+    <th class="bg-dark text-white border-white">電話番号</th>
+    <td colspan="3">
+      @includeWhen($errors->get('tel'), 'admin._partials.validation_error', ['errors' => $errors->get('tel')])
+      {{ Form::text('tel', old('tel'), ['placeholder' => '例）09012345678 ※ハイフン不要','maxlength' => '32', 'required' => 'required']) }}
+    </td>
+  </tr>
+  <tr>
+    <th class="bg-dark text-white border-white">メールアドレス</th>
+    <td colspan="3">
+      @includeWhen($errors->get('email'), 'admin._partials.validation_error', ['errors' => $errors->get('email')])
+      {{ Form::text('email', old('email'), ['placeholder' => '例）xxxxxxx@holidays.com', 'required' => 'required']) }}
+    </td>
+  </tr>
+  <tr>
+    <th class="bg-dark text-white border-white"><span class="p-5 mr-2 badge badge-danger">必須</span>代表者名</th>
+    <td colspan="3">
+      @includeWhen($errors->get('representative_name'), 'admin._partials.validation_error', ['errors' => $errors->get('representative_name')])
+      {{ Form::text('representative_name', old('representative_name', $company->representative_name ?? ''), ['class' => 'form-control', 'required' => 'required']) }}
     </td>
   </tr>
   </tbody>
