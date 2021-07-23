@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CompanyPostRequest;
 use App\Models\Company;
 use App\Services\CompanyService;
+use App\Services\UtilityService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,14 +21,17 @@ class CompanyController extends Controller
 {
     const SELECT_LIMIT = 15;
     private $companyService;
+    private $utilityService;
 
     /**
-     * CompanyController constructor injection.
+     * CompanyController constructor.
+     * @param UtilityService $utilityService
      * @param CompanyService $companyService
      */
-    public function __construct(CompanyService $companyService)
+    public function __construct(UtilityService $utilityService, CompanyService $companyService)
     {
         $this->companyService = $companyService;
+        $this->utilityService = $utilityService;
     }
 
     /**
@@ -37,8 +41,8 @@ class CompanyController extends Controller
      */
     public function index(Request $request): View
     {
-        $params = $this->companyService->initIndexParamsForAdmin($request);
-        $companies = $this->companyService->getSearchResultAtPager($params, self::SELECT_LIMIT);
+        $params = $this->utilityService->initIndexParamsForAdmin($request);
+        $companies = $this->utilityService->getSearchResultAtPagerByName('Company', $params,self::SELECT_LIMIT, false);
 
         $title = '取引先一覧';
 
@@ -61,7 +65,8 @@ class CompanyController extends Controller
         $title = '会社登録';
 
         $data = [
-            'title' => $title,
+            'company' => $company,
+            'title'   => $title,
         ];
 
         return view('admin.companies.create', $data);
