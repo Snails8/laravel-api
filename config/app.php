@@ -228,6 +228,14 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // 追加
+        'Carbon' => Illuminate\Support\Carbon::class,
+
+        // 独自定義
+        'Utility' => App\Services\UtilityService::class,
+        
+        // Enum
+        'EnumUser' => App\Enums\User::class,
     ],
 
 ];
