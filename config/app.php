@@ -233,7 +233,7 @@ return [
 
         // 独自定義
         'Utility' => App\Services\UtilityService::class,
-        
+
         // Enum
         'EnumUser' => App\Enums\User::class,
     ],
