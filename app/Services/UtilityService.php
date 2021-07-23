@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Shop;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -139,6 +140,50 @@ class UtilityService
 
         return $result;
     }
+
+    /**
+     * 検索画面の初期化
+     * @param Request $request
+     * @return string[]
+     */
+    public function initIndexParamsAdmin(Request $request): array
+    {
+        $params = [];
+        if (empty($request->query())) {
+            $params = [
+                'keyword' => ''
+            ];
+        } else {
+            $params = $request->query();
+        }
+
+        return $params;
+    }
+
+    public function getSearchResultAtPagerByName(string $modelName, array $params, int $limit, bool $sortNo = false): LengthAwarePaginator
+    {
+        /** @var Model $model */
+        $model = 'App\Models\\' . $modelName;
+        $query = $model::query();
+
+        if ($params['keyword']) {
+            $query->where('name', 'like', "%$params[keyword]%");
+        }
+
+        if ($sortNo) {
+            $result = $query
+                ->orderBy('sort_no')
+                ->orderBy('id', 'desc')
+                ->paginate($limit);
+        } else {
+            $result = $query
+                ->orderBy('id', 'desc')
+                ->paginate($limit);
+        }
+
+        return $result;
+    }
+
 
     /**
      * @param  Collection  $collection
