@@ -44,7 +44,14 @@ return [
         'admin' => [
             'driver' => 'session',
             'provider' => 'users',
-        ]
+        ],
+
+        'api_admin' => [
+            'driver' => 'session',
+            'provider' => 'hr_users'
+        ],
+
+
 
 //        'api' => [
 //            'driver' => 'token',
@@ -76,6 +83,11 @@ return [
             'model' => App\Models\User::class,
         ],
 
+        'hr_users' => [
+            'driver' => 'eloquent',
+            'model'  => App\Models\HrUser::class,
+        ]
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -103,6 +115,12 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+
+        'hr_users' => [
+            'provider' => 'hr_users',
+            'table' => 'hr_users_password_resets',
+            'expire' => 60,
         ],
     ],
 
