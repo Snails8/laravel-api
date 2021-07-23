@@ -46,7 +46,7 @@ return [
             'provider' => 'users',
         ],
 
-        'api_admin' => [
+        'api_hr_admin' => [
             'driver' => 'session',
             'provider' => 'hr_users'
         ],
