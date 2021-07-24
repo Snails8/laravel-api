@@ -15,7 +15,7 @@ class HrUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('hr_users')->insert([
             [
                 'name'  => 'たにし',
                 'kana'  => 'タニシ',
