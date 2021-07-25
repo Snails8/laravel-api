@@ -26,6 +26,10 @@ Route::middleware('auth:admin')->group(function () {
     ])->names('admin.companies');
 
 
+    // お知らせカテゴリ管理
+    Route::resource('news_categories', NewsController::class)->except([
+        'show',
+    ])->names('admin.news_categories');
 //    Route::prefix('company')->group(function () {
 //        Route::get()
 //    });

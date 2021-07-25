@@ -13,7 +13,7 @@ class NewsCategoryPostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+
     }
 
     /**
