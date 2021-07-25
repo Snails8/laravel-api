@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\CompanyController;
 
 
@@ -27,9 +28,11 @@ Route::middleware('auth:admin')->group(function () {
 
 
     // お知らせカテゴリ管理
-    Route::resource('news_categories', NewsController::class)->except([
+    Route::resource('news_categories', NewsCategoryController::class)->except([
         'show',
     ])->names('admin.news_categories');
+
+    
 //    Route::prefix('company')->group(function () {
 //        Route::get()
 //    });
