@@ -13,7 +13,13 @@ class NewsCategoryPostRequest extends FormRequest
      */
     public function authorize()
     {
+        // 呼び出せるpathを指定
+        $paths = [
+            'admin.news_categories.store',
+            'admin.news_categories.update',
+        ];
 
+        return (in_array($this->route()->action['as'], $paths));
     }
 
     /**
@@ -23,8 +29,22 @@ class NewsCategoryPostRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'name' => 'required|string|max:255',
+            'sort_no' => '',
         ];
+
+        return $rules;
+    }
+
+    public function messages()
+    {
+        $messages = [
+            'name.required' => 'カテゴリ名は必ず入力してください。',
+            'name.string'   => '数字や記号は除外してください。',
+            'name.max'      => '255文字以内で入力してください。',
+        ];
+
+        return $messages;
     }
 }
