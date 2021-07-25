@@ -58,6 +58,6 @@
     </tbody>
   </table>
   <div class="d-flex justify-content-center py-4">
-    {{ $news->appends($params)->fragment('search_result')->links() }}
+    {{ $newsLists->appends($params)->fragment('search_result')->links() }}
   </div>
 @endsection
