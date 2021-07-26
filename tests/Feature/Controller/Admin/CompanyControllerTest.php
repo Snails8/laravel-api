@@ -21,7 +21,7 @@ class CompanyControllerTest extends TestCase
         $companyId = Company::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.companies.edit', ['companies' => $companyId]))->assertStatus(200);
+            ->get(route('admin.company.edit', ['company' => $companyId]))->assertStatus(200);
     }
 
     /**
@@ -33,7 +33,7 @@ class CompanyControllerTest extends TestCase
         $companyId = Company::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.companies.edit', ['companies' => $companyId]))->assertStatus(200);
+            ->get(route('admin.company.edit', ['company' => $companyId]))->assertStatus(200);
     }
 
     /**
@@ -42,10 +42,10 @@ class CompanyControllerTest extends TestCase
     public function 会社管理の編集画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
-        $companiesId = Company::query()->first('id');
+        $companyId = Company::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.companies.edit', ['companies' => $companiesId]))->assertStatus(200);
+            ->get(route('admin.company.edit', ['company' => $companyId]))->assertStatus(200);
     }
 
     /**
@@ -67,9 +67,9 @@ class CompanyControllerTest extends TestCase
         ];
 
         $res = $this->actingAs($user, 'admin')
-            ->post(route('admin.companies.store'), $postData);
+            ->post(route('admin.company.store'), $postData);
 
-        $res->assertRedirect(route('admin.companies.index'));
+        $res->assertRedirect(route('admin.company.index'));
     }
 
     /**
@@ -93,8 +93,8 @@ class CompanyControllerTest extends TestCase
         ];
 
         $res = $this->actingAs($user, 'admin')
-            ->put(route('admin.companies.update', ['companies' => $updateCompany->id]), $postData);
+            ->put(route('admin.company.update', ['company' => $updateCompany->id]), $postData);
 
-        $res->assertRedirect(route('admin.companies.index'));
+        $res->assertRedirect(route('admin.company.index'));
     }
 }
