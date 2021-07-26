@@ -3,7 +3,7 @@
 @section('content')
   @includeWhen(session('flash_message'), 'admin._partials.flash_message_success')
   <h4 class="c-grey-900 mT-10 mB-30">{{ $title }}</h4>
-  {{ Form::open(['route' => ['admin.news_categories.index'], 'class' => 'pb-3 border-bottom', 'method' => 'GET']) }}
+  {{ Form::open(['route' => ['admin.news_category.index'], 'class' => 'pb-3 border-bottom', 'method' => 'GET']) }}
   <table class="table table-striped table-bordered table-search">
     <colgroup>
       <col style="width: 12%;">
@@ -25,7 +25,7 @@
 
 
   <div id='search_result' class="operation mt-3 py-3">
-    <a class="btn btn-outline-primary" href="{{ route('admin.news_categories.create') }}">新規作成</a>
+    <a class="btn btn-outline-primary" href="{{ route('admin.news_category.create') }}">新規作成</a>
   </div>
   <table class="table table-striped table-bordered item-va-middle table-list">
     <thead class="thead-dark">
@@ -43,7 +43,7 @@
         <td >{{ $newsCategory->name }}</td>
         <td class="sort-no">{{ $newsCategory->sort_no }}</td>
         <td class="operation">
-          <a class="btn btn-outline-success" href="{{ route('admin.news_categories.edit', ['news_category' => $newsCategory->id]) }}">編集</a>
+          <a class="btn btn-outline-success" href="{{ route('admin.news_category.edit', ['news_category' => $newsCategory->id]) }}">編集</a>
         </td>
       </tr>
     @endforeach

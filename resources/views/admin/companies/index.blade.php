@@ -3,7 +3,7 @@
 @section('content')
   @includeWhen(session('flash_message'), 'admin._partials.flash_message_success')
   <h4 class="c-grey-900 mT-10 mB-30">{{ $title }}</h4>
-  {{ Form::open(['route' => ['admin.companies.index'], 'class' => 'pb-3 border-bottom', 'method' => 'GET']) }}
+  {{ Form::open(['route' => ['admin.company.index'], 'class' => 'pb-3 border-bottom', 'method' => 'GET']) }}
   <table class="table table-striped table-bordered table-search">
     <colgroup>
       <col style="width: 12%;">
@@ -25,7 +25,7 @@
 
 
   <div id='search_result' class="operation mt-3 py-3">
-    <a class="btn btn-outline-primary" href="{{ route('admin.companies.create') }}">新規作成</a>
+    <a class="btn btn-outline-primary" href="{{ route('admin.company.create') }}">新規作成</a>
   </div>
   <table class="table table-striped table-bordered item-va-middle table-list">
     <thead class="thead-dark">
@@ -51,7 +51,7 @@
           </is-contract-component>
         </td>
         <td class="operation">
-          <a class="btn btn-outline-success" href="{{ route('admin.companies.edit', ['company' => $company->id]) }}">編集</a>
+          <a class="btn btn-outline-success" href="{{ route('admin.company.edit', ['company' => $company->id]) }}">編集</a>
         </td>
       </tr>
     @endforeach

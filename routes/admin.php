@@ -24,13 +24,13 @@ Route::middleware('auth:admin')->group(function () {
     // 自社情報管理
     Route::resource('companies', CompanyController::class)->except([
         'show',
-    ])->names('admin.companies');
+    ])->names('admin.company');
 
 
     // お知らせカテゴリ管理
     Route::resource('news_categories', NewsCategoryController::class)->except([
         'show',
-    ])->names('admin.news_categories');
+    ])->names('admin.news_category');
 
     
 //    Route::prefix('company')->group(function () {
