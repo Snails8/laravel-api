@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CompanyPostRequest;
 use App\Models\Company;
-use App\Services\CompanyService;
 use App\Services\UtilityService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -20,17 +19,14 @@ use Illuminate\Support\Facades\Log;
 class CompanyController extends Controller
 {
     const SELECT_LIMIT = 15;
-    private $companyService;
     private $utilityService;
 
     /**
      * CompanyController constructor.
      * @param UtilityService $utilityService
-     * @param CompanyService $companyService
      */
-    public function __construct(UtilityService $utilityService, CompanyService $companyService)
+    public function __construct(UtilityService $utilityService)
     {
-        $this->companyService = $companyService;
         $this->utilityService = $utilityService;
     }
 
