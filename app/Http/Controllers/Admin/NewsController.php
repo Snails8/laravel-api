@@ -38,7 +38,7 @@ class NewsController extends Controller
      */
     public function index(Request $request): View
     {
-        $params = $this->utilityService->initIndexParamsAdmin($request);
+        $params = $this->utilityService->initIndexParamsForAdmin($request);
         $newsLists = $this->utilityService->getSearchResultAtPagerByTitle('News', $params,self::SELECT_LIMIT, false);
 
         $title = '一覧';

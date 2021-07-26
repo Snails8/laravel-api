@@ -146,7 +146,7 @@ class UtilityService
      * @param Request $request
      * @return string[]
      */
-    public function initIndexParamsAdmin(Request $request): array
+    public function initIndexParamsForAdmin(Request $request): array
     {
         $params = [];
         if (empty($request->query())) {
