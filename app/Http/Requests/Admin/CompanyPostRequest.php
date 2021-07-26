@@ -18,8 +18,8 @@ class CompanyPostRequest extends FormRequest
     public function authorize()
     {
         $paths = [
-            'admin.companies.store',
-            'admin.companies.update',
+            'admin.company.store',
+            'admin.company.update',
         ];
 
         return (in_array($this->route()->action['as'], $paths));

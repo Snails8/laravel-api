@@ -15,8 +15,8 @@ class NewsCategoryPostRequest extends FormRequest
     {
         // 呼び出せるpathを指定
         $paths = [
-            'admin.news_categories.store',
-            'admin.news_categories.update',
+            'admin.news_category.store',
+            'admin.news_category.update',
         ];
 
         return (in_array($this->route()->action['as'], $paths));
