@@ -21,7 +21,7 @@ class NewsCategoryControllerTest extends TestCase
         $newsCategoryId = NewsCategory::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.news_category.edit', ['news_category' => $newsCategoryId]))->assertStatus(200);
+            ->get(route('admin.news_category.index'))->assertStatus(200);
     }
 
     /**
@@ -33,7 +33,7 @@ class NewsCategoryControllerTest extends TestCase
         $newsCategoryId = NewsCategory::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.news_category.edit', ['news_category' => $newsCategoryId]))->assertStatus(200);
+            ->get(route('admin.news_category.create'))->assertStatus(200);
     }
 
     /**
@@ -56,8 +56,8 @@ class NewsCategoryControllerTest extends TestCase
         $user = User::factory()->create();
         // formDataの用意
         $postData = [
-            'name'          => 'テスト',
-            'sort_no'       => '',
+            'name'    => 'テスト',
+            'sort_no' => '',
         ];
 
         $res = $this->actingAs($user, 'admin')
@@ -76,8 +76,8 @@ class NewsCategoryControllerTest extends TestCase
         $updateNewsCategory = NewsCategory::query()->inRandomOrder()->first();
 
         $postData = [
-            'name'          => 'テスト',
-            'sort_no'
+            'name'    => 'テスト',
+            'sort_no' => ''
         ];
 
         $res = $this->actingAs($user, 'admin')
