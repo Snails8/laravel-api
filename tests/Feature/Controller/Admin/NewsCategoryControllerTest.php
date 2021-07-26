@@ -4,10 +4,10 @@ namespace Tests\Feature\Controller\Admin;
 
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\Company;
+use App\Models\NewsCategory;
 
 /**
- * Class CompanyControllerTest
+ * Class NewsCategoryControllerTest
  * @package Tests\Feature\Controller\Admin
  */
 class NewsCategoryControllerTest extends TestCase
@@ -18,10 +18,10 @@ class NewsCategoryControllerTest extends TestCase
     public function お知らせカテゴリ管理一覧画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
-        $newsCategoryId = Company::query()->first('id');
+        $newsCategoryId = NewsCategory::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.news_categories.edit', ['news_category' => $newsCategoryId]))->assertStatus(200);
+            ->get(route('admin.news_category.edit', ['news_category' => $newsCategoryId]))->assertStatus(200);
     }
 
     /**
@@ -30,10 +30,10 @@ class NewsCategoryControllerTest extends TestCase
     public function お知らせカテゴリ管理作成画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
-        $newsCategoryId = Company::query()->first('id');
+        $newsCategoryId = NewsCategory::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.news_categories.edit', ['news_categories' => $newsCategoryId]))->assertStatus(200);
+            ->get(route('admin.news_category.edit', ['news_category' => $newsCategoryId]))->assertStatus(200);
     }
 
     /**
@@ -42,10 +42,10 @@ class NewsCategoryControllerTest extends TestCase
     public function お知らせカテゴリ管理編集画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
-        $news_categoriesId = Company::query()->first('id');
+        $news_categoryId = NewsCategory::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.news_categories.edit', ['news_categories' => $news_categoriesId]))->assertStatus(200);
+            ->get(route('admin.news_category.edit', ['news_category' => $news_categoryId]))->assertStatus(200);
     }
 
     /**
@@ -57,19 +57,13 @@ class NewsCategoryControllerTest extends TestCase
         // formDataの用意
         $postData = [
             'name'          => 'テスト',
-            'zipcode1'      => 000,
-            'zipcode2'      => 1111,
-            'address'       => 'テスト',
-            'address_other' => '',
-            'tel'           => 00011112222,
-            'email'         => 'sample@sample.com',
-            'representative_name' => 'テスト',
+            'sort_no'       => '',
         ];
 
         $res = $this->actingAs($user, 'admin')
-            ->post(route('admin.news_categories.store'), $postData);
+            ->post(route('admin.news_category.store'), $postData);
 
-        $res->assertRedirect(route('admin.news_categories.index'));
+        $res->assertRedirect(route('admin.news_category.index'));
     }
 
     /**
@@ -79,22 +73,16 @@ class NewsCategoryControllerTest extends TestCase
     {
         $user = User::factory()->create();
         // putなのでデータ取得用に
-        $updateCompany = Company::query()->inRandomOrder()->first();
+        $updateNewsCategory = NewsCategory::query()->inRandomOrder()->first();
 
         $postData = [
             'name'          => 'テスト',
-            'zipcode1'      => 000,
-            'zipcode2'      => 1111,
-            'address'       => 'テスト',
-            'address_other' => '',
-            'tel'           => 00011112222,
-            'email'         => 'sample@sample.com',
-            'representative_name' => 'テスト',
+            'sort_no'
         ];
 
         $res = $this->actingAs($user, 'admin')
-            ->put(route('admin.news_categories.update', ['news_categories' => $updateCompany->id]), $postData);
+            ->put(route('admin.news_category.update', ['news_category' => $updateNewsCategory->id]), $postData);
 
-        $res->assertRedirect(route('admin.news_categories.index'));
+        $res->assertRedirect(route('admin.news_category.index'));
     }
 }
