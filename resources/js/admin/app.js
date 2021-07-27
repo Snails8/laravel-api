@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 //common
 Vue.component('is-contract-component', require('./components/partials/IsContractComponent').default);
+Vue.component('date-picker-component', require('./components/partials/DatePickerComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
