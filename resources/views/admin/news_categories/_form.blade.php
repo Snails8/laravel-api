@@ -2,7 +2,7 @@
 <table class="table table-striped border item-va-middle table-form">
   <tbody>
   <tr>
-    <th class="bg-dark text-white border-white"><span class="p-5 mr-2 badge badge-danger">必須</span>お知らせカテゴリ名</th>
+    <th class="bg-dark text-white border-white"><span class="p-2 mr-2 badge badge-danger">必須</span>お知らせカテゴリ名</th>
     <td>
       @includeWhen($errors->get('name'), 'admin._partials.validation_error', ['errors' => $errors->get('name')])
       {{ Form::text('name', old('name', $newsCategory->name), ['class' => 'form-control', 'required' => 'required']) }}
