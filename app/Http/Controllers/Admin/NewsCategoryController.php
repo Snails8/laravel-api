@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NewsCategoryPostRequest;
-use App\Http\Requests\Admin\NewsPostRequest;
 use App\Models\NewsCategory;
 use App\Services\UtilityService;
 use Illuminate\Contracts\View\View;
@@ -89,16 +88,15 @@ class NewsCategoryController extends Controller
     /**
      * 新規保存処理
      * @Method POST
-     * @param NewsPostRequest $request
+     * @param NewsCategoryPostRequest $request
      * @return RedirectResponse
      */
-    public function store(NewsPostRequest $request): RedirectResponse
+    public function store(NewsCategoryPostRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
         DB::beginTransaction();
         try {
-
             $newsCategory = new NewsCategory;
             $newsCategory->fill($validated)->save();
 
@@ -115,7 +113,7 @@ class NewsCategoryController extends Controller
 
         session()->flash('flash_message', '新規作成が完了しました');
 
-        return redirect()->route('admin.news_categories.index');
+        return redirect()->route('admin.news_category.index');
 
     }
 
@@ -147,7 +145,7 @@ class NewsCategoryController extends Controller
 
         session()->flash('flash_message', '更新が完了しました');
 
-        return redirect()->route('admin.news_categories.index');
+        return redirect()->route('admin.news_category.index');
     }
 
     /**
@@ -175,6 +173,6 @@ class NewsCategoryController extends Controller
 
         session()->flash('flash_message', $newsCategory->name.'を削除しました');
 
-        return redirect()->route('admin.news_categories.index');
+        return redirect()->route('admin.news_category.index');
     }
 }
