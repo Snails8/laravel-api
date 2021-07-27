@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NewsPostRequest;
 use App\Models\News;
+use App\Models\NewsCategory;
 use App\Services\UtilityService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 /**
+ * お知らせ管理のCRUD
  * Class NewsController
  * @package App\Http\Controllers\Admin
  */
@@ -20,15 +22,15 @@ class NewsController extends Controller
 {
     private $uploadTo = 'uploads/news';
     const SELECT_LIMIT = 15;
-    private $utilityService;
+    private $utility;
 
     /**
      * NewsController constructor.
-     * @param UtilityService $utilityService
+     * @param UtilityService $utility
      */
-    public function __construct(UtilityService $utilityService)
+    public function __construct(UtilityService $utility)
     {
-        $this->utilityService = $utilityService;
+        $this->utility = $utility;
     }
 
     /**
@@ -38,10 +40,10 @@ class NewsController extends Controller
      */
     public function index(Request $request): View
     {
-        $params = $this->utilityService->initIndexParamsForAdmin($request);
-        $newsLists = $this->utilityService->getSearchResultAtPagerByTitle('News', $params,self::SELECT_LIMIT, false);
+        $params = $this->utility->initIndexParamsForAdmin($request);
+        $newsLists = $this->utility->getSearchResultAtPagerByTitle('News', $params,self::SELECT_LIMIT, false);
 
-        $title = '一覧';
+        $title = 'お知らせ 一覧';
 
         $data = [
             'params'    => $params,
@@ -59,9 +61,14 @@ class NewsController extends Controller
      */
     public function create(News $news): View
     {
-        $title = '登録';
+        // カテゴリ取得
+        $newsCategories = $this->utility->getTargetColumnAssocWithSearch('NewsCategory', 'name', '','', false);
+        $newsCategories = $this->utility->addEmptyRowToAssoc($newsCategories, false);
+
+        $title = 'お知らせ 登録';
 
         $data = [
+            'newsCategories' => $newsCategories,
             'news'  => $news,
             'title' => $title,
         ];
@@ -76,9 +83,14 @@ class NewsController extends Controller
      */
     public function edit(News $news): View
     {
+        // カテゴリ取得
+        $newsCategories = $this->utility->getTargetColumnAssocWithSearch('NewsCategory', 'name', '','', false);
+        $newsCategories = $this->utility->addEmptyRowToAssoc($newsCategories, false);
+
         $title = $news->title . '編集';
 
         $data = [
+            'newsCategories' => $newsCategories,
             'title' => $title,
             'news'  => $news,
         ];

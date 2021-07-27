@@ -98,6 +98,40 @@ class UtilityService
     }
 
     /**
+     * 特定のModelからsearchColumn = valueで検索したあと id, $columnを、連想配列として返却(プルダウンで使用
+     * TODO::pluck 使うときってEnumのような定数系だけな気がする
+     * @param string $modelName
+     * @param string $column
+     * @param string $searchColumn
+     * @param $searchValue
+     * @param bool $pluck
+     * @return array
+     */
+    public function getTargetColumnAssocWithSearch(string $modelName, string $column, string $searchColumn, $searchValue, bool $pluck = false): array
+    {
+        /** @var Model $model */
+        $model = 'App\Models\\' . $modelName;
+
+        $query = $model::query()->select(['id', $column]);
+
+        if ($searchColumn && $searchValue) {
+            $query->where($searchColumn, $searchValue);
+        }
+
+        // pluck だとid が固有ではなくなる。foreach だとそのまま引き継がれる
+        if ($pluck) {
+            $result = $query->get()->pluck($column)->toArray();
+        } else {
+            $tmps = $query->get()->toArray();
+            foreach ($tmps as $tmp) {
+                $result[$tmp['id']] = $tmp[$column];
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * PullDown用の連想配列に空の行を追加
      * @param  array  $assocArray
      * @param  bool  $isInteger
