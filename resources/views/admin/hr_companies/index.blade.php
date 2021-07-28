@@ -2,7 +2,6 @@
 @section('title', $title)
 @section('content')
   @includeWhen(session('flash_message'), 'admin._partials.flash_message_success')
-  <h4 class="c-grey-900 mT-10 mB-30">{{ $title }}</h4>
   {{ Form::open(['route' => ['admin.hr_company.index'], 'class' => 'pb-3 border-bottom', 'method' => 'GET']) }}
   <table class="table table-striped table-bordered table-search">
     <colgroup>
@@ -58,6 +57,6 @@
     </tbody>
   </table>
   <div class="d-flex justify-content-center py-4">
-    {{ $companies->appends($params)->fragment('search_result')->links() }}
+    {{ $hrCompanies->appends($params)->fragment('search_result')->links() }}
   </div>
 @endsection
