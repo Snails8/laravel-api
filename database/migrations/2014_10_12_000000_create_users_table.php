@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('role')->default('')->comment('権限');
+            $table->string('post')->default('')->comment('役職');
+            $table->integer('shop_id')->default(0);
             $table->timestamps();
         });
     }
