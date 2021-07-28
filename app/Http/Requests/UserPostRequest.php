@@ -4,6 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class UserPostRequest
+ * @package App\Http\Requests
+ */
 class UserPostRequest extends FormRequest
 {
     /**
@@ -28,7 +32,7 @@ class UserPostRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'shop_id'               => 'required|integer',
             'name'                  => 'required',
             'kana'                  => '',
@@ -38,8 +42,22 @@ class UserPostRequest extends FormRequest
             'role'                  => 'required',
             'post'                  => '',
         ];
+
+        // 更新時にユニークがあると登録済のメールアドレスと重複しバリデーションで弾かれてしまうためユニークを外す
+        // update 時に password 項目の入力が必須にならないため
+        if ($this->route()->action['as'] === 'user.update') {
+            $rules['email'] = 'required|email';
+            $rules['password'] = 'confirmed|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i';
+            $rules['password_confirmation'] = '';
+        }
+
+        return $rules;
+
     }
 
+    /**
+     * @return array|string[]
+     */
     public function messages()
     {
         $messages = [
