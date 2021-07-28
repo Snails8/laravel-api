@@ -31,7 +31,7 @@
     <thead class="thead-dark">
     <tr>
       <th scope="col" class="id">ID</th>
-      {{--      <th scope="col" class="date">公開日</th>--}}
+            <th scope="col" class="date">公開日</th>
       <th scope="col" class="work-name">タイトル</th>
       <th scope="col" class="display">HP公開</th>
       <th scope="col" class="operation">操作</th>
@@ -40,9 +40,9 @@
     <tbody>
     @foreach($newsLists as $news)
       <tr>
-        <td >{{ $news->id }}</td>
-        {{--        <td >{{ $news->public_date->format('Y-m-d') }}</td>--}}
-        <td >{{ $news->name}}</td>
+        <td>{{ $news->id }}</td>
+        <td>{{ $news->public_date->format('Y-m-d') }}</td>
+        <td>{{ $news->title }}</td>
         <td class="display">
           <is-contract-component
               :update-id="{{ $news->id }}"

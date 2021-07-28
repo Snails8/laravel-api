@@ -15,6 +15,8 @@ class News extends Model
 {
     use HasFactory;
 
+    // そのままだとstringで取得してしまいformat()が使用できないためにDateTime型に変換(Eloquent)
+    protected $dates = ['public_date'];
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     /**
