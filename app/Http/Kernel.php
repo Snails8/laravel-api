@@ -42,6 +42,9 @@ class Kernel extends HttpKernel
         'admin' => [
 
         ],
+        'ajax' => [
+            \App\Http\Middleware\AjaxOnlyMiddleware::class
+        ],
 
         'api' => [
             'throttle:api',
