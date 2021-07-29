@@ -14,8 +14,8 @@ class OfficePostRequest extends FormRequest
     public function authorize()
     {
         $paths = [
-            'shop.store',
-            'shop.update',
+            'admin.office.store',
+            'admin.office.update',
         ];
 
         return (in_array($this->route()->action['as'], $paths));
