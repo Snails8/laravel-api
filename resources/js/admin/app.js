@@ -22,6 +22,7 @@ window.Vue = require('vue').default;
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 //common
+Vue.component('is-public-component', require('./components/partials/IsPublicComponent').default);
 Vue.component('is-contract-component', require('./components/partials/IsContractComponent').default);
 Vue.component('date-picker-component', require('./components/partials/DatePickerComponent').default);
 
