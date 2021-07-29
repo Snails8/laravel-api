@@ -14,7 +14,7 @@ class OfficesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('shops')->insert([
+        DB::table('offices')->insert([
             [
                 'company_id' => 1,
                 'name' => '東京本社',
