@@ -24,10 +24,10 @@ export default{
   methods:{
     handleClick:function () {
 
-      this.is_contract ^= 1;
+      this.is_public ^= 1;
 
       // DBの型に合わせる
-      let publicStatus = (this.is_contract);
+      let publicStatus = (this.is_public);
 
       let data = {
         'is_public': publicStatus,
