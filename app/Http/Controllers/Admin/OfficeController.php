@@ -51,7 +51,7 @@ class OfficeController extends Controller
             'title'   => $title,
         ];
 
-        return view('offices.index', $data);
+        return view('admin.offices.index', $data);
     }
 
     /**
@@ -69,7 +69,7 @@ class OfficeController extends Controller
             'title'    => $title,
         ];
 
-        return view('offices.create', $data);
+        return view('admin.offices.create', $data);
     }
 
     /**
@@ -87,7 +87,7 @@ class OfficeController extends Controller
             'title'  => $title,
         ];
 
-        return view('offices.edit', $data);
+        return view('admin.offices.edit', $data);
     }
 
     /**
@@ -122,7 +122,7 @@ class OfficeController extends Controller
 
         session()->flash('flash_message', '新規作成が完了しました');
 
-        return redirect()->route('office.index');
+        return redirect()->route('admin.office.index');
     }
 
     /**
@@ -153,7 +153,7 @@ class OfficeController extends Controller
 
         session()->flash('flash_message', '更新が完了しました');
 
-        return redirect()->route('office.index');
+        return redirect()->route('admin.office.index');
     }
 
     /**
@@ -181,6 +181,6 @@ class OfficeController extends Controller
 
         session()->flash('flash_message', $office->name.'を削除しました');
 
-        return redirect()->route('office.index');
+        return redirect()->route('admin.office.index');
     }
 }

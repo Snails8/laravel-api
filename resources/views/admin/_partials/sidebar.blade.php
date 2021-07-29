@@ -36,6 +36,9 @@
         自社情報管理<i class="bi bi-caret-down-fill ms-1"></i>
       </a>
       <ul id="menu_item2" class="submenu collapse accordion-collapse show" data-bs-parent="#nav_accordion">
+        <li><a class="nav-link" href="{{ route('admin.office.index') }}"><i class="bi bi-chevron-right me-1"></i>支社管理</a></li>
+      </ul>
+      <ul id="menu_item2" class="submenu collapse accordion-collapse show" data-bs-parent="#nav_accordion">
         <li><a class="nav-link" href="{{ route('admin.user.index') }}"><i class="bi bi-chevron-right me-1"></i>ユーザー管理</a></li>
       </ul>
     </li>

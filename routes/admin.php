@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\HrCompanyController;
 
@@ -31,6 +32,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('companies', CompanyController::class)->except([
         'show',
     ])->names('admin.company');
+
+    // 支社管理
+    Route::resource('offices', OfficeController::class)->except([
+        'show'
+    ])->names('admin.office');
 
     // ユーザー管理(スタッフ)
     Route::resource('users', UserController::class)->except([
