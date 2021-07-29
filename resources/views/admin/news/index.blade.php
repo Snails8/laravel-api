@@ -44,11 +44,11 @@
         <td>{{ $news->public_date->format('Y-m-d') }}</td>
         <td>{{ $news->title }}</td>
         <td class="display">
-          <is-contract-component
+          <is-public-component
               :update-id="{{ $news->id }}"
-              :is-contract="{{ (int)$news->is_public }}"
+              :is-public="{{ (int)$news->is_public }}"
               :target="{{ json_encode('news') }}" >
-          </is-contract-component>
+          </is-public-component>
         </td>
         <td class="operation">
           <a class="btn btn-outline-success" href="{{ route('admin.news.edit', ['news' => $news->id]) }}">編集</a>

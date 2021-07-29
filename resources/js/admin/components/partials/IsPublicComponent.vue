@@ -1,5 +1,5 @@
 <template>
-  <button v-bind:class="['btn', is_contract ? 'btn-primary' : 'btn-danger']" v-on:click="handleClick">{{ status[is_public] }}</button>
+  <button v-bind:class="['btn', is_public ? 'btn-primary' : 'btn-danger']" v-on:click="handleClick">{{ status[is_public] }}</button>
 </template>
 <script>
 const axios = require('axios');
@@ -13,7 +13,7 @@ export default{
   data(){
     return{
       update_id: Number(this.updateId),
-      is_contract: Number(this.isPublic),
+      is_public: Number(this.isPublic),
       status:{
         0: '非公開',
         1: '公開中',
@@ -33,7 +33,7 @@ export default{
         'is_public': publicStatus,
       };
 
-      axios.put('/ajax/' + this.target + '/' + this.update_id + '/is_contract', {data} );
+      axios.put('/ajax/' + this.target + '/' + this.update_id + '/is_public', {data} );
     }
   }
 }
