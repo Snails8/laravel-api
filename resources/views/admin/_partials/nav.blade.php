@@ -30,7 +30,7 @@
                 {{ Auth::guard('admin')->user()->name }}
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navDropdownMenuLink">
-                <li><a class="dropdown-item text-white" href="{{ route('logout') }}">ログアウト</a></li>
+                <li><a class="dropdown-item text-white" href="{{ route('admin.logout') }}">ログアウト</a></li>
               </ul>
             </li>
           </ul>
