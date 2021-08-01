@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'role'       => 'master',
                 'post'       => '',
-                'shop_id'    => 1,
+                'office_id'    => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
 
