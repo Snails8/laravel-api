@@ -42,11 +42,11 @@ class HrUser extends Model
     ];
 
     /**
-     * Company とのリレーション
+     * HrCompany とのリレーション
      * @return BelongsTo
      */
-    public function Company(): BelongsTo
+    public function HrCompany(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Company');
+        return $this->belongsTo('App\Models\HrCompany');
     }
 }
