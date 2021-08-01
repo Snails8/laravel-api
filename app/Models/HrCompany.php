@@ -13,7 +13,7 @@ class HrCompany extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     /**
-     * HrUser とのリレーション
+     * HrUser とのリレーション(hr user => サービス利用者)
      * @return HasMany
      */
     public function hrUsers(): HasMany

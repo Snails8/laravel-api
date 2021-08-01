@@ -17,11 +17,11 @@ class Company extends Model
     use HasFactory;
 
     /**
-     * HrUsersとのリレーション(hr user => サービス利用者)
+     * Userとのリレーション
      * @return HasMany
      */
-    public function HrUsers(): HasMany
+    public function Users(): HasMany
     {
-        return $this->hasMany('App\Models\HrUser');
+        return $this->hasMany('App\Models\User');
     }
 }

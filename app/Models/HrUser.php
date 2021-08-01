@@ -42,7 +42,7 @@ class HrUser extends Model
     ];
 
     /**
-     * HrCompany とのリレーション
+     * HrCompany とのリレーション(hr company => サービス利用会社)
      * @return BelongsTo
      */
     public function HrCompany(): BelongsTo
