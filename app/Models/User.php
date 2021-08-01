@@ -34,6 +34,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * 会社情報とのリレーション(自社情報
+     * @return BelongsTo
+     */
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\Company');
+    }
+
+    /**
      * 部署とのリレーション
      * @return BelongsTo
      */

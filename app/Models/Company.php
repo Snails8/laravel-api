@@ -24,4 +24,13 @@ class Company extends Model
     {
         return $this->hasMany('App\Models\User');
     }
+
+    /**
+     * 支社とのリレーション
+     * @return HasMany
+     */
+    public function Offices(): HasMany
+    {
+        return $this->hasMany('App\Models\Office');
+    }
 }
