@@ -24,7 +24,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 //common
 Vue.component('is-public-component', require('./components/partials/IsPublicComponent').default);
 Vue.component('is-contract-component', require('./components/partials/IsContractComponent').default);
-Vue.component('image-component', require('./components/partials/ImageComponent').default);
+Vue.component('image-file-component', require('./components/partials/ImageFileComponent').default);
 Vue.component('date-picker-component', require('./components/partials/DatePickerComponent').default);
 
 /**

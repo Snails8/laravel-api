@@ -39,7 +39,7 @@
     <th scope="row" class="bg-dark text-white border-white">画像</th>
     <td colspan="3">
       @includeWhen($errors->get('image'), 'admin._partials.validation_error', ['errors' => $errors->get('image')])
-      <image-form-component :id="'image'" :name="'image'" image-path="{{ $imageUrl ?? ''}}" ></image-form-component>
+      <image-file-component :id="'image'" :name="'image'" image-path="{{ $imageUrl ?? ''}}" ></image-file-component>
       @if($news->image)
         <div class="mt-2 ml-4">
           {{ Form::checkbox('is_delete', true, false, ['id' => 'is_delete', 'class' => 'form-check-input']) }}
