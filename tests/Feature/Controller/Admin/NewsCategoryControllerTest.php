@@ -57,10 +57,12 @@ class NewsCategoryControllerTest extends TestCase
         // formDataの用意
         $postData = [
             'name'    => 'テスト',
-            'sort_no' => '',
+            'sort_no' => 1,
         ];
 
         $res = $this->actingAs($user, 'admin')
+            // fromでリファラーを指定しないとテストの仕様上、発見できずback()でホームに飛ばされる
+            ->from(route('admin.news_category.index'))
             ->post(route('admin.news_category.store'), $postData);
 
         $res->assertRedirect(route('admin.news_category.index'));
@@ -77,10 +79,11 @@ class NewsCategoryControllerTest extends TestCase
 
         $postData = [
             'name'    => 'テスト',
-            'sort_no' => ''
+            'sort_no' => 1
         ];
 
         $res = $this->actingAs($user, 'admin')
+            ->from(route('admin.news_category.index'))
             ->put(route('admin.news_category.update', ['news_category' => $updateNewsCategory->id]), $postData);
 
         $res->assertRedirect(route('admin.news_category.index'));
