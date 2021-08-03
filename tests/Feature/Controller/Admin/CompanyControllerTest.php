@@ -33,7 +33,8 @@ class CompanyControllerTest extends TestCase
         $companyId = Company::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.company.edit', ['company' => $companyId]))->assertStatus(200);
+            ->get(route('admin.company.edit', ['company' => $companyId]))
+            ->assertStatus(200);
     }
 
     /**
@@ -45,7 +46,8 @@ class CompanyControllerTest extends TestCase
         $companyId = Company::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.company.edit', ['company' => $companyId]))->assertStatus(200);
+            ->get(route('admin.company.edit', ['company' => $companyId]))
+            ->assertStatus(200);
     }
 
     /**
@@ -67,6 +69,8 @@ class CompanyControllerTest extends TestCase
         ];
 
         $res = $this->actingAs($user, 'admin')
+            // fromでリファラーを指定しないとテストの仕様上、発見できずback()でホームに飛ばされる
+            ->from(route('admin.company.index'))
             ->post(route('admin.company.store'), $postData);
 
         $res->assertRedirect(route('admin.company.index'));
@@ -93,6 +97,7 @@ class CompanyControllerTest extends TestCase
         ];
 
         $res = $this->actingAs($user, 'admin')
+            ->from(route('admin.company.index'))
             ->put(route('admin.company.update', ['company' => $updateCompany->id]), $postData);
 
         $res->assertRedirect(route('admin.company.index'));
