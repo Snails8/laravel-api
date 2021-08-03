@@ -21,7 +21,7 @@ class CompanyControllerTest extends TestCase
         $companyId = Company::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.company.edit', ['company' => $companyId]))->assertStatus(200);
+            ->get(route('admin.company.index'))->assertStatus(200);
     }
 
     /**
@@ -30,11 +30,9 @@ class CompanyControllerTest extends TestCase
     public function 会社管理作成画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
-        $companyId = Company::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.company.edit', ['company' => $companyId]))
-            ->assertStatus(200);
+            ->get(route('admin.company.create'))->assertStatus(200);
     }
 
     /**
