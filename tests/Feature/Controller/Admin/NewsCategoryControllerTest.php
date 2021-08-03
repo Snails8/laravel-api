@@ -18,7 +18,6 @@ class NewsCategoryControllerTest extends TestCase
     public function お知らせカテゴリ管理一覧画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
-        $newsCategoryId = NewsCategory::query()->first('id');
 
         $this->actingAs($user, 'admin')
             ->get(route('admin.news_category.index'))->assertStatus(200);
@@ -30,7 +29,6 @@ class NewsCategoryControllerTest extends TestCase
     public function お知らせカテゴリ管理作成画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
-        $newsCategoryId = NewsCategory::query()->first('id');
 
         $this->actingAs($user, 'admin')
             ->get(route('admin.news_category.create'))->assertStatus(200);
