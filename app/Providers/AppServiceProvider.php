@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\CompanyService;
 use App\Services\UtilityService;
+use App\Services\Api\HrAdmin\UserService as HrAdminUserService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind('utility', UtilityService::class);
         $this->app->bind('company', CompanyService::class);
+        // HrAdmin
+        $this->app->bind('hrUser', HrAdminUserService::class);
     }
 
     /**
