@@ -18,7 +18,7 @@ class CreateNewsTable extends Migration
             $table->string('title')->default('')->comment('タイトル');
             $table->longText('body')->default('')->comment('内容');
             $table->dateTime('public_date')->comment('公開日');
-            $table->string('image')->default('')->comment('画像');
+            $table->string('image')->default('')->nullable()->comment('画像');
             $table->text('description')->default('')->comment('description');
             $table->boolean('is_public')->default(true)->comment('公開判定');
             $table->integer('news_category_id');
