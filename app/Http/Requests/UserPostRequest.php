@@ -33,7 +33,7 @@ class UserPostRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'shop_id'               => 'required|integer',
+            'office_id'               => 'required|integer',
             'name'                  => 'required',
             'kana'                  => '',
             'email'                 => 'required|email|unique:users',
