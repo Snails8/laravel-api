@@ -18,7 +18,6 @@ class CompanyControllerTest extends TestCase
     public function 会社管理一覧画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
-        $companyId = Company::query()->first('id');
 
         $this->actingAs($user, 'admin')
             ->get(route('admin.company.index'))->assertStatus(200);
