@@ -4,7 +4,7 @@
   @includeWhen(session('flash_message'), 'admin._partials.flash_message_success')
   <h4 class="c-grey-900 mT-10 mB-30">{{ $title }}</h4>
   {{ Form::open(['route' => ['admin.news.index'], 'class' => 'pb-3 border-bottom', 'method' => 'GET']) }}
-  <table class="table table-striped table-bordered table-search">
+  <table class="table table-striped table-bordered align-middle">
     <colgroup>
       <col style="width: 12%;">
       <col style="width: 33%;">
@@ -19,7 +19,7 @@
     </tr>
   </table>
   <div class="text-center">
-    {{ Form::submit('検索', ['class' => 'btn btn-primary pl-5 pr-5']) }}
+    {{ Form::submit('検索', ['class' => 'btn btn-primary px-5']) }}
   </div>
   {{ Form::close() }}
 
@@ -27,11 +27,11 @@
   <div id='search_result' class="operation mt-3 py-3">
     <a class="btn btn-outline-primary" href="{{ route('admin.news.create') }}">新規作成</a>
   </div>
-  <table class="table table-striped table-bordered item-va-middle table-list">
-    <thead class="thead-dark">
+  <table class="table table-striped table-bordered table-search">
+    <thead class="bg-black text-white">
     <tr>
       <th scope="col" class="id">ID</th>
-            <th scope="col" class="date">公開日</th>
+      <th scope="col" class="date">公開日</th>
       <th scope="col" class="work-name">タイトル</th>
       <th scope="col" class="display">HP公開</th>
       <th scope="col" class="operation">操作</th>
