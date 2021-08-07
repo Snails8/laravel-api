@@ -60,6 +60,14 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            // Session認証とCORSで必要なClass
+            \Fruitcake\Cors\HandleCors::class,
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+
+            //default
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
