@@ -51,6 +51,10 @@ return [
             'provider' => 'hr_users'
         ],
 
+        'api_admin' => [
+            'driver' => 'session',
+            'provider' => 'hr_users'
+        ]
 
 
 //        'api' => [
@@ -86,8 +90,8 @@ return [
         'hr_users' => [
             'driver' => 'eloquent',
             'model'  => App\Models\HrUser::class,
-        ]
-
+        ],
+        
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
