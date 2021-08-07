@@ -9,7 +9,7 @@
   </colgroup>
 
 {{--  <tr>--}}
-{{--    <th class="bg-dark text-white"><span class="p-3 mr-2 badge badge-danger">必須</span>所属</th>--}}
+{{--    <th class="bg-dark text-white"><span class="p-3 me-2 badge bg-danger">必須</span>所属</th>--}}
 {{--    <td colspan="3">--}}
 {{--      @includeWhen($errors->get('shop_id'), 'admin._partials.validation_error', ['errors' => $errors->get('shop_id')])--}}
 {{--      {{ Form::select('shop_id', $shops , old('shop_id', $user->shop_id) , ['id' => 'shop_id', 'class' => 'form-control', 'required' => 'required']) }}--}}
@@ -17,7 +17,7 @@
 {{--  </tr>--}}
 
   <tr>
-    <th class="bg-dark text-white border-white"><span class="p-2 mr-2 badge badge-danger">必須</span>ユーザー名</th>
+    <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>ユーザー名</th>
     <td colspan="3">
       @includeWhen($errors->get('name'), 'admin._partials.validation_error', ['errors' => $errors->get('name')])
       {{ Form::text('name', old('name', $user->name), ['class' => 'form-control', 'required' => 'required' ]) }}
@@ -33,7 +33,7 @@
   </tr>
 
   <tr>
-    <th class="bg-dark text-white"><span class="p-2 mr-2 badge badge-danger">必須</span>メールアドレス</th>
+    <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>メールアドレス</th>
     <td colspan="3">
       @includeWhen($errors->get('email'), 'admin._partials.validation_error', ['errors' => $errors->get('email')])
       {{ Form::email('email', old('email', $user->email), ['class' => 'form-control', 'required' => 'required']) }}
@@ -41,7 +41,7 @@
   </tr>
 
   <tr>
-    <th class="bg-dark text-white"><span class="p-2 mr-2 badge badge-danger">必須</span>パスワード <small>(半角英数字8文字以上)</small></th>
+    <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>パスワード <small>(半角英数字8文字以上)</small></th>
     <td colspan="3">
       @includeWhen($errors->get('password'), 'admin._partials.validation_error', ['errors' => $errors->get('password')])
       {{ Form::password('password', ['id' => 'password', 'class' => 'form-control']) }}
@@ -49,7 +49,7 @@
   </tr>
 
   <tr>
-    <th class="bg-dark text-white"><span class="p-2 mr-2 badge badge-danger">必須</span>パスワード(確認用)</th>
+    <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>パスワード(確認用)</th>
     <td colspan="3">
       @includeWhen($errors->get('password_confirmation'), 'admin._partials.validation_error', ['errors' => $errors->get('password_confirmation')])
       {{ Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control']) }}
@@ -57,7 +57,7 @@
   </tr>
 
   <tr>
-    <th class="bg-dark text-white"><span class="p-2 mr-2 badge badge-danger">必須</span>権限</th>
+    <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>権限</th>
     <td colspan="3">
       @includeWhen($errors->get('role'), 'admin._partials.validation_error', ['errors' => $errors->get('role')])
       <div class="row">
@@ -72,7 +72,7 @@
   </tr>
 
   <tr>
-    <th class="bg-dark text-white border-white">役職</th>
+    <th class="bg-dark text-white">役職</th>
     <td colspan="3">
       @includeWhen($errors->get('post'), 'admin._partials.validation_error', ['errors' => $errors->get('post')])
       {{ Form::text('post', old('post', $user->post), ['class' => 'form-control']) }}

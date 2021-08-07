@@ -27,7 +27,7 @@
   <div id='search_result' class="operation mt-3 py-3">
     <a class="btn btn-outline-primary" href="{{ route('admin.news.create') }}">新規作成</a>
   </div>
-  <table class="table table-striped table-bordered table-search">
+  <table class="table table-striped table-bordered table-search-result">
     <thead class="bg-black text-white">
     <tr>
       <th scope="col" class="id">ID</th>
