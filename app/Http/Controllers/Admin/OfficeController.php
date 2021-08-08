@@ -41,7 +41,7 @@ class OfficeController extends Controller
     public function index(Request $request): View
     {
         $params = $this->utility->initIndexParamsForAdmin($request);
-        $offices = $this->utility->getSearchResultAtPagerByName('Office',$params, self::SELECT_LIMIT, false);
+        $offices = $this->utility->getSearchResultAtPagerByColumn('Office', $params, 'name',  self::SELECT_LIMIT, false);
 
         $title = '支社 一覧';
 

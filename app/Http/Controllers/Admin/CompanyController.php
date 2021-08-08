@@ -38,7 +38,7 @@ class CompanyController extends Controller
     public function index(Request $request): View
     {
         $params = $this->utilityService->initIndexParamsForAdmin($request);
-        $companies = $this->utilityService->getSearchResultAtPagerByName('Company', $params,self::SELECT_LIMIT, false);
+        $companies = $this->utilityService->getSearchResultAtPagerByColumn('Company', $params,'name',self::SELECT_LIMIT, false);
 
         $title = '取引先一覧';
 

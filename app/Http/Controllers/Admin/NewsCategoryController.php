@@ -36,7 +36,7 @@ class NewsCategoryController extends Controller
     public function index(Request $request): View
     {
         $params = $this->utility->initIndexParamsForAdmin($request);
-        $newsCategories = $this->utility->getSearchResultAtPagerByName('NewsCategory', $params, self::SELECT_LIMIT, true);
+        $newsCategories = $this->utility->getSearchResultAtPagerByColumn('NewsCategory', $params, 'name' ,self::SELECT_LIMIT, true);
 
         $title = 'お知らせカテゴリ 一覧';
 

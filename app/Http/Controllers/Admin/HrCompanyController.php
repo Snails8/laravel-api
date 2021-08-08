@@ -40,7 +40,7 @@ class HrCompanyController extends Controller
     public function index(Request $request): View
     {
         $params = $this->utility->initIndexParamsForAdmin($request);
-        $hrCompanies = $this->utility->getSearchResultAtPagerByName('HrCompany',$params, self::SELECT_LIMIT, false);
+        $hrCompanies = $this->utility->getSearchResultAtPagerByColumn('HrCompany', $params, 'name', self::SELECT_LIMIT, false);
 
         $title = '利用会社 一覧';
 

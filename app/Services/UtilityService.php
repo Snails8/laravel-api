@@ -195,24 +195,27 @@ class UtilityService
     }
 
     /**
-     * Admin CRUD Nameで検索
+     * Admin 各種index　検索で使用
+     * 特定のカラムで検索をし、idまたは指定のカラムで並び替えたあとPaginatorで返却
+     * 使用例) getSearchResultAtPagerByColumn('User', $params, 'name', self::SELECT_LIMIT, 'sort_no'(またはfalse))
      * @param string $modelName
      * @param array $params
+     * @param string $searchColumn
      * @param int $limit
-     * @param bool $sortNo
+     * @param string $sortColumn
      * @return LengthAwarePaginator
      */
-    public function getSearchResultAtPagerByName(string $modelName, array $params, int $limit, bool $sortNo = false): LengthAwarePaginator
+    public function getSearchResultAtPagerByColumn(string $modelName, array $params, string $searchColumn, int $limit, string $sortColumn): LengthAwarePaginator
     {
         /** @var Model $model */
         $model = 'App\Models\\' . $modelName;
         $query = $model::query();
 
         if ($params['keyword']) {
-            $query->where('name', 'like', "%$params[keyword]%");
+            $query->where($searchColumn, 'like', "%$params[keyword]%");
         }
 
-        if ($sortNo) {
+        if ($sortColumn) {
             $result = $query
                 ->orderBy('sort_no')
                 ->orderBy('id', 'desc')
@@ -225,39 +228,6 @@ class UtilityService
 
         return $result;
     }
-
-    /**
-     * Admin CRUD titleで検索
-     * @param string $modelName
-     * @param array $params
-     * @param int $limit
-     * @param bool $sortNo
-     * @return LengthAwarePaginator
-     */
-    public function getSearchResultAtPagerByTitle(string $modelName, array $params, int $limit, bool $sortNo = false): LengthAwarePaginator
-    {
-        /** @var Model $model */
-        $model = 'App\Models\\' . $modelName;
-        $query = $model::query();
-
-        if ($params['keyword']) {
-            $query->where('title', 'like', "%$params[keyword]%");
-        }
-
-        if ($sortNo) {
-            $result = $query
-                ->orderBy('sort_no')
-                ->orderBy('id', 'desc')
-                ->paginate($limit);
-        } else {
-            $result = $query
-                ->orderBy('id', 'desc')
-                ->paginate($limit);
-        }
-
-        return $result;
-    }
-
 
     /**
      * @param  Collection  $collection

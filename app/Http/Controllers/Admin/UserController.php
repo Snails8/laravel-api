@@ -40,7 +40,7 @@ class UserController extends Controller
     public function index(Request $request): View
     {
         $params = $this->utility->initIndexParamsForAdmin($request);
-        $users = $this->utility->getSearchResultAtPagerByName('User',$params, self::SELECT_LIMIT, false);
+        $users = $this->utility->getSearchResultAtPagerByColumn('User',$params, 'name',self::SELECT_LIMIT, false);
 
         $title = 'ユーザー 一覧';
 
