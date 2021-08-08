@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class RedirectIfAuthenticated
 {
     /**
+     * login 時 admin.homeに飛ばす
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -23,10 +24,9 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return redirect(RouteServiceProvider::HOME_ADMIN);
             }
         }
-
         return $next($request);
     }
 }
