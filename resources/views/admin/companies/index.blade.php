@@ -31,7 +31,6 @@
     <tr>
       <th scope="col" class="id">ID</th>
       <th scope="col" class="work-name">タイトル</th>
-      <th scope="col" class="display">HP公開</th>
       <th scope="col" class="operation">操作</th>
     </tr>
     </thead>
@@ -40,13 +39,6 @@
       <tr>
         <td >{{ $company->id }}</td>
         <td >{{ $company->name}}</td>
-        <td class="display">
-          <is-contract-component
-              :update-id="{{ $company->id }}"
-              :is-contract="{{ (int)$company->is_public }}"
-              :target="{{ json_encode('companies') }}" >
-          </is-contract-component>
-        </td>
         <td class="operation">
           <a class="btn btn-outline-success" href="{{ route('admin.company.edit', ['company' => $company->id]) }}">編集</a>
         </td>
