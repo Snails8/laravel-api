@@ -43,8 +43,8 @@
         <td class="display">
           <is-contract-component
               :update-id="{{ $hrCompany->id }}"
-              :is-contract="{{ (int)$hrCompany->is_public }}"
-              :target="{{ json_encode('companies') }}" >
+              :is-contract="{{ (int)$hrCompany->is_contract }}"
+              :target="{{ json_encode('hr_companies') }}" >
           </is-contract-component>
         </td>
         <td class="operation">

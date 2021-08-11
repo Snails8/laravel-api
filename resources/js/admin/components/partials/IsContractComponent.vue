@@ -6,14 +6,14 @@ const axios = require('axios');
 export default{
   props: {
     updateId: Number,
-    isPublic: Number,
+    isContract: Number,
     target: String,
   },
 
   data(){
     return{
       update_id: Number(this.updateId),
-      is_contract: Number(this.isPublic),
+      is_contract: Number(this.isContract),
       status:{
         0: '解約済',
         1: '契約中'
@@ -27,10 +27,10 @@ export default{
       this.is_contract ^= 1;
 
       // DBの型に合わせる
-      let publicStatus = (this.is_contract);
+      let contractStatus = (this.is_contract);
 
       let data = {
-        'is_contract': publicStatus,
+        'is_contract': contractStatus,
       };
 
       axios.put('/ajax/' + this.target + '/' + this.update_id + '/is_contract', {data} );
