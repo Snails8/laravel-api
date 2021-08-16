@@ -12,7 +12,7 @@
     <form name="delete" method="POST" action="{{ route('admin.news_category.destroy', ['news_category' => $newsCategory->id]) }}" class="d-inline">
       @csrf
       @method('DELETE')
-      <input type="button" class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#deleteModal" value="削除">
+      <input type="button" class="btn btn-outline-danger" role="button" data-bs-toggle="modal" data-bs-target="#deleteModal" value="削除">
       @include('admin._partials.confirm_delete_modal')
     </form>
   </div>
