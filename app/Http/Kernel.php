@@ -59,6 +59,14 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\AjaxOnlyMiddleware::class,
         ],
 
+        'admin.master' => [
+            \App\Http\Middleware\AdminAuthMasterMiddleware::class,
+        ],
+
+        'admin.standard' => [
+            \App\Http\Middleware\AdminAuthStandardMiddleware::class,
+        ],
+
         'api' => [
             // Session認証とCORSで必要なClass
             \Fruitcake\Cors\HandleCors::class,
