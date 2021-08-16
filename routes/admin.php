@@ -38,13 +38,22 @@ Route::middleware('auth:admin')->group(function () {
         'show'
     ])->names('admin.office');
 
-    // ユーザー管理(スタッフ)
-    Route::resource('users', UserController::class)->except([
-        'show'
-    ])->names('admin.user');
+    // Standard 認証
+    Route::middleware('admin.standard')->group(function() {
 
-    // サービス利用会社管理
-    Route::resource('hr_companies', HrCompanyController::class)->except([
-        'show'
-    ])->names('admin.hr_company');
+    });
+
+    // Master 認証
+    Route::middleware('admin.master')->group(function() {
+        // ユーザー管理(スタッフ)
+        Route::resource('users', UserController::class)->except([
+            'show'
+        ])->names('admin.user');
+
+        // サービス利用会社管理
+        Route::resource('hr_companies', HrCompanyController::class)->except([
+            'show'
+        ])->names('admin.hr_company');
+    });
 });
+
