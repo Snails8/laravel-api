@@ -5,11 +5,18 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MemberLoginPostRequest;
 use App\Services\UtilityService;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * 表側の認証処理
+ */
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
@@ -19,12 +26,12 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/top';
-
+    protected $redirectTo = '/home';
 
     /**
      * LoginController constructor.
-     * @param  Request  $request
+     * @param Request $request
+     * @param UtilityService $utilityService
      */
     public function __construct(Request $request, UtilityService $utilityService)
     {
@@ -36,9 +43,9 @@ class LoginController extends Controller
     /**
      * ログインフォーム
      * @Method GET
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return View
      */
-    public function showLoginForm()
+    public function showLoginForm(): View
     {
         $title = 'ログイン';
 
@@ -76,10 +83,10 @@ class LoginController extends Controller
     /**
      * ログアウト処理
      * @Method GET
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
-    public function logout(Request $request)
+    public function logout(Request $request): Response
     {
         $this->guard()->logout();
 
@@ -94,7 +101,7 @@ class LoginController extends Controller
      * @param  MemberLoginPostRequest  $request
      * @return bool
      */
-    private function attemptLogin(MemberLoginPostRequest $request)
+    private function attemptLogin(MemberLoginPostRequest $request): bool
     {
         return $this->guard()->attempt(
             $this->credentials($request), $request->filled('remember')
@@ -107,7 +114,7 @@ class LoginController extends Controller
      * @param  MemberLoginPostRequest  $request
      * @return array
      */
-    private function credentials(MemberLoginPostRequest $request)
+    private function credentials(MemberLoginPostRequest $request): array
     {
         return $request->only('email', 'password');
     }
@@ -116,9 +123,9 @@ class LoginController extends Controller
     /**
      * Send the response after the user was authenticated.
      * @param  MemberLoginPostRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    private function sendLoginResponse(MemberLoginPostRequest $request)
+    private function sendLoginResponse(MemberLoginPostRequest $request) : RedirectResponse
     {
         $request->session()->regenerate();
 
@@ -143,10 +150,11 @@ class LoginController extends Controller
 
     /**
      * Get the guard to be used during authentication.
+     * こいつを記載しないとdefault のguard が走ってしますためguard を指定
      *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     * @return StatefulGuard
      */
-    private function guard()
+    private function guard(): StatefulGuard
     {
         return Auth::guard('member');
     }
