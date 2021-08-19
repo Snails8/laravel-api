@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
         $prefix = $request->segment(1);
 
         switch ($prefix) {
-            case 'up-admin':
+            case 'admin':
                 $guard = 'admin';
                 $redirectTo = '/admin/home';
                 break;
