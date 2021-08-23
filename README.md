@@ -145,20 +145,3 @@ Departments
 
 
 ```
-
-## API側の機能
-```
-- CMS 的な機能
-- CRUD処理
-- 認証
-- API連携
-- test(Feature Unit)
-- 許可による権限付与
-- ajax 通信
-
-- 検索機能
-- ネスト構造
-- API同士の連携 
-- 自動取引判定
-```
-
