@@ -57,6 +57,14 @@ services:
     ports:
       - 5432:5432
 
+  mail:
+    image: schickling/mailcatcher
+    container_name: mail
+    ports:
+      - 1080:1080
+    expose:
+      - 1025
+
 networks:
   default:
     name: api
