@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReserveController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +21,10 @@ Route::get('/', function () {
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('reserve')->group(function () {
+    Route::get('/', [ReserveController::class, 'showForm'])->name('reserve.form');
+    Route::post('/', [ReserveController::class, 'submit'])->name('reserve.post');
+    Route::get('/thanks', [ReserveController::class, 'showThanks'])->name('reserve.thanks')
+});
+
