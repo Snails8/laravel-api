@@ -47,7 +47,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('hr_companies', HrCompanyController::class)->except([
         'show'
     ])->names('admin.hr_company');
-    
+
     // Standard 認証
     Route::middleware('admin.standard')->group(function() {
 
