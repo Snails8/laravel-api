@@ -19,3 +19,4 @@
 - [x] Feature Test
 - [ ] Unit Test
 - [ ] メールのテスト
+- [ ] role 許可でのtest
