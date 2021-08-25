@@ -25,6 +25,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('reserve')->group(function () {
     Route::get('/', [ReserveController::class, 'showForm'])->name('reserve.form');
     Route::post('/', [ReserveController::class, 'submit'])->name('reserve.post');
-    Route::get('/thanks', [ReserveController::class, 'showThanks'])->name('reserve.thanks')
+    Route::get('/thanks', [ReserveController::class, 'showThanks'])->name('reserve.thanks');
 });
 
