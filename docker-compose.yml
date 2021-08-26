@@ -57,6 +57,18 @@ services:
     ports:
       - 5432:5432
 
+  redis:
+    image: redis:6.0
+    container_name: redis
+    environment:
+      TZ: 'Asia/Tokyo'
+    command: redis-server --requirepass docker
+    volumes:
+      - redis:/data
+      - ./.docker/redis/conf:/user/local/etc/redis
+    ports:
+      - 6379:6379
+
   mail:
     image: schickling/mailcatcher
     container_name: mail
@@ -68,3 +80,7 @@ services:
 networks:
   default:
     name: api
+
+volumes:
+  database:
+  redis:
