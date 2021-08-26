@@ -21,4 +21,5 @@ public/css
 public/js
 
 # docker
-.docker/db/data/*
+.docker/db
+.docker/redis
