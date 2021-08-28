@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -29,6 +30,8 @@ class ReserveMail extends Mailable
     public function build()
     {
         $validated = $this->validated;
+        // formatを使うために(string => dateTime)
+        $validated['reserve_date'] = new Carbon($validated['reserve_date']);
 
         $data = [
             'validated' => $validated,
