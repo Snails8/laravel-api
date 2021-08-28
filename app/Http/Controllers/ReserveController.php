@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * sample予約
@@ -53,6 +54,7 @@ class ReserveController extends Controller
             Log::critical('データ保存中に本題が発生しました。ユーザー情報'. implode(' / ', $validated));
             abort('500', 'データ保存中に本題が発生しました。');
         }
+        Mail::send(new ReserveMail($validated));
         return redirect()->route('reserve.thanks');
     }
 
