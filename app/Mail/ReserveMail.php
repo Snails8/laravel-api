@@ -41,6 +41,6 @@ class ReserveMail extends Mailable
             ->to($validated['email'])
             ->bcc('sample@company.com')
             ->subject('自動返信 予約完了のお知らせ')
-            ->text('emails.reserve', $validated);
+            ->text('emails.reserve', $data);
     }
 }
