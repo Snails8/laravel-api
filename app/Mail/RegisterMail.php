@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ReserveMail extends Mailable
+class RegisterMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -25,7 +25,7 @@ class ReserveMail extends Mailable
     /**
      * Build the message.
      *
-     * @return ReserveMail
+     * @return RegisterMail
      */
     public function build()
     {

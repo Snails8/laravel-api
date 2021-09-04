@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReservePostRequest;
-use App\Mail\ReserveMail;
-use App\Models\Reserve;
+use App\Http\Requests\RegisterPostRequest;
+use App\Mail\RegisterMail;
+use App\Models\Register;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -15,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 /**
  * sample予約
  */
-class ReserveController extends Controller
+class RegisterController extends Controller
 {
     /**
      * 予約form 表示処理
@@ -23,7 +22,7 @@ class ReserveController extends Controller
      */
     public function showForm(): View
     {
-        $title = 'sample reserve form';
+        $title = 'sample register form';
 
         $description = 'sample';
 
@@ -32,21 +31,21 @@ class ReserveController extends Controller
             'description' => $description,
         ];
 
-        return view('reserve.form', $data);
+        return view('registers', $data);
     }
 
     /**
      * 送信処理
-     * @param ReservePostRequest $request
+     * @param RegisterPostRequest $request
      * @return RedirectResponse
      */
-    public function submit(ReservePostRequest $request): RedirectResponse
+    public function submit(RegisterPostRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
         DB::beginTransaction();
         try {
-            $reserve = new Reserve();
+            $reserve = new Register();
 
             $reserve->fill($validated)->save();
         } catch (\Exception $e) {
@@ -55,8 +54,8 @@ class ReserveController extends Controller
             Log::critical('データ保存中に本題が発生しました。ユーザー情報'. implode(' / ', $validated));
             abort('500', 'データ保存中に本題が発生しました。');
         }
-        Mail::send(new ReserveMail($validated));
-        return redirect()->route('reserve.thanks');
+        Mail::send(new RegisterMail($validated));
+        return redirect()->route('register.thanks');
     }
 
     /**
@@ -73,6 +72,6 @@ class ReserveController extends Controller
             'description' => $description,
         ];
 
-        return view('reserve.thanks', $data);
+        return view('registers.thanks', $data);
     }
 }
