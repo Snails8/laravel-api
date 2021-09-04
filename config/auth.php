@@ -41,6 +41,11 @@ return [
             'provider' => 'users',
         ],
 
+        'member' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -87,6 +92,11 @@ return [
             'model' => App\Models\User::class,
         ],
 
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Customer::class
+        ],
+
         'hr_users' => [
             'driver' => 'eloquent',
             'model'  => App\Models\HrUser::class,
@@ -119,6 +129,12 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+
+        'customers' => [
+            'provider' => 'customers',
+            'table' => 'customers_password_resets',
+            'expire' => 60,
         ],
 
         'hr_users' => [
