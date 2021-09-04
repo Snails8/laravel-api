@@ -23,7 +23,7 @@ Route::get('/', [TopController::class, 'index'])->name('top');
 
 //Auth::routes();
 
-Route::get('/top', [TopController::class, 'index'])->name('home');
+Route::get('/top', [TopController::class, 'index'])->name('top');
 
 Route::prefix('news')->group(function () {
     Route::get('/', [NewsController::class, 'index'])->name('news.index');
