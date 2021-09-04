@@ -15,9 +15,11 @@ use App\Http\Controllers\ReserveController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', [TopController::class, 'index'])->name('top');
 
 //Auth::routes();
 
