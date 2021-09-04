@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ReserveController;
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,11 @@ Route::get('/', function () {
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('news')->group(function () {
+    Route::get('/', [NewsController::class, 'index'])->name('news.index');
+    Route::get('/{newsId}}', [NewsController::class, 'show'])->where('nameId', '[0-9]+')->name('news.show')
+});
 
 Route::prefix('reserve')->group(function () {
     Route::get('/', [ReserveController::class, 'showForm'])->name('reserve.form');
