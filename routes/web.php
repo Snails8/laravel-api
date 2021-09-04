@@ -25,7 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('news')->group(function () {
     Route::get('/', [NewsController::class, 'index'])->name('news.index');
-    Route::get('/{newsId}}', [NewsController::class, 'show'])->where('nameId', '[0-9]+')->name('news.show')
+    Route::get('/{newsId}}', [NewsController::class, 'show'])->where('nameId', '[0-9]+')->name('news.show');
 });
 
 Route::prefix('reserve')->group(function () {

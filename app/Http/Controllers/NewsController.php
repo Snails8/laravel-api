@@ -23,7 +23,7 @@ class NewsController extends Controller
         $description = 'お知らせ sample';
 
         $data = [
-            'newsList' => $newsLists,
+            'newsLists' => $newsLists,
             'title'    => $title,
             'description' => $description,
         ];
