@@ -25,6 +25,13 @@ Route::get('/', [TopController::class, 'index'])->name('top');
 
 Route::get('/top', [TopController::class, 'index'])->name('top');
 
+Route::get('reserves', [ReserveController::class, 'index'])->name('reserve.index');
+
+Route::prefix('reserves')->group( function () {
+    Route::get('/', [ReserveController::class, 'showForm'])->name('reserve.form');
+    Route::post('/', [ReserveController::class, 'submit'])->name('reserve.post');
+    Route::get('/', [ReserveController::class, 'showThanks'])->name('reserve.thanks');
+});
 Route::prefix('news')->group(function () {
     Route::get('/', [NewsController::class, 'index'])->name('news.index');
     Route::get('/{newsId}', [NewsController::class, 'show'])->where('newsId', '[0-9]+')->name('news.show');
