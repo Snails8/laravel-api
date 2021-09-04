@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * 表側のlogin に使用する会員データのモデル
  * 認証に使用しているため継承先が異なる
  */
-class Customers extends Authenticatable
+class Customer extends Authenticatable
 {
     use HasFactory, Notifiable, SoftDeletes;
 
