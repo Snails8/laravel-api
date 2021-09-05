@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar-front navbar-expand-lg navbar-dark bg-dark">
   <div class="row container-fluid pe-0">
     <div class="col-md-auto me-auto nav">
       <div class="navbar-brand nav-item">
