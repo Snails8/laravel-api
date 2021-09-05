@@ -31,7 +31,7 @@ class RegisterController extends Controller
             'description' => $description,
         ];
 
-        return view('registers', $data);
+        return view('registers.index', $data);
     }
 
     /**
