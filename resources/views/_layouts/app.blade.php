@@ -14,9 +14,7 @@
 
 <body>
 <div>
-  <nav>
-{{--    @include('_components.menu-box')--}}
-  </nav>
+  @include('_partials.nav')
 </div>
 {{--@include('_components.header')--}}
 <main id="app">@yield('content')</main>
