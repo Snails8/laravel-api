@@ -6,16 +6,23 @@
   <meta name="robots" content="noindex">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
-  <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-  <script src="{{ asset('/js/app.js') }}" defer></script>
+  <link href="{{ asset('/css/app_admin.css') }}" rel="stylesheet">
+  <script src="{{ asset('/js/app_admin.js') }}" defer></script>
 </head>
 <body>
 <div id="app">
-  <nav class="nav-top fixed-top flex-column">
-    <div class="navbar navbar-dark bg-dark p-0 flex-row flex-nowrap">
-      <span class="h6 navbar nav-link text-white m-0 py-3">{{ config('app.name', 'Laravel') }}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="row container-fluid pe-0">
+      <div class="col-md-auto me-auto nav">
+        <div class="navbar-brand nav-item">
+          {{ config('app.name', 'Act') }}
+        </div>
+      </div>
     </div>
   </nav>
+
+
+
   <main class="mt-5 py-5">
     @yield('content')
   </main>
