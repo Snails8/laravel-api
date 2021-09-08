@@ -10,7 +10,6 @@
   @include('admin.companies._form')
   {{ Form::close() }}
   <div class="my-3 pt-3 border-top">
-    <a class="btn btn-outline-secondary" href="{{ route('admin.company.index') }}" >一覧に戻る</a>
     <form name="delete" method="POST" action="{{ route('admin.company.destroy', ['company' => $company]) }}" class="d-inline">
       @csrf
       @method('DELETE')

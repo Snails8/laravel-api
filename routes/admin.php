@@ -29,8 +29,8 @@ Route::middleware('auth:admin')->group(function () {
     ])->names('admin.news_category');
 
     // 自社情報管理
-    Route::resource('companies', CompanyController::class)->except([
-        'show',
+    Route::resource('companies', CompanyController::class)->only([
+        'edit', 'update'
     ])->names('admin.company');
 
     // 支社管理
