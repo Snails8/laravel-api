@@ -23,7 +23,6 @@ class NewsTableSeeder extends Seeder
                 'image' => '',
                 'description' => 'sample description',
                 'is_public' => true,
-                'news_category_id' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

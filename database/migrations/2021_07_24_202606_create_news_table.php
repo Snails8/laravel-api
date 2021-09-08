@@ -4,9 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * お知らせ table
+ * laravel では基本 migration名(複数系) => model名(単数形) にしないといけないが newsは news で通るよう作られている
+ */
 class CreateNewsTable extends Migration
 {
     /**
+     *
      * Run the migrations.
      *
      * @return void
@@ -21,7 +26,6 @@ class CreateNewsTable extends Migration
             $table->string('image')->default('')->nullable()->comment('画像');
             $table->text('description')->default('')->comment('description');
             $table->boolean('is_public')->default(true)->comment('公開判定');
-            $table->integer('news_category_id');
             $table->timestamps();
         });
     }
