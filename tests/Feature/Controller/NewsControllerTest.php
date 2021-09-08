@@ -12,7 +12,7 @@ class NewsControllerTest extends TestCase
      */
     public function お知らせ一覧ページのレスポンスは正常である()
     {
-        $this->get('/news')->assertStatus(200);
+        $this->get(route('news.index'))->assertStatus(200);
     }
 
     /**
@@ -20,7 +20,7 @@ class NewsControllerTest extends TestCase
      */
     public function お知らせ詳細ページのレスポンスは正常である()
     {
-        $news = News::query()->select(['id'])->orderByDesc('id')->first();
-        $this->get('/news/'. $news->id)->assertStatus(200);
+        $newsId = News::query()->inRandomOrder()->first('id');
+        $this->get(route('news.show', ['newsId' => $newsId]))->assertStatus(200);
     }
 }
