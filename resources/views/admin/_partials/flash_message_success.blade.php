@@ -1,6 +1,4 @@
-<div class="alert alert-success">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
   {{ session('flash_message') }}
-  <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
