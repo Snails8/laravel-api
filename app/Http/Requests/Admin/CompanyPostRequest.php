@@ -40,7 +40,7 @@ class CompanyPostRequest extends FormRequest
             'address_other' => 'string|max:255',
             'tel'           => 'required|regex:/^[0-9]{2,4}[0-9]{2,4}[0-9]{3,4}$/',
             'email'         => 'required|email',
-            'representative_name' => 'required|max:255',
+            'ceo' => 'required|max:255',
         ];
 
         return $rules;
@@ -68,8 +68,8 @@ class CompanyPostRequest extends FormRequest
             'address.max'                  => '住所は255文字以内で入力してください。',
             'address_other.string'         => '建物名/部屋番号の入力値が有効な形式ではありません。',
             'address_other.max'            => '建物名/部屋番号は255文字以内で入力してください。',
-            'representative_name.required' => '会社名は必ず入力してください。',
-            'representative_name.max'      => '会社名は255文字以内で入力してください。',
+            'ceo.required' => '会社名は必ず入力してください。',
+            'ceo.max'      => '会社名は255文字以内で入力してください。',
         ];
 
         return $messages;
