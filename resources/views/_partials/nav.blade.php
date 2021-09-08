@@ -4,9 +4,9 @@
       <div class="navbar-brand nav-item">
         <a class="navbar-brand" href="#">{{ config('app.name', 'Act') }}</a>
       </div>
-      <a class="nav-item nav-link navbar-menu" href="{{ route('admin.company.index') }}">
+{{--      <a class="nav-item nav-link navbar-menu" href="{{ route('company.index') }}">--}}
         <div>会社情報</div>
-      </a>
+{{--      </a>--}}
       <a class="nav-item nav-link navbar-menu" href="">
         <div>サンプル一覧</div>
       </a>
