@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * お知らせ
+ * お知らせ (laravel では基本 migration名(複数系) => model名(単数形) にしないといけないが newsは news で通るよう作られている)
  * Class News
  * @package App\Models
  */
@@ -21,10 +21,10 @@ class News extends Model
 
     /**
      * NewsCategory とのリレーション
-     * @return BelongsTo
+     * @return BelongsToMany
      */
-    public function newsCategory(): BelongsTo
+    public function newsCategories(): BelongsToMany
     {
-        return $this->belongsTo('App\Models\NewsCategory');
+        return $this->belongsToMany('App\Models\NewsCategory');
     }
 }

@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
+ * お知らせカテゴリ
  * Class NewsCategory
  * @package App\Models
  */
@@ -15,12 +16,13 @@ class NewsCategory extends Model
     use HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
     /**
      * News とのリレーション
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function news(): HasMany
+    public function news(): BelongsToMany
     {
-        return $this->hasMany('App\Models\News');
+        return $this->belongsToMany('App\Models\News');
     }
 }
