@@ -18,7 +18,6 @@ class CompanyPostRequest extends FormRequest
     public function authorize()
     {
         $paths = [
-            'admin.company.store',
             'admin.company.update',
         ];
 

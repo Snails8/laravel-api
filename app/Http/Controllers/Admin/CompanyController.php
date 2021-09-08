@@ -13,61 +13,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 /**
+ * 自社情報管理
  * Class CompanyController
  * @package App\Http\Controllers\Admin
  */
 class CompanyController extends Controller
 {
-    const SELECT_LIMIT = 15;
-    private $utilityService;
-
-    /**
-     * CompanyController constructor.
-     * @param UtilityService $utilityService
-     */
-    public function __construct(UtilityService $utilityService)
-    {
-        $this->utilityService = $utilityService;
-    }
-
-    /**
-     * 一覧表示
-     * @param Request $request
-     * @return View
-     */
-    public function index(Request $request): View
-    {
-        $params = $this->utilityService->initIndexParamsForAdmin($request);
-        $companies = $this->utilityService->getSearchResultAtPagerByColumn('Company', $params,'name',self::SELECT_LIMIT, false);
-
-        $title = '取引先一覧';
-
-        $data = [
-            'params'    => $params,
-            'companies' => $companies,
-            'title'     => $title,
-        ];
-
-        return view('admin.companies.index', $data);
-    }
-
-    /**
-     * 新規作成画面表示
-     * @param Company $company
-     * @return View
-     */
-    public function create(Company $company): View
-    {
-        $title = '会社登録';
-
-        $data = [
-            'company' => $company,
-            'title'   => $title,
-        ];
-
-        return view('admin.companies.create', $data);
-    }
-
     /**
      * 編集画面表示
      * @param Company $company
@@ -75,41 +26,14 @@ class CompanyController extends Controller
      */
     public function edit(Company $company): View
     {
-        $title = '会社登録ページ';
+        $title = '会社概要';
 
         $data = [
-            'title' => $title,
+            'title'   => $title,
             'company' => $company,
         ];
 
         return view('admin.companies.edit', $data);
-    }
-
-    /**
-     * 登録処理
-     * @param CompanyPostRequest $request
-     * @return RedirectResponse
-     */
-    public function store(CompanyPostRequest $request) :RedirectResponse
-    {
-        $validated = $request->validated();
-
-        DB::beginTransaction();
-        try {
-            $company = new Company();
-
-            $company->fill($validated)->save();
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            session()->flash('critical_error_message', '保存中に問題が発生しました');
-            Log::critical($e->getMessage());;
-        }
-        session()->flash('flash_message', '新規作成完了しました');
-
-        return redirect()->route('admin.company.index');
     }
 
     /**
@@ -118,10 +42,9 @@ class CompanyController extends Controller
      * @param Company $company
      * @return RedirectResponse
      */
-    public function update(CompanyPostRequest $request, Company $company)
+    public function update(CompanyPostRequest $request, Company $company): RedirectResponse
     {
         $validated = $request->validated();
-
         DB::beginTransaction();
         try {
             $company->fill($validated)->save();
