@@ -58,6 +58,6 @@ class CompanyController extends Controller
         }
         session()->flash('flash_message', '更新完了しました');
 
-        return redirect()->route('admin.company.index');
+        return redirect()->route('admin.company.edit', ['company' => $company->id]);
     }
 }
