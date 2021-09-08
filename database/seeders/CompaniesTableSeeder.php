@@ -21,7 +21,7 @@ class CompaniesTableSeeder extends Seeder
                     'zipcode' => 'xxx-xxxx',
                     'address' => '愛知県名古屋市Hoge 111',
                     'address_other' => 'スーパーマンション105号',
-                    'tel'     => '0000-00-0000',
+                    'tel'     => 11122223333,
                     'email'   => 'sample@sample.com',
                     'ceo' => 'サンプル たにし',
                 ],
