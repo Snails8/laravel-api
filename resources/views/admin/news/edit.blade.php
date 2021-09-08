@@ -1,7 +1,6 @@
 @extends('admin._layouts.app')
 @section('title', $title)
 @section('content')
-  <h4 class="c-grey-900 mT-10 mB-30">{{ $title }}</h4>
   @includeWhen(session('flash_message'), 'admin._partials.flash_message_success')
   {{--  <a href="{{ route('admin.news.images.edit', ['news' => $news->id]) }}" class="btn btn-outline-success mb-2">施工事例画像登録</a>--}}
   {{ Form::open(['route' => ['admin.news.update', 'news' => $news->id], 'method' => 'put', 'files' => true]) }}
