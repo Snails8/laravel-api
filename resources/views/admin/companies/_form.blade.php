@@ -15,7 +15,7 @@
     </td>
   </tr>
   <tr>
-    <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>住所</th>
+    <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>郵便番号</th>
     <td colspan="3">
       @includeWhen($errors->get('zipcode'), 'admin._partials.validation_error', ['errors' => $errors->get('zipcode')])
       {{ Form::text('zipcode', old('zipcode', $company->zipcode ?? ''), ['placeholder' => '例）名古屋市栄1丁目','class' => 'form-control', 'required' => 'required']) }}
