@@ -84,7 +84,6 @@ class NewsController extends Controller
     {
         // カテゴリ取得
         $newsCategories = $this->utility->getTargetColumnAssocWithSearch('NewsCategory', 'name', '','', false);
-        $newsCategories = $this->utility->addEmptyRowToAssoc($newsCategories, false);
 
         $title = $news->title . '編集';
 
@@ -105,7 +104,7 @@ class NewsController extends Controller
     public function store(NewsPostRequest $request) :RedirectResponse
     {
         $validated = $request->validated();
-        $exceptKey = ['newsCategories'];
+        $exceptKey = ['news_categories'];
 
         DB::beginTransaction();
         try {
@@ -113,7 +112,7 @@ class NewsController extends Controller
             $news->fill(collect($validated)->except($exceptKey)->toArray());
 
             $news->fill($validated)->save();
-            $news->newsCategories()->sync($validated['newsCategories']);
+            $news->newsCategories()->sync($validated['news_categories']);
 
             DB::commit();
         } catch (\Exception $e) {
@@ -136,14 +135,14 @@ class NewsController extends Controller
     public function update(NewsPostRequest $request, News $news): RedirectResponse
     {
         $validated = $request->validated();
-        $exceptKey = ['newsCategories'];
+        $exceptKey = ['news_categories'];
 
         DB::beginTransaction();
         try {
             $news->fill(collect($validated)->except($exceptKey)->toArray());
 
             $news->fill($validated)->save();
-            $news->newsCategories()->sync($validated['newsCategories']);
+            $news->newsCategories()->sync($validated['news_categories']);
 
             DB::commit();
         } catch (\Exception $e) {

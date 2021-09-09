@@ -25,6 +25,6 @@ class News extends Model
      */
     public function newsCategories(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\NewsCategory');
+        return $this->belongsToMany('App\Models\NewsCategory')->withTimestamps();
     }
 }
