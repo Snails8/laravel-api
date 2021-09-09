@@ -30,17 +30,17 @@ class ContactController extends Controller
     public function index(Request $request): View
     {
         $params = $this->utility->initIndexParamsForAdmin($request);
-        $contact = $this->utility->getSearchResultAtPagerByColumn('Contact', $params, 'company' ,self::SELECT_LIMIT, true);
+        $contacts = $this->utility->getSearchResultAtPagerByColumn('Contact', $params, 'company' ,self::SELECT_LIMIT, false);
 
         $title = 'お問い合わせ 一覧';
 
         $data = [
-            'contact' => $contact,
-            'params'  => $params,
-            'title'   => $title,
+            'contacts' => $contacts,
+            'params'   => $params,
+            'title'    => $title,
         ];
 
-        return view('admin.contact.index', $data);
+        return view('admin.contacts.index', $data);
     }
 
     /**
@@ -56,7 +56,7 @@ class ContactController extends Controller
             'contact' => $contact,
         ];
 
-        return view('admin.contact.show', $data);
+        return view('admin.contacts.show', $data);
     }
 
     /**
