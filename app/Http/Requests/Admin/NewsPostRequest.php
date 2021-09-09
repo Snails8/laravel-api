@@ -35,7 +35,7 @@ class NewsPostRequest extends FormRequest
             'public_date'      => 'required|date',
             'image'            => '',
             'description'      => 'required',
-            'news_category_id' => 'required',
+            'news_categories' => 'required',
         ];
 
         return $rules;
@@ -52,7 +52,7 @@ class NewsPostRequest extends FormRequest
             'public_date.required'      => '公開日は必ず入力してください。',
             'public_date.date'          => '日付形式で入力してください。',
             'description.required'      => 'descriptionは必ず入力してください。',
-            'news_category_id.required' => 'カテゴリは必ず選択してください。',
+            'news_categories.required' => 'カテゴリは必ず選択してください。',
         ];
 
         return $messages;

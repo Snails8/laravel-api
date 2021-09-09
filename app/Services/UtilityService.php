@@ -98,28 +98,33 @@ class UtilityService
     }
 
     /**
-     * 特定のModelからsearchColumn = valueで検索したあと id, $columnを、連想配列として返却(プルダウンで使用
+     * 管理画面 各種 select,checkbox用の値加工(連想配列 = Assoc)に使用 => 選択肢として使える状態に
+     *
+     * Model を呼び出し、id と $column をselect する。
+     * where(searchColumn = searchValue)で検索したあと 該当したものを 連想配列として返却
      * TODO::pluck 使うときってEnumのような定数系だけな気がする
+     *
      * @param string $modelName
      * @param string $column
      * @param string $searchColumn
      * @param $searchValue
-     * @param bool $pluck
+     * @param bool $isPluck
      * @return array
      */
-    public function getTargetColumnAssocWithSearch(string $modelName, string $column, string $searchColumn, $searchValue, bool $pluck = false): array
+    public function getTargetColumnAssocWithSearch(string $modelName, string $column, string $searchColumn, $searchValue, bool $isPluck = false): array
     {
         /** @var Model $model */
         $model = 'App\Models\\' . $modelName;
 
         $query = $model::query()->select(['id', $column]);
 
+        // データ取得に条件をかけたい場合
         if ($searchColumn && $searchValue) {
             $query->where($searchColumn, $searchValue);
         }
 
         // pluck だとid が固有ではなくなる。foreach だとそのまま引き継がれる
-        if ($pluck) {
+        if ($isPluck) {
             $result = $query->get()->pluck($column)->toArray();
         } else {
             $tmps = $query->get()->toArray();
