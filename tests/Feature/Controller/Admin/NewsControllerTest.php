@@ -60,7 +60,6 @@ class NewsControllerTest extends TestCase
             'public_date' => Carbon::now()->format('Y-m-d'),
             'image'       => '',
             'description' => 'test description',
-            'news_category_id' => 1,
         ];
 
         $res = $this->actingAs($user, 'admin')
@@ -86,7 +85,6 @@ class NewsControllerTest extends TestCase
             'public_date' => Carbon::now()->format('Y-m-d'),
             'image'       => '',
             'description' => 'test description',
-            'news_category_id' => 1,
         ];
 
         $res = $this->actingAs($user, 'admin')
