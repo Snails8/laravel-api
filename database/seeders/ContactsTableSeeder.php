@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -25,6 +26,7 @@ class ContactsTableSeeder extends Seeder
             'employee_count' => 2,
             'contact_type' => 1,
             'detail' => 'test 詳細',
+            'created_at' => new Carbon(),
         ]);
     }
 }
