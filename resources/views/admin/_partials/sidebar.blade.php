@@ -42,6 +42,11 @@
       </a>
     </li>
     <li class="nav-item ps-2">
+      <a class="nav-link" href="{{ route('admin.news_category.index') }}">
+        <i class="bi bi-caret-right me-1"></i>カテゴリ管理
+      </a>
+    </li>
+    <li class="nav-item ps-2">
       <a class="nav-link" href="">
         <i class="bi bi-caret-right me-1"></i>導入事例
       </a>
