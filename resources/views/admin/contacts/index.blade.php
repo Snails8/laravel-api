@@ -40,7 +40,7 @@
       <tr>
         <td>{{ $contact->id }}</td>
         <td>{{ $contact->created_at->format('Y/m/d H時i分s秒') }}</td>
-        <td>{{ $contact->contact_type }}</td>
+        <td>{{ EnumContact::CONTACT_TYPE[$contact->contact_type] }}</td>
         <td>{{ $contact->company . ' ' . $contact->name }}</td>
         <td class="operation">
           <a class="btn btn-outline-success" href="{{ route('admin.contact.show', ['contact' => $contact->id]) }}">詳細</a>

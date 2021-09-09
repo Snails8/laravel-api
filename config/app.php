@@ -236,6 +236,7 @@ return [
 
         // Enum
         'EnumUser' => App\Enums\User::class,
+        'EnumContact' => App\Enums\Contact::class,
     ],
 
 ];

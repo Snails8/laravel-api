@@ -35,11 +35,11 @@
     <tr>
       <th class="bg-dark text-white border-white">従業員数</th>
       <td>
-        {{ $contact->employee_count }}
+        {{ EnumContact::CONTACT_TYPE[$contact->employee_count] }}
       </td>
       <th scope="row" class="bg-dark text-white">お問い合わせ:タイプ</th>
       <td>
-        {{ $contact->contact_type }}
+        {{ EnumContact::EMPLOYEE_COUNT[$contact->contact_type] }}
       </td>
     </tr>
 
