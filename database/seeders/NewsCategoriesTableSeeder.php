@@ -17,15 +17,23 @@ class NewsCategoriesTableSeeder extends Seeder
         DB::table('news_categories')
             ->insert([
                 [
-                    'name' => '重要',
+                    'name' => 'アップデート情報',
                     'sort_no' => 1,
                 ],
                 [
-                    'name' => '業務',
+                    'name' => 'メンテナンス',
                     'sort_no' => 2,
                 ],
                 [
-                    'name' => 'その他',
+                    'name' => '障害情報',
+                    'sort_no' => 3,
+                ],
+                [
+                    'name' => 'お知らせ',
+                    'sort_no' => 4,
+                ],
+                [
+                    'name' => 'キャンペーン',
                     'sort_no' => 3,
                 ],
 
