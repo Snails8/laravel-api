@@ -63,7 +63,6 @@ class NewsController extends Controller
     {
         // カテゴリ取得
         $newsCategories = $this->utility->getTargetColumnAssocWithSearch('NewsCategory', 'name', '','', false);
-        $newsCategories = $this->utility->addEmptyRowToAssoc($newsCategories, false);
 
         $title = 'お知らせ 登録';
 

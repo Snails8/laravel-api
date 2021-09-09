@@ -21,13 +21,22 @@
       <date-picker-component :target="'public_date'" :value="{{ json_encode(old('public_date', $news->public_date ? $news->public_date->format('Y-m-d') : '')) }}"></date-picker-component>
     </td>
   </tr>
+
   <tr>
-    <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>カテゴリ</th>
+    <th class="bg-dark text-white border-white"><span class="p-2 me-2 badge bg-danger">必須</span>カテゴリ</th>
     <td colspan="3">
-      @includeWhen($errors->get('news_category_id'), 'admin._partials.validation_error', ['errors' => $errors->get('news_category_id')])
-      {{ Form::select('news_category_id', $newsCategories, old('news_category_id', $news->news_category_id), ['class' => 'form-control']) }}
+      @includeWhen($errors->get('news_categories'), 'admin._partials.validation_error', ['errors' => $errors->get('news_categories')])
+      <div class="row">
+        @foreach($newsCategories as $key => $val)
+          <div class="col-md-2 py-1 ml-4 my-auto">
+            {{ Form::checkbox('news_categories[]', $key, in_array($key, old('news_categories', $news->newsCategories->pluck('id')->toArray())), ['id' => 'news_category'.$key, 'class' => 'form-check-input']) }}
+            {{ Form::label('news_category'.$key, $val, ['class' => 'form-check-label']) }}
+          </div>
+        @endforeach
+      </div>
     </td>
   </tr>
+
   <tr>
     <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>内容</th>
     <td colspan="3">
