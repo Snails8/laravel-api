@@ -1,4 +1,4 @@
-@includeWhen(session('critical_error_message'), '_partials.flash_message_error')
+@includeWhen(session('critical_error_message'), 'admin._partials.flash_message_error')
 <table class="table table-striped border item-va-middle table-form">
   <tbody>
   <colgroup>
