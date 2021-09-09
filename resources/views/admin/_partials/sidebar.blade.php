@@ -53,6 +53,20 @@
     </li>
   </ul>
 
+  <p class="fw-bold px-3 mt-3 mb-0">お問い合わせマスタ</p>
+  <ul class="nav flex-column mb-2">
+    <li class="nav-item ps-2">
+      <a class="nav-link" href="{{ route('admin.contact.index') }}">
+        <i class="bi bi-caret-right me-1"></i>お問い合わせ管理
+      </a>
+    </li>
+    <li class="nav-item ps-2">
+      <a class="nav-link" href="">
+        <i class="bi bi-caret-right me-1"></i>導入事例
+      </a>
+    </li>
+  </ul>
+
   <p class="fw-bold px-3 mt-3 mb-0">サンプル</p>
   <ul class="nav flex-column accordion" id="nav_accordion">
 
