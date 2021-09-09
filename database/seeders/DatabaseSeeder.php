@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+/**
+ * お問い合わせ
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -21,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HrCompaniesTableSeeder::class);
         $this->call(HrUsersTableSeeder::class);
         $this->call(CustomersTableSeeder::class);
+        $this->call(ContactsTableSeeder::class);
     }
 }
