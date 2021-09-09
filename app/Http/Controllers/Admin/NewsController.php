@@ -106,12 +106,15 @@ class NewsController extends Controller
     public function store(NewsPostRequest $request) :RedirectResponse
     {
         $validated = $request->validated();
+        $exceptKey = ['newsCategories'];
 
         DB::beginTransaction();
         try {
             $news = new News();
+            $news->fill(collect($validated)->except($exceptKey)->toArray());
 
             $news->fill($validated)->save();
+            $news->newsCategories()->sync($validated['newsCategories']);
 
             DB::commit();
         } catch (\Exception $e) {
@@ -131,13 +134,17 @@ class NewsController extends Controller
      * @param News $news
      * @return RedirectResponse
      */
-    public function update(NewsPostRequest $request, News $news)
+    public function update(NewsPostRequest $request, News $news): RedirectResponse
     {
         $validated = $request->validated();
+        $exceptKey = ['newsCategories'];
 
         DB::beginTransaction();
         try {
+            $news->fill(collect($validated)->except($exceptKey)->toArray());
+
             $news->fill($validated)->save();
+            $news->newsCategories()->sync($validated['newsCategories']);
 
             DB::commit();
         } catch (\Exception $e) {
