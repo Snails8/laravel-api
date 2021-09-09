@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\HrCompanyController;
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('admin.login');
@@ -47,6 +48,10 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('hr_companies', HrCompanyController::class)->except([
         'show'
     ])->names('admin.hr_company');
+
+    Route::resource('contacts', ContactController::class)->only([
+        'index', 'show', 'edit'
+    ])->names('admin.contact');
 
     // Standard 認証
     Route::middleware('admin.standard')->group(function() {
