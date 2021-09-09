@@ -39,7 +39,7 @@
     @foreach($contacts as $contact)
       <tr>
         <td>{{ $contact->id }}</td>
-        <td>{{ $contact->created_at }}</td>
+        <td>{{ $contact->created_at->format('Y/m/d H時i分s秒') }}</td>
         <td>{{ $contact->contact_type }}</td>
         <td>{{ $contact->company . ' ' . $contact->name }}</td>
         <td class="operation">
