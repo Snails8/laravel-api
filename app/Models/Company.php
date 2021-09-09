@@ -25,7 +25,7 @@ class Company extends Model
     }
 
     /**
-     * 支社とのリレーション
+     * 事務所とのリレーション
      * @return HasMany
      */
     public function Offices(): HasMany

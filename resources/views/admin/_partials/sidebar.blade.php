@@ -24,7 +24,7 @@
     </li>
     <li class="nav-item ps-2">
       <a class="nav-link" href="">
-        <i class="bi bi-caret-right me-1"></i>支社管理
+        <i class="bi bi-caret-right me-1"></i>事務所管理
       </a>
     </li>
     <li class="nav-item ps-2">
@@ -78,7 +78,7 @@
         <li><a class="nav-link" href="{{ route('admin.company.edit', ['company' => 1 ]) }}"><i class="bi bi-chevron-right me-1"></i>お問い合わせ一覧</a></li>
       </ul>
       <ul id="menu_item3" class="submenu collapse accordion-collapse show" data-bs-parent="#nav_accordion">
-        <li><a class="nav-link" href="{{ route('admin.office.index') }}"><i class="bi bi-chevron-right me-1"></i>支社管理</a></li>
+        <li><a class="nav-link" href="{{ route('admin.office.index') }}"><i class="bi bi-chevron-right me-1"></i>事務所管理</a></li>
       </ul>
       <ul id="menu_item3" class="submenu collapse accordion-collapse show" data-bs-parent="#nav_accordion">
         <li><a class="nav-link" href="{{ route('admin.user.index') }}"><i class="bi bi-chevron-right me-1"></i>ユーザー管理</a></li>

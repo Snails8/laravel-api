@@ -11,7 +11,7 @@
       <col style="width: 33%;">
     </colgroup>
     <tr>
-      <th scope="row" class="bg-dark text-white">タイトル</th>
+      <th scope="row" class="bg-dark text-white">事務所名</th>
       <td colspan="3">
         {{ Form::text('keyword', isset($params['keyword']) ?? '', ['class' => 'form-control']) }}
       </td>
@@ -29,7 +29,7 @@
     <thead class="bg-dark text-white">
     <tr>
       <th scope="col" class="id">ID</th>
-      <th scope="col">店舗名</th>
+      <th scope="col">事務所名</th>
       <th scope="col">代表者</th>
       <th scope="col" class="operation">操作</th>
     </tr>

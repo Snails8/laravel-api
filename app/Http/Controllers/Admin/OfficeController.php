@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 /**
- * 支社管理 CRUD
+ * 事務所管理 CRUD
  * Class OfficeController
  * @package App\Http\Controllers\Admin
  */
@@ -43,7 +43,7 @@ class OfficeController extends Controller
         $params = $this->utility->initIndexParamsForAdmin($request);
         $offices = $this->utility->getSearchResultAtPagerByColumn('Office', $params, 'name',  self::SELECT_LIMIT, false);
 
-        $title = '支社 一覧';
+        $title = '事務所 一覧';
 
         $data = [
             'offices' => $offices,
@@ -62,7 +62,7 @@ class OfficeController extends Controller
      */
     public function create(Office $office): View
     {
-        $title = '支社 新規作成';
+        $title = '事務所 新規作成';
 
         $data = [
             'office'   => $office,
@@ -80,7 +80,7 @@ class OfficeController extends Controller
      */
     public function edit(Office $office): View
     {
-        $title = '支社 編集: '. $office->name;
+        $title = '事務所 編集: '. $office->name;
 
         $data = [
             'office'   => $office,

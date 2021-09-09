@@ -34,7 +34,7 @@ Route::middleware('auth:admin')->group(function () {
         'edit', 'update'
     ])->names('admin.company');
 
-    // 支社管理
+    // 事務所管理
     Route::resource('offices', OfficeController::class)->except([
         'show'
     ])->names('admin.office');

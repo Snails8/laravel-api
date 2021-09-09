@@ -8,7 +8,7 @@
     <col style="width: 33%;">
   </colgroup>
   <tr>
-    <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>支社名</th>
+    <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>事務所名</th>
     <td colspan="3">
       @includeWhen($errors->get('name'), 'admin._partials.validation_error', ['errors' => $errors->get('name')])
       {{ Form::text('name', old('name', $office->name), ['class' => 'form-control', 'required' => 'required' ]) }}
