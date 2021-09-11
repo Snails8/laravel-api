@@ -34,3 +34,9 @@ Route::prefix('register')->group(function () {
     Route::get('/thanks', [RegisterController::class, 'showThanks'])->name('register.thanks');
 });
 
+Route::prefix('contact')->group(function () {
+    Route::get('/', [RegisterController::class, 'showForm'])->name('contact.form');
+    Route::post('/', [RegisterController::class, 'submit'])->name('contact.post');
+    Route::get('/thanks', [RegisterController::class, 'showThanks'])->name('contact.thanks');
+});
+

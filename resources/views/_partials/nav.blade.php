@@ -7,8 +7,8 @@
 {{--      <a class="nav-item nav-link navbar-menu" href="{{ route('company.index') }}">--}}
         <div>会社情報</div>
 {{--      </a>--}}
-      <a class="nav-item nav-link navbar-menu" href="">
-        <div>サンプル一覧</div>
+      <a class="nav-item nav-link navbar-menu" href="{{ route('contact.form') }}">
+        <div>お問い合わせ</div>
       </a>
       <a class="nav-item nav-link navbar-menu" href="{{ route('register.form') }}">
         <div>応募フォーム</div>
