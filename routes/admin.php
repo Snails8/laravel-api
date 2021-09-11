@@ -32,7 +32,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::resource('usage_cases', UsageCaseController::class )->except([
         'show'
-    ])->names('admin.usage')
+    ])->names('admin.usage');
 
     // 自社情報管理
     Route::resource('companies', CompanyController::class)->only([
