@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\NewsCategoryController;
+use App\Http\Controllers\Admin\UsageCaseController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\UserController;
@@ -29,6 +30,10 @@ Route::middleware('auth:admin')->group(function () {
         'show',
     ])->names('admin.news_category');
 
+    Route::resource('usage_cases', UsageCaseController::class )->except([
+        'show'
+    ])->names('admin.usage')
+
     // 自社情報管理
     Route::resource('companies', CompanyController::class)->only([
         'edit', 'update'
@@ -49,6 +54,7 @@ Route::middleware('auth:admin')->group(function () {
         'show'
     ])->names('admin.hr_company');
 
+    // お問い合わせ管理
     Route::resource('contacts', ContactController::class)->only([
         'index', 'show', 'edit'
     ])->names('admin.contact');
