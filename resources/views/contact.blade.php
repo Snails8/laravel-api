@@ -44,15 +44,15 @@
         <tr>
           <th>従業員数</th>
           <td>
-            @includeWhen($errors->get('email'), '_partials.validation_error', ['errors' => $errors->get('email')])
-            {{ Form::select('email', old('email'), ['class' => 'form-control', 'placeholder' => '例）xxxxxxx@sample.com', 'required' => 'required']) }}
+            @includeWhen($errors->get('employee_count'), '_partials.validation_error', ['errors' => $errors->get('employee_count')])
+            {{ Form::select('employee_count', EnumContact::EMPLOYEE_COUNT, old('employee_count'), ['class' => 'form-control', 'placeholder' => '例）xxxxxxx@sample.com', 'required' => 'required']) }}
           </td>
         </tr>
         <tr>
           <th>お問い合わせカテゴリ</th>
           <td>
-            @includeWhen($errors->get('email'), '_partials.validation_error', ['errors' => $errors->get('email')])
-            {{ Form::select('email', old('email'), ['class' => 'form-control', 'placeholder' => '例）xxxxxxx@sample.com', 'required' => 'required']) }}
+            @includeWhen($errors->get('contact_type'), '_partials.validation_error', ['errors' => $errors->get('contact_type')])
+            {{ Form::select('contact_type', EnumContact::CONTACT_TYPE, old('contact_type'), ['class' => 'form-control', 'placeholder' => '例）xxxxxxx@sample.com', 'required' => 'required']) }}
           </td>
         </tr>
         <tr>
