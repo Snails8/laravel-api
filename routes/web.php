@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,8 +36,8 @@ Route::prefix('register')->group(function () {
 });
 
 Route::prefix('contact')->group(function () {
-    Route::get('/', [RegisterController::class, 'showForm'])->name('contact.form');
-    Route::post('/', [RegisterController::class, 'submit'])->name('contact.post');
-    Route::get('/thanks', [RegisterController::class, 'showThanks'])->name('contact.thanks');
+    Route::get('/', [ContactController::class, 'showForm'])->name('contact.form');
+    Route::post('/', [ContactController::class, 'submit'])->name('contact.post');
+    Route::get('/thanks', [ContactController::class, 'showThanks'])->name('contact.thanks');
 });
 
