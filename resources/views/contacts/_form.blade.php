@@ -48,8 +48,8 @@
     <tr>
       <th>内容詳細</th>
       <td>
-        @includeWhen($errors->get('remarks'), '_partials.validation_error', ['errors' => $errors->get('remarks')])
-        {!! Form::textarea('remarks', old('remarks'), ['class' => 'form-control', 'rows' => '10', 'cols' => '40']) !!}
+        @includeWhen($errors->get('detail'), '_partials.validation_error', ['errors' => $errors->get('detail')])
+        {!! Form::textarea('detail', old('detail'), ['class' => 'form-control', 'rows' => '10', 'cols' => '40']) !!}
       </td>
     </tr>
     </tbody>
