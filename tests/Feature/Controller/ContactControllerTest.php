@@ -13,7 +13,7 @@ class ContactControllerTest extends TestCase
      */
     public function お問い合わせフォーム表示ページのレスポンスは正常である()
     {
-        $this->get(route('contact.form'))->assertStatus(200);
+        $this->get(route('contact.index'))->assertStatus(200);
     }
 
     /**
