@@ -9,20 +9,29 @@
   <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
   <script src="https://kit.fontawesome.com/e913ec5f83.js" crossorigin="anonymous"></script>
+  <script src="{{ asset('/js/app.js') }}"></script>
   <link href="https://fonts.googleapis.com/css?family=Alata" rel="stylesheet">
 </head>
 
 <body>
-<div>
+<div id="app">
   @include('_partials.nav')
+  <div class="container-fluid p-0">
+    <main role="main" class="main-box">
+      <div class="content-box container-fluid d-flex justify-content-center">
+        <h1 class="h4 mb-3 pb-3 border-bottom">@yield('title')</h1>
+        @yield('content')
+      </div>
+    </main>
+  </div>
+  <footer class="footer">
+    {{--  @include('_components.menu-box')--}}
+  </footer>
 </div>
+
+{{--</div>--}}
 {{--@include('_components.header')--}}
-<main id="app">@yield('content')</main>
+{{--<main id="app">@yield('content')</main>--}}
 
-<footer class="footer">
-{{--  @include('_components.menu-box')--}}
-</footer>
-
-<script src="{{ asset('/js/app.js') }}"></script>
 </body>
 </html>
