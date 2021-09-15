@@ -30,6 +30,7 @@ class HrCompanyFactory extends Factory
             'tel' => $this->faker->phoneNumber,
             'email' => $this->faker->unique()->safeEmail(),
             'representative' => $this->faker->name,
+            'role' => collect(['free', 'standard', 'premium'])->random(),
             'is_contract' => collect([true, false])->random(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
