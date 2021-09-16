@@ -178,7 +178,7 @@
         </table>
         <div class="text-end">
           <button class="btn btn-outline-success">契約書表示</button>
-          <a href="" class="btn btn-outline-dark px-4">詳細</a>
+          <a href="{{ route('admin.hr_company.show', ['hr_company' => $hrCompany->id ]) }}" class="btn btn-outline-dark px-4">詳細</a>
         </div>
       </div>
     </div>
