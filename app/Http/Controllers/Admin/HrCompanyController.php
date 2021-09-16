@@ -54,6 +54,26 @@ class HrCompanyController extends Controller
     }
 
     /**
+     * 詳細
+     * @Method GET
+     * @param HrCompany $hrCompany
+     * @return View
+     */
+    public function show(HrCompany $hrCompany): View
+    {
+        $hrCompany = HrCompany::query()->find($hrCompany->id);
+
+        $title = '利用会社 一覧';
+
+        $data = [
+            'hrCompany'  => $hrCompany,
+            'title'  => $title,
+        ];
+
+        return view('admin.hr_companies.show', $data);
+    }
+
+    /**
      * 新規作成画面
      * @Method GET
      * @param  HrCompany  $hrCompany

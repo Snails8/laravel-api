@@ -20,6 +20,9 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
 
+    // サービス利用会社管理
+    Route::resource('hr_companies', HrCompanyController::class)->names('admin.hr_company');
+
     // お知らせ管理
     Route::resource('news', NewsController::class)->except([
         'show',
@@ -48,11 +51,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('users', UserController::class)->except([
         'show'
     ])->names('admin.user');
-
-    // サービス利用会社管理
-    Route::resource('hr_companies', HrCompanyController::class)->except([
-        'show'
-    ])->names('admin.hr_company');
 
     // お問い合わせ管理
     Route::resource('contacts', ContactController::class)->only([
