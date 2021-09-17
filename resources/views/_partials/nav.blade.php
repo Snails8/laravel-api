@@ -11,10 +11,10 @@
         <div>お問い合わせ</div>
       </a>
       <a class="nav-item nav-link navbar-menu" href="{{ route('register.form') }}">
-        <div>応募フォーム</div>
+        <div>Sample</div>
       </a>
       <a class="nav-item nav-link navbar-menu" href="">
-        <div>ログイン</div>
+        <div>Sample</div>
       </a>
     </div>
     <div class="col-md-auto ms-auto">
@@ -38,11 +38,10 @@
               </li>
             @else
               <a class="nav-item nav-link navbar-menu text-white" href="{{ route('register.form') }}">
-                <div>ログイン</div>
+                <div>無料お試し</div>
               </a>
-
               <a class="nav-item nav-link navbar-menu text-white" href="{{ route('register.form') }}">
-                <div>会員登録</div>
+                <div>ログイン</div>
               </a>
             @endif
 

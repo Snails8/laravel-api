@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterPostRequest;
 use App\Mail\RegisterMail;
+use App\Models\HrCompany;
 use App\Models\Register;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -12,17 +13,17 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 /**
- * sample予約
+ * 無料お試し
  */
 class RegisterController extends Controller
 {
     /**
-     * 予約form 表示処理
+     * 無料お試し 表示処理
      * @return View
      */
     public function showForm(): View
     {
-        $title = 'sample register form';
+        $title = '無料お試し';
 
         $description = 'sample';
 
@@ -45,9 +46,9 @@ class RegisterController extends Controller
 
         DB::beginTransaction();
         try {
-            $reserve = new Register();
+            $hrCompany = new HrCompany();
 
-            $reserve->fill($validated)->save();
+            $hrCompany->fill($validated)->save();
         } catch (\Exception $e) {
             DB::rollBack();
 
