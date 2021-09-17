@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * 利用会社: ユーザー
+ */
 class HrUser extends Model
 {
     use HasFactory, Notifiable;
@@ -42,11 +45,20 @@ class HrUser extends Model
     ];
 
     /**
-     * HrCompany とのリレーション(hr company => サービス利用会社)
+     * サービス利用会社 とのリレーション(hr company => サービス利用会社)
      * @return BelongsTo
      */
     public function HrCompany(): BelongsTo
     {
         return $this->belongsTo('App\Models\HrCompany');
+    }
+
+    /**
+     * 利用会社: 店舗、オフィスとのリレーション
+     * @return BelongsTo
+     */
+    public function HrOffice(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\HrOffice');
     }
 }
