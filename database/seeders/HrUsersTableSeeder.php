@@ -17,6 +17,8 @@ class HrUsersTableSeeder extends Seeder
     {
         DB::table('hr_users')->insert([
             [
+                'hr_company_id' => 1,
+                'hr_company_offices_id' => 1,
                 'name'  => 'たにし',
                 'kana'  => 'タニシ',
                 'email' => 'sample@gmail.com',

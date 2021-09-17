@@ -15,13 +15,15 @@ class CreateHrUsersTable extends Migration
     {
         Schema::create('hr_users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('hr_company_id')->comment('リレーションのキー');
+            $table->bigInteger('hr_company_offices_id')->comment('リレーションのキー');
             $table->string('name');
             $table->string('kana');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->integer('company_id');
+
             $table->timestamps();
         });
     }
