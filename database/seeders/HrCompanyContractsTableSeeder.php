@@ -25,7 +25,7 @@ class HrCompanyContractsTableSeeder extends Seeder
                 'hr_company_id' => 2,
                 'contract_date' => Carbon::now()->subDay(),
                 'credit_card'   => 1111222233334444
-            ],
+           ],
             [
                 'hr_company_id' => 3,
                 'contract_date' => Carbon::now()->subDay(),

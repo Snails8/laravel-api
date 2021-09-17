@@ -22,7 +22,7 @@ class CreateHrCompanyContractsTable extends Migration
             $table->integer('hr_company_id');
 
             $table->dateTime('contract_date')->comment('本契約日');
-            $table->integer('credit_card')->comment('クレジットカード情報');
+            $table->string('credit_card')->comment('クレジットカード情報');
             $table->timestamps();
         });
     }
