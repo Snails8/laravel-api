@@ -1,3 +1,22 @@
+## setup
+```
+$ touch .env
+$ touch cp .env_aws.example .env_aws
+$ echo 'APP_KEY=' > .env
+
+$ docker-compose build
+$ docker-compose up -d
+$ docker-compose exec app composer install
+$ docker-compose exec app npm install
+$ docker-compose exec app npm run dev
+
+$ docker-compose exec app php artisan key:generate
+$ docker-compose exec app php artisan migrate:refresh --seed
+
+$ docker-compose exec app chmod -R 777 storage
+$ docker-compose exec app chmod -R 777 bootstrap/cache
+```
+
 ### 目的
 あくまで技術力、自力の証明によるポテンシャルアピール
 ```
@@ -14,6 +33,23 @@
 6 それらをインフラ構築する
 ```
 ### 方針
+```
+$ touch .env
+$ touch cp .env_aws.example .env_aws
+$ echo 'APP_KEY=' > .env
+
+$ docker-compose build
+$ docker-compose up -d
+$ docker-compose exec app composer install
+$ docker-compose exec app npm install
+$ docker-compose exec app npm run dev
+
+$ docker-compose exec app php artisan key:generate
+$ docker-compose exec app php artisan migrate:refresh --seed
+
+$ docker-compose exec app chmod -R 777 storage
+$ docker-compose exec app chmod -R 777 bootstrap/cache
+```
 
 ### やらないこと
 凝ったアイデアを実現することや<br/>

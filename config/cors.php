@@ -19,7 +19,12 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => [
+        // next-spa
+        'http://localhost:3000',
+        // nuxt-spa
+        'http://localhost:3100',
+    ],
 
     'allowed_origins_patterns' => [],
 

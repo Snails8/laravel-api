@@ -20,19 +20,10 @@ class CompaniesTableSeeder extends Seeder
                     'name' => '株式会社サンプル',
                     'zipcode' => 'xxx-xxxx',
                     'address' => '愛知県名古屋市Hoge 111',
-                    'tel'     => '0000-00-0000',
+                    'address_other' => 'スーパーマンション105号',
+                    'tel'     => 11122223333,
                     'email'   => 'sample@sample.com',
-                    'representative_name' => 'サンプル たにし',
-                    'is_contract' => true,
-                ],
-                [
-                    'name' => '株式会社test',
-                    'zipcode' => 'xxx-xxxx',
-                    'address' => '神奈川県厚木市Hoge 111',
-                    'tel'     => '0000-00-0000',
-                    'email'   => 'test@test.com',
-                    'representative_name' => 'テスト たにし',
-                    'is_contract' => true,
+                    'ceo' => 'サンプル たにし',
                 ],
             ]);
     }

@@ -54,6 +54,18 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
 
+            Route::prefix('ajax')
+                ->middleware(['web', 'ajax'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/ajax.php'));
+
+            // next-spa(管理画面
+            Route::prefix('api/hr_admin')
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/api/hr_admin/api.php'));
+
+            // nuxt-spa
             Route::prefix('api/admin')
                 ->middleware('api')
                 ->namespace($this->namespace)
