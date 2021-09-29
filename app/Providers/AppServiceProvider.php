@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
         // Laravel8.xからデフォルトのページネーターのCSSが変わったのでBootStrapを指定しておく。
         Paginator::useBootstrap();
 
-        // 本番環境でHerokuの通信プロトコルがhttpになってしまい、form に問題が発生するためhttpsに変更
+        // 本番環境でHerokuの通信プロトコルがhttpになってしまい、ファイルの読み込みやformに問題が発生するためhttpsに変更
         if (env('APP_SCHEME') === 'https') {
             $url->forceScheme('https');
             $this->app['request']->server->set('HTTPS', 'on');
