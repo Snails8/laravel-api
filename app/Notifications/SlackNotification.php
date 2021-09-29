@@ -58,7 +58,7 @@ class SlackNotification extends Notification
             ->to($this->channel)
             ->content($this->content);
     }
-    
+
     /**
      * Get the array representation of the notification.
      *

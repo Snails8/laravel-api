@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // 独自定義
+        App\Providers\SlackServiceProvider::class,
     ],
 
     /*
@@ -232,6 +234,7 @@ return [
         'Carbon' => Illuminate\Support\Carbon::class,
 
         // 独自定義
+        'Slack' => App\Services\Slack\SlackFacade::class,
         'Utility' => App\Services\UtilityService::class,
 
         // Enum
