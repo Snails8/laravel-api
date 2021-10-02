@@ -142,19 +142,33 @@ return [
         ],
 
         'default' => [
+            'scheme' => env('REDIS_SCHEME', 'tcp'), // 追記: heroku redisをHobbyより上位のプランで追加した際。自己証明のTLS証明書が利用されるため設定を追記(schema, ssl)
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_DB', '0'),
+            // 追記
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name'  => false,
+                'allow_self_signed' => true,
+            ],
         ],
 
         'cache' => [
+            'scheme' => env('REDIS_SCHEME', 'tcp'), // 追記
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_CACHE_DB', '1'),
+            // 追記
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name'  => false,
+                'allow_self_signed' => true,
+            ],
         ],
 
     ],
