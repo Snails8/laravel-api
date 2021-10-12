@@ -19,7 +19,7 @@ class ContactControllerTest extends TestCase
     /**
      * @test
      */
-    public function お問い合わせフォーム処理は正常である()
+    public function お問い合わせフォーム送信処理は正常である()
     {
         $postData = [
             'company'        => 'サンプル株式会社',
@@ -30,7 +30,8 @@ class ContactControllerTest extends TestCase
             'contact_type'   => 1,
             'detail'         => 'sample text',
         ];
-        $res = $this->post(route('contact.post'), $postData);
+        $res = $this->from(route('contact.thanks'))
+            ->post(route('contact.post'), $postData);
         $res->assertRedirect(route('contact.thanks'));
     }
 
@@ -49,7 +50,8 @@ class ContactControllerTest extends TestCase
             'detail'         => 'sample text',
         ];
         Mail::fake();
-        $res = $this->post(route('contact.post'), $postData);
+        $res = $this->from(route('contact.thanks'))
+            ->post(route('contact.post'), $postData);
 
         Mail::assertSent(ContactMail::class);
         $res->assertRedirect(route('contact.thanks'));
