@@ -24,7 +24,7 @@
       </div>
     </main>
   </div>
-  <footer class="text-muted py-5">
+  <footer class="pt-4 my-md-5 pt-md-5 border-top">
       @include('_partials.footer')
   </footer>
 </div>
