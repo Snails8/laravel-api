@@ -2,7 +2,7 @@
 @section('title', $title ?? '')
 @section('description', $description ?? '')
 @section('content')
-  <div>
+  <div class="top">
     <h2>サンプル トップページ</h2>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -29,7 +29,7 @@
     {{--  機能/特徴   --}}
     <div class="container pt-5">
       <h2 class="text-center py-3">機能</h2>
-      <div class="row">
+      <div class="point1 row">
         <div class="col-md-4">
           <div class="card col-md-4" style="width: 18rem;">
             <img src="{{asset('images/bootstrap-social.png')}}" class="card-img-top" alt="...">
@@ -101,7 +101,7 @@
     {{--  導入事例  --}}
     <div class="container pt-2">
       <h2 class="text-center py-3">導入事例</h2>
-      <div class="row py-5">
+      <div class="point2 row py-5">
         <div class="col-md-4">
           <div class="card col-md-4" style="width: 18rem;">
             <img src="{{asset('images/bootstrap-social.png')}}" class="card-img-top" alt="...">

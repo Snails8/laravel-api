@@ -16,7 +16,7 @@
 <body>
 <div id="app">
   @include('_partials.nav')
-  <div class="container-fluid p-0">
+  <div class="front container-fluid p-0">
     <main role="main" class="main-box">
       <div class="content-box container-fluid d-flex justify-content-center">
 {{--        <h1 class="h4 mb-3 pb-3 border-bottom">@yield('title')</h1>--}}
