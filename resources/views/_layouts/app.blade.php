@@ -19,7 +19,7 @@
   <div class="container-fluid p-0">
     <main role="main" class="main-box">
       <div class="content-box container-fluid d-flex justify-content-center">
-        <h1 class="h4 mb-3 pb-3 border-bottom">@yield('title')</h1>
+{{--        <h1 class="h4 mb-3 pb-3 border-bottom">@yield('title')</h1>--}}
         @yield('content')
       </div>
     </main>
