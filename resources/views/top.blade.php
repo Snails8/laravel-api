@@ -25,5 +25,127 @@
         <span class="visually-hidden">Next</span>
       </a>
     </div>
+
+    {{--  機能/特徴   --}}
+    <div class="container pt-5">
+      <h2 class="text-center py-3">機能</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card col-md-4" style="width: 18rem;">
+            <img src="{{asset('images/bootstrap-social.png')}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card col-md-4" style="width: 18rem;">
+            <img src="{{asset('images/bootstrap-social.png')}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card col-md-4" style="width: 18rem;">
+            <img src="{{asset('images/bootstrap-social.png')}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="row py-5">
+          <div class="col-md-4">
+            <div class="card col-md-4" style="width: 18rem;">
+              <img src="{{asset('images/bootstrap-social.png')}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card col-md-4" style="width: 18rem;">
+              <img src="{{asset('images/bootstrap-social.png')}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card col-md-4" style="width: 18rem;">
+              <img src="{{asset('images/bootstrap-social.png')}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center py-4 border-bottom">
+        <a class="btn btn-primary" href="#" role="button">詳しく</a>
+      </div>
+    </div>
+
+    {{--  導入事例  --}}
+    <div class="container pt-2">
+      <h2 class="text-center py-3">導入事例</h2>
+      <div class="row py-5">
+        <div class="col-md-4">
+          <div class="card col-md-4" style="width: 18rem;">
+            <img src="{{asset('images/bootstrap-social.png')}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card col-md-4" style="width: 18rem;">
+            <img src="{{asset('images/bootstrap-social.png')}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card col-md-4" style="width: 18rem;">
+            <img src="{{asset('images/bootstrap-social.png')}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center py-4 border-bottom">
+        <a class="btn btn-primary" href="#" role="button">詳しく</a>
+      </div>
+
+      {{--  お知らせ   --}}
+      <div class="container">
+        <h2 class="text-center py-3">お知らせ</h2>
+      </div>
+
+      {{--  お問い合わせ   --}}
+      <div class="container">
+        <h2 class="text-center py-3">お問い合わせ</h2>
+      </div>
+    </div>
   </div>
 @endsection
