@@ -24,8 +24,8 @@
       </div>
     </main>
   </div>
-  <footer class="footer">
-    {{--  @include('_components.menu-box')--}}
+  <footer class="text-muted py-5">
+      @include('_partials.footer')
   </footer>
 </div>
 
