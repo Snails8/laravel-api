@@ -4,6 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Queue でコケたJob がココに保存される
+ * defaultで作成されるファイル
+ */
 class CreateFailedJobsTable extends Migration
 {
     /**
