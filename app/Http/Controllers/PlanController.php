@@ -23,6 +23,6 @@ class PlanController extends Controller
             'description' => $description,
         ];
 
-        return view('plan', $data);
+        return view('plans.index', $data);
     }
 }
