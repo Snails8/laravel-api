@@ -15,7 +15,7 @@
         <a class="nav-item nav-link navbar-menu" href="">
           <div>導入の流れ</div>
         </a>
-        <a class="nav-item nav-link navbar-menu" href="">
+        <a class="nav-item nav-link navbar-menu" href="{{ route('plan.index') }}">
           <div>料金</div>
         </a>
         <a class="nav-item nav-link navbar-menu" href="#">
