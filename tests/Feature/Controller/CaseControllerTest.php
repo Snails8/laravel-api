@@ -18,9 +18,9 @@ class CaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function 導入事例詳細ページのレスポンスは正常である()
-    {
-        $caseId = Case::query()->inRandomOrder()->first('id');
-        $this->get(route('case.show', ['caseId' => $caseId]))->assertStatus(200);
-    }
+//    public function 導入事例詳細ページのレスポンスは正常である()
+//    {
+//        $caseId = Case::query()->inRandomOrder()->first('id');
+//        $this->get(route('case.show', ['caseId' => $caseId]))->assertStatus(200);
+//    }
 }
