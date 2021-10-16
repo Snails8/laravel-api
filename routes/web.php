@@ -44,7 +44,7 @@ Route::prefix('flows')->group(function () {
 
 // 導入事例
 Route::resource('cases', CaseController::class)->only([
-    'index'
+    'index', 'show'
 ])->names('case');
 
 // お知らせイベント
