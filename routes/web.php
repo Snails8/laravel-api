@@ -38,7 +38,7 @@ Route::prefix('plans')->group(function () {
 
 // 料金(プラン)
 Route::prefix('flows')->group(function () {
-    Route::get('/', [FlowController::class, 'index'])->name('plan.index');
+    Route::get('/', [FlowController::class, 'index'])->name('flow.index');
 });
 
 // 導入事例
