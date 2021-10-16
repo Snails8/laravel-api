@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\CaseController;
 use App\Http\Controllers\FlowController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RegisterController;
@@ -42,7 +43,9 @@ Route::prefix('flows')->group(function () {
 });
 
 // 導入事例
-
+Route::resource('cases', CaseController::class)->only([
+    'index'
+])->names('case');
 
 // お知らせイベント
 Route::prefix('news')->group(function () {
