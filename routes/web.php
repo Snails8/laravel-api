@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\FlowController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ContactController;
@@ -31,11 +32,13 @@ Route::get('/', [TopController::class, 'index'])->name('top');
 
 
 // 導入の流れ
-
-
-// 料金(プラン)
 Route::prefix('plans')->group(function () {
     Route::get('/', [PlanController::class, 'index'])->name('plan.index');
+});
+
+// 料金(プラン)
+Route::prefix('flows')->group(function () {
+    Route::get('/', [FlowController::class, 'index'])->name('plan.index');
 });
 
 // 導入事例
