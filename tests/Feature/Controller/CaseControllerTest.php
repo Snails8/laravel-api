@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Controller;
 
-use App\Models\Case;
+//use App\Models\Case;
 use Tests\TestCase;
 
 class CaseControllerTest extends TestCase
