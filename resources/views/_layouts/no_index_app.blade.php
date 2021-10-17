@@ -17,17 +17,16 @@
 <body>
 <div id="app">
   @include('_partials.nav')
-  <div class="container-fluid p-0">
+  <div class="front container-fluid p-0">
     <main role="main" class="main-box">
       <div class="content-box container-fluid d-flex justify-content-center">
-        <h1 class="h4 mb-3 pb-3 border-bottom">@yield('title')</h1>
         @yield('content')
       </div>
     </main>
   </div>
-  <footer class="footer">
+{{--  <footer class="pt-4 my-md-5 pt-md-5 border-top">--}}
     {{--  @include('_components.menu-box')--}}
-  </footer>
+{{--  </footer>--}}
 </div>
 
 {{--</div>--}}
