@@ -48,6 +48,8 @@ class ContactController extends Controller
             $contact = new Contact();
 
             $contact->fill($validated)->save();
+
+            DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
 
