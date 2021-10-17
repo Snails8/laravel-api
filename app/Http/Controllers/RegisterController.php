@@ -49,6 +49,7 @@ class RegisterController extends Controller
             $hrCompany = new HrCompany();
 
             $hrCompany->fill($validated)->save();
+            DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
 
