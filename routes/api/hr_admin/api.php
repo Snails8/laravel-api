@@ -18,5 +18,5 @@ Route::middleware('auth:api_hr_admin')->group(function () {
         return Auth::user();
     });
 
-    Route::post('auth/users/create', [UserController::class, 'create']);
+    Route::post('/users/create', [UserController::class, 'create'])->name('hr_admin.user.store');
 });

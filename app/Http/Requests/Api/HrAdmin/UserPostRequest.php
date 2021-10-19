@@ -13,9 +13,11 @@ class UserPostRequest extends FormRequest
      */
     public function authorize()
     {
-        $path = [
-            ''
+        $paths = [
+            'hr_admin.user.store'
         ];
+
+        return (in_array($this->route()->action['as'], $paths));
     }
 
     /**
@@ -23,10 +25,15 @@ class UserPostRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        return [
-            //
+        $rules = [
+            'name' => '',
+            'kana' => '',
+            'email' => 'required|email',
+            'password' => '',
         ];
+
+        return $rules;
     }
 }
