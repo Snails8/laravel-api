@@ -17,4 +17,6 @@ Route::middleware('auth:api_hr_admin')->group(function () {
     Route::get('/user', function () {
         return Auth::user();
     });
+
+    Route::post('auth/users/create', [UserController::class, 'create']);
 });
