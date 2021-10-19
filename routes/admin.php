@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\NewsController;
@@ -18,6 +19,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('admin.logout');
 
 Route::middleware('auth:admin')->group(function () {
 
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
 
     // サービス利用会社管理
