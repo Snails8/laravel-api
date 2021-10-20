@@ -29,4 +29,7 @@ RUN php -d memory_limit=-1 /usr/local/bin/composer install && \
     npm install && \
     npm run production
 
+# Cache削除
+RUN sh clear-cache-prod.sh
+
 VOLUME /app
