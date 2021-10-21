@@ -4,12 +4,24 @@ namespace App\Services\Admin;
 
 use App\Http\Requests\Admin\NewsPostRequest;
 use App\Models\News;
+use App\Repositories\Admin\News\NewsRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class NewsService
 {
+    protected $newsRepository;
+
+    /**
+     * EstatePhotoService constructor.
+     * @param NewsRepository $newsRepository
+     */
+    public function __construct(NewsRepository $newsRepository)
+    {
+        $this->newsRepository = $newsRepository;
+    }
+
     /**
      * @param NewsPostRequest $request
      * @return RedirectResponse
@@ -21,11 +33,7 @@ class NewsService
 
         DB::beginTransaction();
         try {
-            $news = new News();
-
-            $news->fill(collect($validated)->except($exceptKey)->toArray());
-            $news->fill($validated)->save();
-            $news->newsCategories()->sync($validated['news_categories']);
+            $this->newsRepository->store($validated, $exceptKey);
 
             DB::commit();
 
@@ -56,10 +64,7 @@ class NewsService
 
         DB::beginTransaction();
         try {
-            $news->fill(collect($validated)->except($exceptKey)->toArray());
-            $news->fill($validated)->save();
-            $news->newsCategories()->sync($validated['news_categories']);
-
+            $this->newsRepository->update($news, $validated, $exceptKey);
             DB::commit();
 
             session()->flash('flash_message', '更新完了しました');
