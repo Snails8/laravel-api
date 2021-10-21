@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NewsPostRequest;
 use App\Models\News;
 use App\Models\NewsCategory;
+use App\Services\Admin\NewsService;
 use App\Services\UtilityService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -23,14 +24,17 @@ class NewsController extends Controller
     private $uploadTo = 'uploads/news';
     const SELECT_LIMIT = 15;
     private $utility;
+    protected $newsService;
 
     /**
      * NewsController constructor.
      * @param UtilityService $utility
+     * @param NewsService $newsService
      */
-    public function __construct(UtilityService $utility)
+    public function __construct(UtilityService $utility, NewsService $newsService)
     {
-        $this->utility = $utility;
+        $this->utility     = $utility;
+        $this->newsService = $newsService;
     }
 
     /**
@@ -101,29 +105,11 @@ class NewsController extends Controller
      * @param NewsPostRequest $request
      * @return RedirectResponse
      */
-    public function store(NewsPostRequest $request) :RedirectResponse
+    public function store(NewsPostRequest $request):RedirectResponse
     {
-        $validated = $request->validated();
-        $exceptKey = ['news_categories'];
+        $res = $this->newsService->store($request);
 
-        DB::beginTransaction();
-        try {
-            $news = new News();
-            $news->fill(collect($validated)->except($exceptKey)->toArray());
-
-            $news->fill($validated)->save();
-            $news->newsCategories()->sync($validated['news_categories']);
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            session()->flash('critical_error_message', '保存中に問題が発生しました');
-            Log::critical($e->getMessage());;
-        }
-        session()->flash('flash_message', '新規作成完了しました');
-
-        return redirect()->route('admin.news.index');
+        return $res;
     }
 
     /**
@@ -134,25 +120,6 @@ class NewsController extends Controller
      */
     public function update(NewsPostRequest $request, News $news): RedirectResponse
     {
-        $validated = $request->validated();
-        $exceptKey = ['news_categories'];
-
-        DB::beginTransaction();
-        try {
-            $news->fill(collect($validated)->except($exceptKey)->toArray());
-
-            $news->fill($validated)->save();
-            $news->newsCategories()->sync($validated['news_categories']);
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            session()->flash('critical_error_message', '保存中に問題が発生しました');
-            return redirect()->back()->withInput();
-        }
-        session()->flash('flash_message', '更新完了しました');
-
-        return redirect()->route('admin.news.index');
+        return $this->newsService->update($request, $news);
     }
 }
