@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CompanyPostRequest;
 use App\Models\Company;
+use App\Services\Admin\CompanyService;
 use App\Services\UtilityService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -19,6 +20,17 @@ use Illuminate\Support\Facades\Log;
  */
 class CompanyController extends Controller
 {
+    /**
+     * CompanyController constructor.
+     * @param UtilityService $utility
+     * @param CompanyService $companyService
+     */
+    public function __construct(UtilityService $utility, CompanyService $companyService)
+    {
+        $this->utility     = $utility;
+        $this->companyService = $companyService;
+    }
+
     /**
      * 編集画面表示
      * @param Company $company
