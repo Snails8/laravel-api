@@ -5,7 +5,9 @@ namespace Tests\Unit\Service\Admin;
 use App\Models\News;
 use App\Services\Admin\NewsService;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Tests\TestCase;
 
 class NewsServiceTest extends TestCase
@@ -23,6 +25,39 @@ class NewsServiceTest extends TestCase
         parent::__construct($name, $data, $dataName);
 
         $this->newsService = app()->make(NewsService::class);
+    }
+
+    /**
+     * @test
+     */
+    public function 一覧表示の返り値は正常である()
+    {
+        $request = $this->createRequest();
+        $data = $this->newsService->index($request);
+
+        $this->assertIsArray($data);
+    }
+
+    /**
+     * @test
+     */
+    public function 作成画面の返り値は正常である()
+    {
+        $news = new News();
+        $data = $this->newsService->create($news);
+
+        $this->assertIsArray($data);
+    }
+
+    /**
+     * @test
+     */
+    public function 編集画面の返り値は正常である()
+    {
+        $news = News::query()->inRandomOrder()->first();
+        $data = $this->newsService->edit($news);
+
+        $this->assertIsArray($data);
     }
 
     /**
@@ -63,5 +98,20 @@ class NewsServiceTest extends TestCase
         $news = $this->newsService->update($postData, $updateNews);
 
         $this->assertInstanceOf(RedirectResponse::class, $news);
+    }
+
+    private function createRequest()
+    {
+        $fileBag = [];
+
+        $parameterBag = [];
+
+        $symfonyRequest = Request::create(
+            route('admin.news.index'), 'GET', $parameterBag,
+            [], $fileBag, []);
+
+        $request = Request::createFromBase($symfonyRequest);
+
+        return $request;
     }
 }
