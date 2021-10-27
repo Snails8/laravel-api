@@ -100,7 +100,7 @@ class NewsServiceTest extends TestCase
         $this->assertInstanceOf(RedirectResponse::class, $news);
     }
 
-    private function createRequest()
+    private function createRequest(): Request
     {
         $fileBag = [];
 
