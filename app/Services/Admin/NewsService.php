@@ -23,12 +23,11 @@ class NewsService
     }
 
     /**
-     * @param NewsPostRequest $request
+     * @param array $validated
      * @return RedirectResponse
      */
-    public function store(NewsPostRequest $request): RedirectResponse
+    public function store(array $validated = []): RedirectResponse
     {
-        $validated = $request->validated();
         $exceptKey = ['news_categories'];
 
         DB::beginTransaction();
@@ -53,13 +52,12 @@ class NewsService
 
     /**
      * 更新処理
-     * @param NewsPostRequest $request
+     * @param array $validated
      * @param News $news
      * @return RedirectResponse
      */
-    public function update(NewsPostRequest $request, News $news): RedirectResponse
+    public function update(array $validated = [], News $news): RedirectResponse
     {
-        $validated = $request->validated();
         $exceptKey = ['news_categories'];
 
         DB::beginTransaction();

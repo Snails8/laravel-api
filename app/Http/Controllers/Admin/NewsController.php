@@ -107,9 +107,9 @@ class NewsController extends Controller
      */
     public function store(NewsPostRequest $request):RedirectResponse
     {
-        $res = $this->newsService->store($request);
+        $validated = $request->validated();
 
-        return $res;
+        return $this->newsService->store($validated);
     }
 
     /**
@@ -120,6 +120,8 @@ class NewsController extends Controller
      */
     public function update(NewsPostRequest $request, News $news): RedirectResponse
     {
-        return $this->newsService->update($request, $news);
+        $validated = $request->validated();
+
+        return $this->newsService->update($validated, $news);
     }
 }
