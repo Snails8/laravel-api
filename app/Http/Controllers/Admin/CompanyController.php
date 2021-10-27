@@ -9,9 +9,7 @@ use App\Services\Admin\CompanyService;
 use App\Services\UtilityService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 /**
  * 自社情報管理
@@ -38,12 +36,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company): View
     {
-        $title = '会社概要';
-
-        $data = [
-            'title'   => $title,
-            'company' => $company,
-        ];
+        $data = $this->companyService->edit($company);
 
         return view('admin.companies.edit', $data);
     }
@@ -57,19 +50,7 @@ class CompanyController extends Controller
     public function update(CompanyPostRequest $request, Company $company): RedirectResponse
     {
         $validated = $request->validated();
-        DB::beginTransaction();
-        try {
-            $company->fill($validated)->save();
 
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            session()->flash('critical_error_message', '保存中に問題が発生しました');
-            return redirect()->back()->withInput();
-        }
-        session()->flash('flash_message', '更新完了しました');
-
-        return redirect()->route('admin.company.edit', ['company' => $company->id]);
+        return $this->companyService->update($validated, $company);
     }
 }

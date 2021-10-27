@@ -36,21 +36,19 @@ class CompanyService
 
     /**
      * 更新処理
-     * @param CompanyPostRequest $request
+     * @param array $validated
      * @param Company $company
      * @return RedirectResponse
      */
-    public function update(CompanyPostRequest $request, Company $company): RedirectResponse
+    public function update(array $validated, Company $company): RedirectResponse
     {
-        $validated = $request->validated();
-
         DB::beginTransaction();
         try {
             $this->companyRepository->update($company, $validated);
             DB::commit();
 
             session()->flash('flash_message', '更新完了しました');
-            $res = redirect()->route('admin.company.index');
+            $res = redirect()->route('admin.company.edit', ['company' => $company->id]);
 
         } catch (\Exception $e) {
             DB::rollBack();
