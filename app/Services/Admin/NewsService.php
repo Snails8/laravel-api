@@ -5,21 +5,86 @@ namespace App\Services\Admin;
 use App\Http\Requests\Admin\NewsPostRequest;
 use App\Models\News;
 use App\Repositories\Admin\News\NewsRepository;
+use App\Services\UtilityService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class NewsService
 {
+    const SELECT_LIMIT = 15;
+    private $utility;
     protected $newsRepository;
 
     /**
-     * EstatePhotoService constructor.
+     * @param UtilityService $utility
      * @param NewsRepository $newsRepository
      */
-    public function __construct(NewsRepository $newsRepository)
+    public function __construct(UtilityService $utility, NewsRepository $newsRepository)
     {
+        $this->utility        = $utility;
         $this->newsRepository = $newsRepository;
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function index(Request $request): array
+    {
+        $params = $this->utility->initIndexParamsForAdmin($request);
+        $newsLists = $this->utility->getSearchResultAtPagerByColumn('News', $params, 'title', self::SELECT_LIMIT, false);
+
+        $title = 'お知らせ 一覧';
+
+        $data = [
+            'params'    => $params,
+            'newsLists' => $newsLists,
+            'title'     => $title,
+        ];
+
+        return $data;
+    }
+
+    /**
+     * @param News $news
+     * @return array
+     */
+    public function create(News $news): array
+    {
+        // カテゴリ取得
+        $newsCategories = $this->utility->getTargetColumnAssocWithSearch('NewsCategory', 'name', '','', false);
+
+        $title = 'お知らせ 登録';
+
+        $data = [
+            'newsCategories' => $newsCategories,
+            'news'  => $news,
+            'title' => $title,
+        ];
+
+        return $data;
+    }
+
+    /**
+     * @param News $news
+     * @return array
+     */
+    public function edit(News $news)
+    {
+        // カテゴリ取得
+        $newsCategories = $this->utility->getTargetColumnAssocWithSearch('NewsCategory', 'name', '','', false);
+
+        $title = $news->title . '編集';
+
+        $data = [
+            'newsCategories' => $newsCategories,
+            'title' => $title,
+            'news'  => $news,
+        ];
+
+        return $data;
     }
 
     /**

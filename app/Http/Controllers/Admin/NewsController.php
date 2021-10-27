@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\Log;
 class NewsController extends Controller
 {
     private $uploadTo = 'uploads/news';
-    const SELECT_LIMIT = 15;
     private $utility;
     protected $newsService;
 
@@ -44,16 +43,7 @@ class NewsController extends Controller
      */
     public function index(Request $request): View
     {
-        $params = $this->utility->initIndexParamsForAdmin($request);
-        $newsLists = $this->utility->getSearchResultAtPagerByColumn('News', $params, 'title', self::SELECT_LIMIT, false);
-
-        $title = 'お知らせ 一覧';
-
-        $data = [
-            'params'    => $params,
-            'newsLists' => $newsLists,
-            'title'     => $title,
-        ];
+        $data = $this->newsService->index($request);
 
         return view('admin.news.index', $data);
     }
@@ -65,16 +55,7 @@ class NewsController extends Controller
      */
     public function create(News $news): View
     {
-        // カテゴリ取得
-        $newsCategories = $this->utility->getTargetColumnAssocWithSearch('NewsCategory', 'name', '','', false);
-
-        $title = 'お知らせ 登録';
-
-        $data = [
-            'newsCategories' => $newsCategories,
-            'news'  => $news,
-            'title' => $title,
-        ];
+        $data = $this->newsService->create($news);
 
         return view('admin.news.create', $data);
     }
@@ -86,16 +67,7 @@ class NewsController extends Controller
      */
     public function edit(News $news): View
     {
-        // カテゴリ取得
-        $newsCategories = $this->utility->getTargetColumnAssocWithSearch('NewsCategory', 'name', '','', false);
-
-        $title = $news->title . '編集';
-
-        $data = [
-            'newsCategories' => $newsCategories,
-            'title' => $title,
-            'news'  => $news,
-        ];
+        $data = $this->newsService->edit($news);
 
         return view('admin.news.edit', $data);
     }
