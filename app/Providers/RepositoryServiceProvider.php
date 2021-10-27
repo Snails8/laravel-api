@@ -23,6 +23,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         // Admin
         $this->app->bind(NewsRepositoryInterface::class, NewsRepository::class);
+        $this->app->bind();
     }
 
     /**
