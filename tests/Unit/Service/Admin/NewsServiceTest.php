@@ -5,7 +5,6 @@ namespace Tests\Unit\Service\Admin;
 use App\Models\News;
 use App\Services\Admin\NewsService;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Tests\TestCase;
@@ -100,6 +99,9 @@ class NewsServiceTest extends TestCase
         $this->assertInstanceOf(RedirectResponse::class, $news);
     }
 
+    /**
+     * @return Request
+     */
     private function createRequest(): Request
     {
         $fileBag = [];
