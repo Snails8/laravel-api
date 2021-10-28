@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NewsCategoryPostRequest;
 use App\Models\NewsCategory;
+use App\Services\Admin\NewsCategoryService;
 use App\Services\UtilityService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 /**
  * News Category
@@ -19,12 +18,13 @@ use Illuminate\Support\Facades\Log;
  */
 class NewsCategoryController extends Controller
 {
-    const SELECT_LIMIT = 15;
     private $utility;
+    private $newsCategoryService;
 
-    public function __construct(UtilityService $utility)
+    public function __construct(UtilityService $utility, NewsCategoryService $newsCategoryService)
     {
-        $this->utility = $utility;
+        $this->utility             = $utility;
+        $this->newsCategoryService = $newsCategoryService;
     }
 
     /**
@@ -35,16 +35,7 @@ class NewsCategoryController extends Controller
      */
     public function index(Request $request): View
     {
-        $params = $this->utility->initIndexParamsForAdmin($request);
-        $newsCategories = $this->utility->getSearchResultAtPagerByColumn('NewsCategory', $params, 'name' ,self::SELECT_LIMIT, true);
-
-        $title = 'お知らせカテゴリ 一覧';
-
-        $data = [
-            'newsCategories' => $newsCategories,
-            'params'  => $params,
-            'title'   => $title,
-        ];
+        $data = $this->newsCategoryService->index($request);
 
         return view('admin.news_categories.index', $data);
     }
@@ -57,12 +48,7 @@ class NewsCategoryController extends Controller
      */
     public function create(NewsCategory $newsCategory): View
     {
-        $title = 'お知らせカテゴリ 新規作成';
-
-        $data = [
-            'newsCategory'     => $newsCategory,
-            'title'      => $title,
-        ];
+        $data = $this->newsCategoryService->create($newsCategory);
 
         return view('admin.news_categories.create', $data);
     }
@@ -75,12 +61,7 @@ class NewsCategoryController extends Controller
      */
     public function edit(NewsCategory $newsCategory): View
     {
-        $title = 'お知らせカテゴリ 編集: '. $newsCategory->name;
-
-        $data = [
-            'newsCategory' => $newsCategory,
-            'title'        => $title,
-        ];
+        $data = $this->newsCategoryService->edit($newsCategory);
 
         return view('admin.news_categories.edit', $data);
     }
@@ -95,32 +76,13 @@ class NewsCategoryController extends Controller
     {
         $validated = $request->validated();
 
-        DB::beginTransaction();
-        try {
-            $newsCategory = new NewsCategory;
-            $newsCategory->fill($validated)->save();
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            Log::critical($e->getMessage());
-
-            session()->flash('critical_error_message', '保存中に問題が発生しました。');
-            return redirect()->back()->withInput();
-        }
-
-
-        session()->flash('flash_message', '新規作成が完了しました');
-
-        return redirect()->route('admin.news_category.index');
-
+        return $this->newsCategoryService->store($validated);
     }
 
     /**
      * アップデート
      * @Method PUT
-     * @param   $request
+     * @param  NewsCategoryPostRequest $request
      * @param  NewsCategory  $newsCategory
      * @return RedirectResponse
      * @throws \Throwable
@@ -129,23 +91,7 @@ class NewsCategoryController extends Controller
     {
         $validated = $request->validated();
 
-        DB::beginTransaction();
-        try {
-            $newsCategory->fill($validated)->save();
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            Log::critical($e->getMessage());
-
-            session()->flash('critical_error_message', '保存中に問題が発生しました。');
-            return redirect()->back()->withInput();
-        }
-
-        session()->flash('flash_message', '更新が完了しました');
-
-        return redirect()->route('admin.news_category.index');
+        return $this->newsCategoryService->update($validated, $newsCategory);
     }
 
     /**
@@ -157,22 +103,6 @@ class NewsCategoryController extends Controller
      */
     public function destroy(NewsCategory $newsCategory): RedirectResponse
     {
-        DB::beginTransaction();
-        try {
-            $newsCategory->delete();
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-
-            Log::critical($e->getMessage());
-            session()->flash('critical_error_message', '削除中に問題が発生しました。');
-
-            return redirect()->back()->withInput();
-        }
-
-        session()->flash('flash_message', $newsCategory->name.'を削除しました');
-
-        return redirect()->route('admin.news_category.index');
+        return $this->newsCategoryService->destroy($newsCategory);
     }
 }

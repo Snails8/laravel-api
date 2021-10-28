@@ -6,6 +6,7 @@ use App\Services\CompanyService;
 use App\Services\UtilityService;
 use App\Services\Admin\NewsService as AdminNewsService;
 use App\Services\Admin\CompanyService as AdminCompanyService;
+use App\Services\Admin\NewsCategoryService as AdminNewsCategoryService;
 use App\Services\Api\HrAdmin\UserService as HrAdminUserService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Routing\UrlGenerator;
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
         // admin
         $this->app->bind('AdminNews', AdminNewsService::class);
         $this->app->bind('AdminCompany', AdminCompanyService::class);
+        $this->app->bind('AdminNewsCategory', AdminNewsCategoryService::class);
         // HrAdmin
         $this->app->bind('hrUser', HrAdminUserService::class);
     }
