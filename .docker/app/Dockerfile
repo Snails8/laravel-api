@@ -1,12 +1,18 @@
-FROM php:7.4-fpm-alpine
+FROM php:8.0-fpm-alpine
 
 ENV TZ Asia/Tokyo
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # install Lib
-RUN apk update && \
-    apk add --no-cache --virtual .php-builds oniguruma-dev postgresql-dev nodejs npm git curl zip unzip && \
-    npm install npm@latest -g
+RUN set -eux \
+ && apk add --update-cache --no-cache openssl git autoconf g++ nodejs npm yarn oniguruma-dev postgresql-dev libtool make libzip-dev libpng-dev libjpeg-turbo-dev freetype-dev libwebp-dev libxpm-dev \
+ && pecl install redis \
+ && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-xpm \
+ && docker-php-ext-configure opcache --enable-opcache \
+ && docker-php-ext-install gd pdo_pgsql pgsql opcache bcmath gd exif zip \
+ && docker-php-ext-enable redis \
+ && apk del autoconf g++ libtool make \
+ && rm -rf /tmp/*
 
 # add extension
 RUN docker-php-ext-install mbstring pdo pdo_pgsql && \
