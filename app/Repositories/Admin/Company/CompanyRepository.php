@@ -5,10 +5,6 @@ namespace App\Repositories\Admin\Company;
 use App\Models\Company;
 use Illuminate\Support\Collection;
 
-/**
- * Class EstatePhotoRepository
- * @package App\Repositories\Admin\Company
- */
 class CompanyRepository implements CompanyRepositoryInterface
 {
     /**

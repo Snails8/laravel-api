@@ -14,7 +14,6 @@ class CompanyService
     protected $companyRepository;
 
     /**
-     * EstatePhotoService constructor.
      * @param CompanyRepository $companyRepository
      */
     public function __construct(CompanyRepository $companyRepository)

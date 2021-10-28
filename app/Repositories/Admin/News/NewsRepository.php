@@ -5,7 +5,6 @@ use App\Models\News;
 use Illuminate\Support\Collection;
 
 /**
- * Class EstatePhotoRepository
  * @package App\Repositories\Admin\News
  */
 class NewsRepository implements NewsRepositoryInterface
