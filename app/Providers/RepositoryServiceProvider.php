@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use App\Repositories\Admin\News\NewsRepository;
 use App\Repositories\Admin\News\NewsRepositoryInterface;
+use App\Repositories\Admin\NewsCategory\NewsCategoryRepository;
+use App\Repositories\Admin\NewsCategory\NewsCategoryRepositoryInterface;
+use App\Repositories\Admin\Company\CompanyRepository;
+use App\Repositories\Admin\Company\CompanyRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -23,7 +27,8 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         // Admin
         $this->app->bind(NewsRepositoryInterface::class, NewsRepository::class);
-        $this->app->bind();
+        $this->app->bind(NewsCategoryRepositoryInterface::class, NewsCategoryRepository::class);
+        $this->app->bind(CompanyRepositoryInterface::class, CompanyRepository::class);
     }
 
     /**

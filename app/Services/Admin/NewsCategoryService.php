@@ -86,8 +86,7 @@ class NewsCategoryService
     {
         DB::beginTransaction();
         try {
-            $newsCategory = new NewsCategory;
-            $newsCategory->fill($validated)->save();
+            $this->newsCategoryRepository->store($validated);
             DB::commit();
 
             session()->flash('flash_message', '新規作成が完了しました');
@@ -140,7 +139,7 @@ class NewsCategoryService
     {
         DB::beginTransaction();
         try {
-            $newsCategory->delete();
+            $this->newsCategoryRepository->destroy($newsCategory);
             DB::commit();
 
             session()->flash('flash_message', $newsCategory->name.'を削除しました');
