@@ -2,16 +2,16 @@
   <div class="row container-fluid pe-0">
     <div class="col-md-auto me-auto nav">
       <div class="navbar-brand nav-item">
-        <a class="navbar-brand" href="#">{{ config('app.name', 'Act') }}</a>
+        <a class="navbar-brand" href="{{ route('admin.home') }}">管理画面</a>
       </div>
       <a class="nav-item nav-link navbar-menu" href="">
-        <div>労務管理</div>
+        <div>Sample管理</div>
       </a>
       <a class="nav-item nav-link navbar-menu" href="">
-        <div>視点管理</div>
+        <div>Sample管理</div>
       </a>
       <a class="nav-item nav-link navbar-menu" href="">
-        <div>ユーザー管理</div>
+        <div>Sample管理</div>
       </a>
     </div>
     <div class="col-md-auto ms-auto">
