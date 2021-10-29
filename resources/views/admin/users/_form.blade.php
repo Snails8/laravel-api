@@ -8,13 +8,13 @@
     <col style="width: 33%;">
   </colgroup>
 
-{{--  <tr>--}}
-{{--    <th class="bg-dark text-white"><span class="p-3 me-2 badge bg-danger">必須</span>所属</th>--}}
-{{--    <td colspan="3">--}}
-{{--      @includeWhen($errors->get('shop_id'), 'admin._partials.validation_error', ['errors' => $errors->get('shop_id')])--}}
-{{--      {{ Form::select('shop_id', $shops , old('shop_id', $user->shop_id) , ['id' => 'shop_id', 'class' => 'form-control', 'required' => 'required']) }}--}}
-{{--    </td>--}}
-{{--  </tr>--}}
+  <tr>
+    <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>所属</th>
+    <td colspan="3">
+      @includeWhen($errors->get('office_id'), 'admin._partials.validation_error', ['errors' => $errors->get('office_id')])
+      {{ Form::select('office_id', $offices, old('office_id', $user->office_id) , ['id' => 'office_id', 'class' => 'form-control', 'required' => 'required']) }}
+    </td>
+  </tr>
 
   <tr>
     <th class="bg-dark text-white"><span class="p-2 me-2 badge bg-danger">必須</span>ユーザー名</th>

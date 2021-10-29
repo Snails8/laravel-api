@@ -1,7 +1,7 @@
 @extends('admin._layouts.app')
 @section('title', $title)
 @section('content')
-  @includeWhen(session('flash_message'), '_partials.flash_message_success')
+  @includeWhen(session('flash_message'), 'admin._partials.flash_message_success')
   {{ Form::open(['route' => ['admin.user.index'], 'class' => 'pb-3 border-bottom', 'method' => 'GET']) }}
   <table class="table table-striped table-bordered align-middle">
     <colgroup>
@@ -29,7 +29,7 @@
     <thead class="bg-dark text-white">
     <tr>
       <th scope="col" class="id">ID</th>
-      {{--      <th scope="col">所属</th>--}}
+      <th scope="col">所属</th>
       <th scope="col">名前</th>
       <th scope="col">カナ</th>
       <th scope="col">メール</th>
@@ -40,7 +40,7 @@
     @foreach($users as $user)
       <tr>
         <td>{{ $user->id }}</td>
-        {{--        <td>{{ $user->shop->name }}</td>--}}
+        <td>{{ $user->office->name }}</td>
         <td>{{ $user->name }}</td>
         <td>{{ $user->kana }}</td>
         <td>{{ $user->email }}</td>

@@ -61,13 +61,13 @@ class UserController extends Controller
      */
     public function create(User $user): View
     {
-//        $shops = $this->utility->getTargetColumnAssoc('Shop', 'name', false, false, false);
-//        $shops = $this->utility->addEmptyRowToAssoc($shops,false);
+        $offices = $this->utility->getTargetColumnAssoc('Office', 'name', false, false, false);
+        $offices = $this->utility->addEmptyRowToAssoc($offices,false);
 
         $title = 'ユーザー 新規作成';
 
         $data = [
-//            'shops'    => $shops,
+            'offices'    => $offices,
             'user'     => $user,
             'title'    => $title,
         ];
@@ -83,13 +83,13 @@ class UserController extends Controller
      */
     public function edit(User $user): View
     {
-//        $shops = $this->utility->getTargetColumnAssoc('Shop', 'name', false, false, false);
-//        $shops = $this->utility->addEmptyRowToAssoc($shops,false);
+        $offices = $this->utility->getTargetColumnAssoc('Office', 'name', false, false, false);
+        $offices = $this->utility->addEmptyRowToAssoc($offices,false);
 
         $title = 'ユーザー 編集: '. $user->name;
 
         $data = [
-//            'shops'  => $shops,
+            'offices'  => $offices,
             'user'   => $user,
             'title'  => $title,
         ];
