@@ -17,8 +17,10 @@ class CreateHrUsersTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('hr_company_id')->comment('リレーションのキー');
             $table->bigInteger('hr_company_offices_id')->comment('リレーションのキー');
-            $table->string('name');
-            $table->string('kana');
+            $table->string('last_name')->nullable()->comment('姓');
+            $table->string('fast_name')->nullable()->comment('名');
+            $table->string('last_name_kana')->nullable()->comment('姓(カナ)');
+            $table->string('fast_name_kana')->nullable()->comment('名(カナ)');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

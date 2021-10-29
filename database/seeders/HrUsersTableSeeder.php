@@ -19,8 +19,10 @@ class HrUsersTableSeeder extends Seeder
             [
                 'hr_company_id' => 1,
                 'hr_company_offices_id' => 1,
-                'name'  => 'たにし',
-                'kana'  => 'タニシ',
+                'last_name'  => '鈴木',
+                'fast_name'  => '田螺',
+                'last_name_kana'  => 'スズキ',
+                'fast_name_kana'  => 'タニシ',
                 'email' => 'sample@gmail.com',
                 'email_verified_at' => Carbon::now(),
                 'password' => bcrypt('password'),
