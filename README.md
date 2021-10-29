@@ -32,6 +32,19 @@ $ docker-compose exec app npm install
 
 ```
 
+## 運用時
+task-definition で定義する環境変数をgithub secret に格納してください
+```
+AWS_ACCESS_KEY_ID
+AWS_ACCOUNT_ID     => AWS console login > username(右上) > マイアカウント: account id
+AWS_SECRET_ACCESS_KEY
+LOKI_ID
+LOKI_SECRET
+SECURITY_GROUPS
+SUBNETS
+```
+ECS > クラスター > 選択 > 詳細 から確認
+
 ## アーキテクチャ
 laravel default の構成に一部クリーンアーキテクチャの思想を導入
 Layer 毎に分離しその中でDomainで分離している
