@@ -61,8 +61,8 @@ class UserPostRequest extends FormRequest
     public function messages()
     {
         $messages = [
-            'shop_id.required'   => '店舗は必ず選択してください。',
-            'shop_id.integer'    => '店舗に有効ではない値が入力されています。',
+            'office.required'    => '店舗は必ず選択してください。',
+            'office.integer'     => '店舗に有効ではない値が入力されています。',
             'name.required'      => 'ユーザー名は必須項目です。',
             'email.required'     => 'メールアドレスは必須項目です。',
             'email.email'        => 'このメールアドレスは有効な形式ではありません。',
