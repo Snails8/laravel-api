@@ -1,0 +1,97 @@
+<?php
+
+namespace Tests\Feature\Controller\Admin;
+
+use Tests\TestCase;
+use App\Models\User;
+use App\Models\UsageCase;
+
+/**
+ * Class UsageCaseControllerTest
+ * @package Tests\Feature\Controller\Admin
+ */
+class UsageCaseControllerTest extends TestCase
+{
+    /**
+     * @test
+     */
+    public function 導入事例管理一覧画面のレスポンスは正常である()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user, 'admin')
+            ->get(route('admin.usage_case.index'))->assertStatus(200);
+    }
+
+    /**
+     * @test
+     */
+    public function 導入事例管理作成画面のレスポンスは正常である()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user, 'admin')
+            ->get(route('admin.usage_case.create'))->assertStatus(200);
+    }
+
+    /**
+     * @test
+     */
+    public function 導入事例管理編集画面のレスポンスは正常である()
+    {
+        $user = User::factory()->create();
+        $usageCaseId = UsageCase::query()->first('id');
+
+        $this->actingAs($user, 'admin')
+            ->get(route('admin.usage_case.edit', ['usageCase' => $usageCaseId]))->assertStatus(200);
+    }
+
+    /**
+     * @test
+     */
+    public function 導入事例管理新規登録処理のレスポンスは正常である()
+    {
+        $user = User::factory()->create();
+        // formDataの用意
+        $postData = [
+            'name'    => 'テスト',
+            'address' => 'テスト東京',
+            'tel'     => 00011112222,
+            'manager' => 'ホゲ',
+            'post'    => '',
+            'company_id' => 1,
+        ];
+
+        $res = $this->actingAs($user, 'admin')
+            // fromでリファラーを指定しないとテストの仕様上、発見できずback()でホームに飛ばされる
+            ->from(route('admin.usage_case.index'))
+            ->post(route('admin.usage_case.store'), $postData);
+
+        $res->assertRedirect(route('admin.usage_case.index'));
+    }
+
+    /**
+     * @test
+     */
+    public function 導入事例管理更新処理のレスポンスは正常である()
+    {
+        $user = User::factory()->create();
+        // putなのでデータ取得用に
+        $updateUsageCase = UsageCase::query()->inRandomOrder()->first();
+
+        $postData = [
+            'name'    => 'テスト',
+            'address' => 'テスト東京',
+            'tel'     => 00011112222,
+            'manager' => 'ホゲ',
+            'post'    => '',
+            'company_id' => 1,
+        ];
+
+        $res = $this->actingAs($user, 'admin')
+            ->from(route('admin.usage_case.index'))
+            ->put(route('admin.usage_case.update', ['usageCase' => $updateUsageCase->id]), $postData);
+
+        $res->assertRedirect(route('admin.usage_case.index'));
+    }
+}
