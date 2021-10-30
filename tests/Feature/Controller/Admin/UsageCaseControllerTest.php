@@ -53,14 +53,7 @@ class UsageCaseControllerTest extends TestCase
     {
         $user = User::factory()->create();
         // formDataの用意
-        $postData = [
-            'name'    => 'テスト',
-            'address' => 'テスト東京',
-            'tel'     => 00011112222,
-            'manager' => 'ホゲ',
-            'post'    => '',
-            'company_id' => 1,
-        ];
+        $postData = $this->getPostData();
 
         $res = $this->actingAs($user, 'admin')
             // fromでリファラーを指定しないとテストの仕様上、発見できずback()でホームに飛ばされる
@@ -79,19 +72,27 @@ class UsageCaseControllerTest extends TestCase
         // putなのでデータ取得用に
         $updateUsageCase = UsageCase::query()->inRandomOrder()->first();
 
-        $postData = [
-            'name'    => 'テスト',
-            'address' => 'テスト東京',
-            'tel'     => 00011112222,
-            'manager' => 'ホゲ',
-            'post'    => '',
-            'company_id' => 1,
-        ];
+        $postData = $this->getPostData();
 
         $res = $this->actingAs($user, 'admin')
             ->from(route('admin.usage_case.index'))
             ->put(route('admin.usage_case.update', ['usageCase' => $updateUsageCase->id]), $postData);
 
         $res->assertRedirect(route('admin.usage_case.index'));
+    }
+
+    /**
+     * @return array
+     */
+    private function getPostData(): array
+    {
+        $postData = [
+            'title'    => 'テスト',
+            'image'    => '',
+            'introduction'  => 'aaaaaaaaaaaaaaaaaaaaaaaaa',
+            'hr_company_id' => 1,
+        ];
+
+        return $postData;
     }
 }
