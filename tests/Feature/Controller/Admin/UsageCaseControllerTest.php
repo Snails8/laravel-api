@@ -76,7 +76,7 @@ class UsageCaseControllerTest extends TestCase
 
         $res = $this->actingAs($user, 'admin')
             ->from(route('admin.usage_case.index'))
-            ->put(route('admin.usage_case.update', ['usageCase' => $updateUsageCase->id]), $postData);
+            ->put(route('admin.usage_case.update', ['usage_case' => $updateUsageCase->id]), $postData);
 
         $res->assertRedirect(route('admin.usage_case.index'));
     }
