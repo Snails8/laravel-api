@@ -15,7 +15,7 @@ class UsageCasePostRequest extends FormRequest
     {
         $paths = [
             'admin.usage_case.store',
-            'admin.usage.update',
+            'admin.usage_case.update',
         ];
 
         return (in_array($this->route()->action['as'], $paths));
