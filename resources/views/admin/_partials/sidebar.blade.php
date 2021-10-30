@@ -3,7 +3,7 @@
   <p class="fw-bolder px-3 mt-3 mb-0">メイン</p>
   <ul class="nav flex-column mb-2">
     <li class="nav-item ps-2">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="{{ route('admin.usage_case.index') }}">
         <i class="bi bi-caret-right me-1"></i>導入事例
       </a>
     </li>

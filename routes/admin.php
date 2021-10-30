@@ -35,9 +35,10 @@ Route::middleware('auth:admin')->group(function () {
         'show',
     ])->names('admin.news_category');
 
+    // 導入事例 (スタイルなし/ 使用するときに組んでください)
     Route::resource('usage_cases', UsageCaseController::class )->except([
         'show'
-    ])->names('admin.usage');
+    ])->names('admin.usage_case');
 
     // 自社情報管理
     Route::resource('companies', CompanyController::class)->only([
