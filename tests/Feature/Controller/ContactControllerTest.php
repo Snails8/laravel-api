@@ -19,26 +19,7 @@ class ContactControllerTest extends TestCase
     /**
      * @test
      */
-    public function お問い合わせフォーム送信処理は正常である()
-    {
-        $postData = [
-            'company'        => 'サンプル株式会社',
-            'name'           => 'sample name',
-            'tel'            => collect([0120111222, 00011112222 ])->random(),
-            'email'          => 'sample@sample.com',
-            'employee_count' => 1,
-            'contact_type'   => 1,
-            'detail'         => 'sample text',
-        ];
-        $res = $this->from(route('contact.thanks'))
-            ->post(route('contact.post'), $postData);
-        $res->assertRedirect(route('contact.thanks'));
-    }
-
-    /**
-     * @test
-     */
-    public function お問い合わせフォームのメール送付処理は正常である()
+    public function お問い合わせフォームの送信処理は正常である()
     {
         $postData = [
             'company'        => 'サンプル株式会社',
