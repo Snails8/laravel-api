@@ -40,10 +40,10 @@ class UsageCaseControllerTest extends TestCase
     public function 導入事例管理編集画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
-        $usageCaseId = UsageCase::query()->first('id');
+        $usageCase = UsageCase::query()->inRandomOrder()->first();
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.usage_case.edit', ['usage_case' => $usageCaseId]))->assertStatus(200);
+            ->get(route('admin.usage_case.edit', ['usage_case' => $usageCase->id]))->assertStatus(200);
     }
 
     /**

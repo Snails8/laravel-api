@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UsageCasePostRequest;
-use App\Models\Company;
 use App\Models\UsageCase;
 use App\Services\UtilityService;
 use Illuminate\Contracts\View\View;
@@ -39,7 +38,7 @@ class UsageCaseController extends Controller
     public function index(Request $request): View
     {
         $params = $this->utility->initIndexParamsForAdmin($request);
-        $usageCases = $this->utility->getSearchResultAtPagerByColumn('UsageCase', $params, 'name',  self::SELECT_LIMIT, false);
+        $usageCases = $this->utility->getSearchResultAtPagerByColumn('UsageCase', $params, 'title',  self::SELECT_LIMIT, false);
 
         $title = '導入事例 一覧';
 
@@ -78,7 +77,7 @@ class UsageCaseController extends Controller
      */
     public function edit(UsageCase $usageCase): View
     {
-        $title = '導入事例 編集: '. $usageCase->name;
+        $title = '導入事例 編集: '. $usageCase->title;
 
         $data = [
             'usageCase' => $usageCase,
@@ -173,7 +172,7 @@ class UsageCaseController extends Controller
             return redirect()->back()->withInput();
         }
 
-        session()->flash('flash_message', $usageCase->name.'を削除しました');
+        session()->flash('flash_message', $usageCase->title.'を削除しました');
 
         return redirect()->route('admin.usage_case.index');
     }
