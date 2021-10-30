@@ -35,7 +35,7 @@
     </tr>
     </thead>
     <tbody>
-    Sample です。使用する際はbladeを驟雨制してください。
+    Sample です。使用する際はbladeを修正してください。
 {{--    @foreach($usageCases as $usageCase)--}}
 {{--      <tr>--}}
 {{--        <td>{{ $usageCase->id }}</td>--}}
