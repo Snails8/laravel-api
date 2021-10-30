@@ -43,7 +43,7 @@ class UsageCaseControllerTest extends TestCase
         $usageCaseId = UsageCase::query()->first('id');
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.usage_case.edit', ['usageCase' => $usageCaseId]))->assertStatus(200);
+            ->get(route('admin.usage_case.edit', ['usage_case' => $usageCaseId]))->assertStatus(200);
     }
 
     /**
