@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\CompanyService;
 use App\Services\UtilityService;
+use App\Services\Admin\UserService as AdminUserService;
 use App\Services\Admin\NewsService as AdminNewsService;
 use App\Services\Admin\CompanyService as AdminCompanyService;
 use App\Services\Admin\NewsCategoryService as AdminNewsCategoryService;
@@ -24,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('utility', UtilityService::class);
         $this->app->bind('company', CompanyService::class);
         // admin
+        $this->app->bind('AdminUser', AdminUserService::class);
         $this->app->bind('AdminNews', AdminNewsService::class);
         $this->app->bind('AdminCompany', AdminCompanyService::class);
         $this->app->bind('AdminNewsCategory', AdminNewsCategoryService::class);

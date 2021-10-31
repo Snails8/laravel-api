@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Admin\User\UserRepository;
+use App\Repositories\Admin\User\UserRepositoryInterface;
 use App\Repositories\Admin\News\NewsRepository;
 use App\Repositories\Admin\News\NewsRepositoryInterface;
 use App\Repositories\Admin\NewsCategory\NewsCategoryRepository;
@@ -26,6 +28,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Admin
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(NewsRepositoryInterface::class, NewsRepository::class);
         $this->app->bind(NewsCategoryRepositoryInterface::class, NewsCategoryRepository::class);
         $this->app->bind(CompanyRepositoryInterface::class, CompanyRepository::class);
