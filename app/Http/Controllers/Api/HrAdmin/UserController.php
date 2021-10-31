@@ -22,7 +22,7 @@ class UserController extends Controller
     }
 
     /**
-     * hr USer 取得処理
+     * hr User 取得処理
      * @return JsonResponse
      */
     public function getHrUsers(): JsonResponse
@@ -39,7 +39,7 @@ class UserController extends Controller
     public function create(UserPostRequest $request): JsonResponse
     {
         $validated = $request->validated();
-        $res = $this->userService->getHrUsers($validated);
+        $res = $this->userService->store($validated);
 
         return response()->json($res,200);
     }

@@ -28,10 +28,11 @@ class UserPostRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => '',
-            'kana' => '',
+            'last_name' => '',
+            'fast_name' => '',
+            'last_name_kana' => '',
+            'fast_name_kana' => '',
             'email' => 'required|email',
-            'password' => '',
         ];
 
         return $rules;

@@ -22,14 +22,14 @@ class UserService
 
     /**
      * Create HR User
-     * @param $validated
+     * @param array $validated
      * @return string[]
      */
-    public function create($validated): array
+    public function store(array $validated): array
     {
+        DB::beginTransaction();
         try {
             $hrUser = new HrUser();
-
             $hrUser->fill($validated)->save();
 
             $res = ['msg' => 'API側でのデータの登録が完了しました'];
