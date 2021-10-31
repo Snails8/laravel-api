@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Api\HrAdmin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class UserPostRequest extends FormRequest
 {
@@ -28,7 +30,7 @@ class UserPostRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'last_name' => '',
+            'last_name' => 'required',
             'fast_name' => '',
             'last_name_kana' => '',
             'fast_name_kana' => '',
@@ -37,4 +39,32 @@ class UserPostRequest extends FormRequest
 
         return $rules;
     }
+
+    public function messages(): array
+    {
+        $messages = [
+            'last_name.required' => '名字は必ず入力してください。',
+        ];
+
+        return $messages;
+    }
+
+
+    /**
+     * 試験的にAPI のvalidation 追加
+     * @param Validator $validator
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        $res = response()->json([
+            'status' => 422,
+            'errors' => $validator->errors(),
+        ],422);
+        throw new HttpResponseException($res);
+    }
+
+//    protected function failedValidation( Validator $validator ){
+//        $response['errors']  = $validator->errors()->toArray();
+//        throw new HttpResponseException( response()->json( $response, 422 ));
+//    }
 }
