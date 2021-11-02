@@ -54,17 +54,17 @@ class UserPostRequest extends FormRequest
      * 試験的にAPI のvalidation 追加
      * @param Validator $validator
      */
-    protected function failedValidation(Validator $validator)
-    {
-        $res = response()->json([
-            'status' => 422,
-            'errors' => $validator->errors(),
-        ],422);
-        throw new HttpResponseException($res);
-    }
-
-//    protected function failedValidation( Validator $validator ){
-//        $response['errors']  = $validator->errors()->toArray();
-//        throw new HttpResponseException( response()->json( $response, 422 ));
+//    protected function failedValidation(Validator $validator)
+//    {
+//        $res = [
+//            'errors' => $validator->errors()->toArray(),
+//        ];
+//
+//        throw new HttpResponseException(response()->json($res, 422));
 //    }
+
+    protected function failedValidation( Validator $validator ){
+        $response['errors']  = $validator->errors()->toArray();
+        throw new HttpResponseException( response()->json( $response, 422 ));
+    }
 }
