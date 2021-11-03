@@ -8,6 +8,8 @@ use App\Http\Controllers\FlowController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\StaticPageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +28,7 @@ use App\Http\Controllers\ContactController;
 Route::get('/', [TopController::class, 'index'])->name('top');
 
 //Auth::routes();
-// 概要 HRT とは
+// 〇〇 とは
 
 
 // 機能
@@ -71,3 +73,5 @@ Route::prefix('register')->group(function () {
     Route::get('/thanks', [RegisterController::class, 'showThanks'])->name('register.thanks');
 });
 
+// 静的ページ
+//Route::get('', [StaticPageController::class, 'showHoge' ])->name('hoge');
