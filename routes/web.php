@@ -9,6 +9,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\StaticPageController;
+use App\Http\Controllers\LandingPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +76,6 @@ Route::prefix('register')->group(function () {
 
 // 静的ページ
 //Route::get('', [StaticPageController::class, 'showHoge' ])->name('hoge');
+
+// LP
+//Route::get('', [LandingPageController::class, ''])->name('');
