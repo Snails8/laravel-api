@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\AutoMail\NewsMail;
 use App\Models\Customer;
 use App\Models\News;
 use Carbon\Carbon;
@@ -43,10 +44,10 @@ class SendNewsMail extends Command
     {
         $customers = Customer::query()->orderBy('id')->get();
 
-        $countAllSendMail = 0;
-        foreach ($customers as $customer)
+//        $countAllSendMail = 0;
+        foreach ($customers as $customer) {
             $newsLists = News::query()
-                ->where('created_at', '>=', Carbon::now()->subDays(1))
+//                ->where('created_at', '>=', Carbon::now()->subDays(1))
                 ->where('is_public', true)
                 ->orderBy('id', 'desc')
                 ->get();
@@ -60,6 +61,5 @@ class SendNewsMail extends Command
                 Mail::queue(new NewsMail($customer, $randomNewsLists));
             }
         }
-
     }
 }
