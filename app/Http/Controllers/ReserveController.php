@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\RegisterMail;
-use App\Models\HrCompany;
+use App\Models\Reserve;
 use App\Http\Requests\ReservePostRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -36,7 +36,7 @@ class ReserveController extends Controller
 
         DB::beginTransaction();
         try {
-            $reserve = new HrCompany();
+            $reserve = new Reserve();
 
             $reserve->fill($validated)->save();
             DB::commit();

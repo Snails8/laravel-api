@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Worker検証に使用する予約フォームのtable
+ */
 class CreateReservesTable extends Migration
 {
     /**
