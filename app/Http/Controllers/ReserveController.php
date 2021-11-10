@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\RegisterMail;
+use App\Mail\ReserveMail;
 use App\Models\Reserve;
 use App\Http\Requests\ReservePostRequest;
 use Illuminate\Contracts\View\View;
@@ -48,7 +48,7 @@ class ReserveController extends Controller
         }
 
         // Laravel において mailに関してのみ queue を指定するだけでjobを書かなくとも実行してくれる
-        Mail::queue(new RegisterMail($validated));
+        Mail::queue(new ReserveMail($validated));
         return redirect()->route('reserve.thanks');
     }
 
