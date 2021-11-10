@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\StaticPageController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\ReserveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,13 @@ Route::prefix('register')->group(function () {
     Route::get('/', [RegisterController::class, 'showForm'])->name('register.form');
     Route::post('/', [RegisterController::class, 'submit'])->name('register.post');
     Route::get('/thanks', [RegisterController::class, 'showThanks'])->name('register.thanks');
+});
+
+// 予約(検証用)
+Route::prefix('reserve')->group(function () {
+    Route::get('/', [ReserveController::class, 'showForm'])->name('reserve.form');
+    Route::post('/', [ReserveController::class, 'submit'])->name('reserve.post');
+    Route::post('/thanks', [ReserveController::class, 'showThanks'])->name('reserve.post');
 });
 
 // 静的ページ
