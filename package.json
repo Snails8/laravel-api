@@ -30,8 +30,11 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@popperjs/core": "^2.10.2",
+        "add": "^2.0.6",
         "bootstrap-icons": "^1.5.0",
         "vue-select": "^3.12.2",
-        "vuejs-datepicker": "^1.6.2"
+        "vuejs-datepicker": "^1.6.2",
+        "yarn": "^1.22.17"
     }
 }
