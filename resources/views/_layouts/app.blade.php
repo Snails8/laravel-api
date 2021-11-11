@@ -9,7 +9,7 @@
   <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
   <script src="https://kit.fontawesome.com/e913ec5f83.js" crossorigin="anonymous"></script>
-  <script src="{{ asset('/js/app.js') }}"></script>
+  <script src="{{ asset('/js/app.js') }}" defer></script>
   <link href="https://fonts.googleapis.com/css?family=Alata" rel="stylesheet">
 </head>
 
