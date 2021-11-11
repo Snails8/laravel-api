@@ -66,6 +66,6 @@ class ReserveController extends Controller
             'description' => $description,
         ];
 
-        return view('reserves.thanks', $data);
+        return view('reserve.thanks', $data);
     }
 }
