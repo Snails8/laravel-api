@@ -36,6 +36,9 @@
           </button>
           <div class="collapse navbar-collapse flex-row" id="navDropdown">
             <ul class="navbar-nav">
+              <a class="nav-link text-white" href="{{ route('reserve.form') }}">
+                <div>Worker検証・予約</div>
+              </a>
               <a class="nav-link text-white" href="{{ route('contact.index') }}">
                 <div>お問い合わせ</div>
               </a>
