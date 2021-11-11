@@ -62,9 +62,10 @@ return [
             'after_commit' => false,
         ],
 
+        // redisにqueueを流す設定
         'redis' => [
             'driver' => 'redis',
-            'connection' => 'default',
+            'connection' => 'queue',  // 'connection' => 'default',
             'queue' => env('REDIS_QUEUE', 'default'),
             'retry_after' => 90,
             'block_for' => null,
