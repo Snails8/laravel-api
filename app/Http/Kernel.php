@@ -7,6 +7,7 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 class Kernel extends HttpKernel
 {
     /**
+     * ここに登録されたmiddlewareは指定しなくても、どんな処理に対しても割り込んで処理が実行される
      * The application's global HTTP middleware stack.
      *
      * These middleware are run during every request to your application.
@@ -21,9 +22,13 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        // add
+        \App\Http\Middleware\RedirectWww::class,
     ];
 
     /**
+     * 複数のミドルウェアをいくつか組合させて使う際にまとめる
+     *
      * The application's route middleware groups.
      *
      * @var array
@@ -82,6 +87,8 @@ class Kernel extends HttpKernel
     ];
 
     /**
+     *  単体で使うミドルウェアを登録
+     *
      * The application's route middleware.
      *
      * These middleware may be assigned to groups or used individually.
