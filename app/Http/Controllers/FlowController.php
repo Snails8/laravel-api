@@ -25,6 +25,6 @@ class FlowController extends Controller
             $description => $description,
         ];
 
-        return view('flows.index', $data);
+        return view('flow.index', $data);
     }
 }

@@ -32,7 +32,7 @@ class RegisterController extends Controller
             'description' => $description,
         ];
 
-        return view('registers.index', $data);
+        return view('register.index', $data);
     }
 
     /**
@@ -76,6 +76,6 @@ class RegisterController extends Controller
             'description' => $description,
         ];
 
-        return view('registers.thanks', $data);
+        return view('register.thanks', $data);
     }
 }

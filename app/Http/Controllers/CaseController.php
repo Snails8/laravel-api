@@ -24,7 +24,7 @@ class CaseController extends Controller
             'description' => $description,
         ];
 
-        return view('cases.index', $data);
+        return view('case.index', $data);
     }
 
     /**
@@ -42,6 +42,6 @@ class CaseController extends Controller
             'description' => $description,
         ];
 
-        return view('cases.show', $data);
+        return view('case.show', $data);
     }
 }

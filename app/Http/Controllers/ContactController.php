@@ -31,7 +31,7 @@ class ContactController extends Controller
             'description' => $description,
         ];
 
-        return view('contacts.index', $data);
+        return view('contact.index', $data);
     }
 
     /**
@@ -74,6 +74,6 @@ class ContactController extends Controller
             'description' => $description,
         ];
 
-        return view('contacts.thanks', $data);
+        return view('contact.thanks', $data);
     }
 }
