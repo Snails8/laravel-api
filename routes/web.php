@@ -37,17 +37,17 @@ Route::get('/', [TopController::class, 'index'])->name('top');
 
 
 // 導入の流れ
-Route::prefix('plans')->group(function () {
+Route::prefix('plan')->group(function () {
     Route::get('/', [PlanController::class, 'index'])->name('plan.index');
 });
 
 // 料金(プラン)
-Route::prefix('flows')->group(function () {
+Route::prefix('flow')->group(function () {
     Route::get('/', [FlowController::class, 'index'])->name('flow.index');
 });
 
 // 導入事例
-Route::resource('cases', CaseController::class)->only([
+Route::resource('case', CaseController::class)->only([
     'index', 'show'
 ])->names('case');
 
@@ -61,7 +61,7 @@ Route::prefix('news')->group(function () {
 
 
 // お問い合わせ
-Route::prefix('contacts')->group(function () {
+Route::prefix('contact')->group(function () {
     Route::get('/', [ContactController::class, 'showForm'])->name('contact.index');
     Route::post('/', [ContactController::class, 'submit'])->name('contact.post');
     Route::get('/thanks', [ContactController::class, 'showThanks'])->name('contact.thanks');
