@@ -29,7 +29,12 @@
     </td>
   </tr>
 
-{{--  ここに日にち選択処理--}}
+  <th>希望日</th>
+  <td>
+    @includeWhen($errors->get('reserve_date'), '_partials.validation_error', ['errors' => $errors->get('reserve_date')])
+    <date-picker-component :target="'reserve_date'" :value="{{ json_encode(old('reserve_date')) }}"></date-picker-component>
+  </td>
+
   <tr>
     <th>備考(任意)</th>
     <td>
