@@ -4,7 +4,10 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UsageCasePostRequest extends FormRequest
+/**
+ * 実装例
+ */
+class WorkPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,8 +17,8 @@ class UsageCasePostRequest extends FormRequest
     public function authorize()
     {
         $paths = [
-            'admin.usage_case.store',
-            'admin.usage_case.update',
+            'admin.work.store',
+            'admin.work.update',
         ];
 
         return (in_array($this->route()->action['as'], $paths));

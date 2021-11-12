@@ -5,7 +5,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class UsageCasesTableSeeder extends Seeder
+/**
+ * 機能(実装例)
+ */
+class WorksTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +17,7 @@ class UsageCasesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('usage_cases')->insert([
+        DB::table('works')->insert([
             [
                 'title'    => 'テスト',
                 'image'    => '',

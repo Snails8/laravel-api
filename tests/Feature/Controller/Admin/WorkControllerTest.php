@@ -4,52 +4,52 @@ namespace Tests\Feature\Controller\Admin;
 
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\UsageCase;
+use App\Models\Work;
 
 /**
- * Class UsageCaseControllerTest
+ * Class WorkControllerTest
  * @package Tests\Feature\Controller\Admin
  */
-class UsageCaseControllerTest extends TestCase
+class WorkControllerTest extends TestCase
 {
     /**
      * @test
      */
-    public function 導入事例管理一覧画面のレスポンスは正常である()
+    public function 実装例管理一覧画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.usage_case.index'))->assertStatus(200);
+            ->get(route('admin.work.index'))->assertStatus(200);
     }
 
     /**
      * @test
      */
-    public function 導入事例管理作成画面のレスポンスは正常である()
+    public function 実装例管理作成画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.usage_case.create'))->assertStatus(200);
+            ->get(route('admin.work.create'))->assertStatus(200);
     }
 
     /**
      * @test
      */
-    public function 導入事例管理編集画面のレスポンスは正常である()
+    public function 実装例管理編集画面のレスポンスは正常である()
     {
         $user = User::factory()->create();
-        $usageCase = UsageCase::query()->inRandomOrder()->first();
+        $usageCase = Work::query()->inRandomOrder()->first();
 
         $this->actingAs($user, 'admin')
-            ->get(route('admin.usage_case.edit', ['usage_case' => $usageCase->id]))->assertStatus(200);
+            ->get(route('admin.work.edit', ['work' => $usageCase->id]))->assertStatus(200);
     }
 
     /**
      * @test
      */
-    public function 導入事例管理新規登録処理のレスポンスは正常である()
+    public function 実装例管理新規登録処理のレスポンスは正常である()
     {
         $user = User::factory()->create();
         // formDataの用意
@@ -57,28 +57,28 @@ class UsageCaseControllerTest extends TestCase
 
         $res = $this->actingAs($user, 'admin')
             // fromでリファラーを指定しないとテストの仕様上、発見できずback()でホームに飛ばされる
-            ->from(route('admin.usage_case.index'))
-            ->post(route('admin.usage_case.store'), $postData);
+            ->from(route('admin.work.index'))
+            ->post(route('admin.work.store'), $postData);
 
-        $res->assertRedirect(route('admin.usage_case.index'));
+        $res->assertRedirect(route('admin.work.index'));
     }
 
     /**
      * @test
      */
-    public function 導入事例管理更新処理のレスポンスは正常である()
+    public function 実装例管理更新処理のレスポンスは正常である()
     {
         $user = User::factory()->create();
         // putなのでデータ取得用に
-        $updateUsageCase = UsageCase::query()->inRandomOrder()->first();
+        $updateWork = Work::query()->inRandomOrder()->first();
 
         $postData = $this->getPostData();
 
         $res = $this->actingAs($user, 'admin')
-            ->from(route('admin.usage_case.index'))
-            ->put(route('admin.usage_case.update', ['usage_case' => $updateUsageCase->id]), $postData);
+            ->from(route('admin.work.index'))
+            ->put(route('admin.work.update', ['work' => $updateWork->id]), $postData);
 
-        $res->assertRedirect(route('admin.usage_case.index'));
+        $res->assertRedirect(route('admin.work.index'));
     }
 
     /**

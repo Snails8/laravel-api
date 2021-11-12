@@ -5,9 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * 導入事例 (マークダウンで保存して変換する必要がある)
+ * 実装例
  */
-class CreateUsageCasesTable extends Migration
+class CreateWorksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateUsageCasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('usage_cases', function (Blueprint $table) {
+        Schema::create('works', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title')     ->default('')->comment('事例タイトル');
             $table->string('image')     ->default('')->nullable()->comment('メイン画像');
@@ -46,6 +46,6 @@ class CreateUsageCasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usage_cases');
+        Schema::dropIfExists('works');
     }
 }

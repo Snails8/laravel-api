@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UsageCasePostRequest;
-use App\Models\UsageCase;
+use App\Http\Requests\Admin\WorkPostRequest;
+use App\Models\Work;
 use App\Services\UtilityService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 /**
- * 導入事例 管理
+ * 実装例 管理
  */
-class UsageCaseController extends Controller
+class WorkController extends Controller
 {
     const SELECT_LIMIT = 15;
     private $utility;
 
     /**
-     * UsageCaseController constructor.
+     *WorkController constructor.
      * @param UtilityService $utility
      */
     public function __construct(UtilityService $utility)
@@ -38,70 +38,70 @@ class UsageCaseController extends Controller
     public function index(Request $request): View
     {
         $params = $this->utility->initIndexParamsForAdmin($request);
-        $usageCases = $this->utility->getSearchResultAtPagerByColumn('UsageCase', $params, 'title',  self::SELECT_LIMIT, false);
+        $works = $this->utility->getSearchResultAtPagerByColumn('Work', $params, 'title',  self::SELECT_LIMIT, false);
 
-        $title = '導入事例 一覧';
+        $title = '実装例 一覧';
 
         $data = [
-            'usageCases' => $usageCases,
+            'works' => $works,
             'params'     => $params,
             'title'      => $title,
         ];
 
-        return view('admin.usage_cases.index', $data);
+        return view('admin.work.index', $data);
     }
 
     /**
      * 新規作成画面
      * @Method GET
-     * @param  UsageCase  $usageCase
+     * @param Work  $work
      * @return View
      */
-    public function create(UsageCase $usageCase): View
+    public function create(Work $work): View
     {
-        $title = '導入事例 新規作成';
+        $title = '実装例 新規作成';
 
         $data = [
-            'usageCase'   => $usageCase,
-            'title'       => $title,
+            'work'   => $work,
+            'title'  => $title,
         ];
 
-        return view('admin.usage_cases.create', $data);
+        return view('admin.work.create', $data);
     }
 
     /**
      * 編集画面
      * @Method GET
-     * @param  UsageCase  $usageCase
+     * @param Work $work
      * @return View
      */
-    public function edit(UsageCase $usageCase): View
+    public function edit(Work $work): View
     {
-        $title = '導入事例 編集: '. $usageCase->title;
+        $title = '実装例 編集: '. $work->title;
 
         $data = [
-            'usageCase' => $usageCase,
+            'work' => $work,
             'title'     => $title,
         ];
 
-        return view('admin.usage_cases.edit', $data);
+        return view('admin.work.edit', $data);
     }
 
     /**
      * 新規保存処理
      * @Method POST
-     * @param  UsageCasePostRequest  $request
+     * @param WorkPostRequest  $request
      * @return RedirectResponse
      * @throws \Exception
      */
-    public function store(UsageCasePostRequest $request): RedirectResponse
+    public function store(WorkPostRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
         DB::beginTransaction();
         try {
-            $usageCase = new UsageCase;
-            $usageCase->fill($validated)->save();
+            $work = new Work;
+            $work->fill($validated)->save();
 
             DB::commit();
         } catch (\Exception $e) {
@@ -115,24 +115,24 @@ class UsageCaseController extends Controller
 
         session()->flash('flash_message', '新規作成が完了しました');
 
-        return redirect()->route('admin.usage_case.index');
+        return redirect()->route('admin.work.index');
     }
 
     /**
      * アップデート
      * @Method PUT
-     * @param  UsageCasePostRequest $request
-     * @param  UsageCase  $usageCase
+     * @param WorkPostRequest $request
+     * @param Work  $work
      * @return RedirectResponse
      * @throws \Throwable
      */
-    public function update(UsageCasePostRequest $request, UsageCase $usageCase): RedirectResponse
+    public function update(WorkPostRequest $request, Work $work): RedirectResponse
     {
         $validated = $request->validated();
 
         DB::beginTransaction();
         try {
-            $usageCase->fill($validated)->save();
+            $work->fill($validated)->save();
 
             DB::commit();
         } catch (\Exception $e) {
@@ -146,21 +146,21 @@ class UsageCaseController extends Controller
 
         session()->flash('flash_message', '更新が完了しました');
 
-        return redirect()->route('admin.usage_case.index');
+        return redirect()->route('admin.work.index');
     }
 
     /**
      * 削除
      * @Method DELETE
-     * @param  UsageCase  $usageCase
+     * @param Work  $work
      * @return RedirectResponse
      * @throws \Exception
      */
-    public function destroy(UsageCase $usageCase): RedirectResponse
+    public function destroy(Work $work): RedirectResponse
     {
         DB::beginTransaction();
         try {
-            $usageCase->delete();
+            $work->delete();
 
             DB::commit();
         } catch (\Exception $e) {
@@ -172,8 +172,8 @@ class UsageCaseController extends Controller
             return redirect()->back()->withInput();
         }
 
-        session()->flash('flash_message', $usageCase->title.'を削除しました');
+        session()->flash('flash_message', $work->title.'を削除しました');
 
-        return redirect()->route('admin.usage_case.index');
+        return redirect()->route('admin.work.index');
     }
 }

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 導入事例
+ * 実装例
  */
-class UsageCase extends Model
+class Work extends Model
 {
     use HasFactory;
 

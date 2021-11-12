@@ -2,7 +2,7 @@
 @section('title', $title)
 @section('content')
   @includeWhen(session('flash_message'), 'admin._partials.flash_message_success')
-  {{ Form::open(['route' => ['admin.usage_case.index'], 'class' => 'pb-3 border-bottom', 'method' => 'GET']) }}
+  {{ Form::open(['route' => ['admin.work.index'], 'class' => 'pb-3 border-bottom', 'method' => 'GET']) }}
   <table class="table table-striped table-bordered align-middle">
     <colgroup>
       <col style="width: 12%;">
@@ -23,7 +23,7 @@
   {{ Form::close() }}
 
   <div id='search_result' class="operation mt-3 py-3">
-    <a class="btn btn-outline-primary" href="{{ route('admin.usage_case.create') }}">新規作成</a>
+    <a class="btn btn-outline-primary" href="{{ route('admin.work.create') }}">新規作成</a>
   </div>
   <table class="table table-striped table-bordered table-search-result">
     <thead class="bg-dark text-white">
@@ -42,7 +42,7 @@
 {{--        <td>{{ $usageCase->name }}</td>--}}
 {{--        <td>{{ $usageCase->manager }}</td>--}}
 {{--        <td class="operation">--}}
-{{--          <a class="btn btn-outline-success" href="{{ route('admin.usage_case.edit', ['usage_case' => $usageCase->id]) }}">編集</a>--}}
+{{--          <a class="btn btn-outline-success" href="{{ route('admin.work.edit', ['work' => $usageCase->id]) }}">編集</a>--}}
 {{--        </td>--}}
 {{--      </tr>--}}
 {{--    @endforeach--}}

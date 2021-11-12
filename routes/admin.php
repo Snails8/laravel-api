@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\NewsCategoryController;
-use App\Http\Controllers\Admin\UsageCaseController;
+use App\Http\Controllers\Admin\WorkController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\UserController;
@@ -35,10 +35,10 @@ Route::middleware('auth:admin')->group(function () {
         'show',
     ])->names('admin.news_category');
 
-    // 導入事例 (スタイルなし/ 使用するときに組んでください)
-    Route::resource('usage_cases', UsageCaseController::class )->except([
+    // 機能事例 (スタイルなし/ 使用するときに組んでください)
+    Route::resource('work', WorkController::class )->except([
         'show'
-    ])->names('admin.usage_case');
+    ])->names('admin.work');
 
     // 自社情報管理
     Route::resource('company', CompanyController::class)->only([
