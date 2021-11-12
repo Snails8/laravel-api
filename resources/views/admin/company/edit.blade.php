@@ -5,6 +5,6 @@
   {{ Form::open(['route' => ['admin.company.update', 'company' => $company->id], 'method' => 'put']) }}
   @csrf
   @method('PUT')
-  @include('admin.companies._form')
+  @include('.admin.company._form')
   {{ Form::close() }}
 @endsection

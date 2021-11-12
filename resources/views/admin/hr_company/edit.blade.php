@@ -1,15 +1,16 @@
 @extends('admin._layouts.app')
 @section('title', $title)
 @section('content')
+  <h4 class="c-grey-900 mT-10 mB-30">{{ $title }}</h4>
   @includeWhen(session('flash_message'), 'admin._partials.flash_message_success')
-  {{ Form::open(['route' => ['admin.news_category.update', 'news_category' => $newsCategory->id], 'method' => 'put']) }}
+  {{ Form::open(['route' => ['admin.hr_company.update', 'hr_company' => $hrCompany->id], 'method' => 'put']) }}
   @csrf
   @method('PUT')
-  @include('admin.news_categories._form')
+  @include('.admin.hr_company._form')
   {{ Form::close() }}
   <div class="my-3 pt-3 border-top">
-    <a class="btn btn-outline-secondary" href="{{ route('admin.news_category.index') }}" >一覧に戻る</a>
-    <form name="delete" method="POST" action="{{ route('admin.news_category.destroy', ['news_category' => $newsCategory->id]) }}" class="d-inline">
+    <a class="btn btn-outline-secondary" href="{{ route('admin.hr_company.index') }}" >一覧に戻る</a>
+    <form name="delete" method="POST" action="{{ route('admin.hr_company.destroy', ['hr_company' => $hrCompany]) }}" class="d-inline">
       @csrf
       @method('DELETE')
       <input type="button" class="btn btn-outline-danger" role="button" data-bs-toggle="modal" data-bs-target="#deleteModal" value="削除">

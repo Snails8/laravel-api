@@ -5,7 +5,7 @@
   {{ Form::open(['route' => ['admin.user.update', ['user' => $user->id] ], 'method' => 'put']) }}
   @csrf
   @method('PUT')
-  @include('admin.users._form')
+  @include('.admin.user._form')
   {{ Form::close() }}
   <div class="my-3 pt-3 border-top">
     <a class="btn btn-outline-secondary" href="{{ route('admin.user.index') }}" >一覧に戻る</a>

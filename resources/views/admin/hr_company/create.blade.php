@@ -5,7 +5,7 @@
   {{ Form::open(['route' => ['admin.hr_company.store'], 'method' => 'post']) }}
   @csrf
   @method('post')
-  @include('admin.hr_companies._form')
+  @include('.admin.hr_company._form')
   <div class="my-3 pt-3 border-top">
     <a class="btn btn-outline-secondary" href="{{ route('admin.hr_company.index') }}">一覧に戻る</a>
   </div>

@@ -43,7 +43,7 @@ class UserController extends Controller
     {
         $data = $this->userService->index($request);
 
-        return view('admin.users.index', $data);
+        return view('admin.user.index', $data);
     }
 
     /**
@@ -56,7 +56,7 @@ class UserController extends Controller
     {
         $data = $this->userService->create($user);
 
-        return view('admin.users.create', $data);
+        return view('admin.user.create', $data);
     }
 
     /**
@@ -69,7 +69,7 @@ class UserController extends Controller
     {
         $data = $this->userService->edit($user);
 
-        return view('admin.users.edit', $data);
+        return view('admin.user.edit', $data);
     }
 
     /**

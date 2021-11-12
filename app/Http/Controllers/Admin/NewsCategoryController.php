@@ -37,7 +37,7 @@ class NewsCategoryController extends Controller
     {
         $data = $this->newsCategoryService->index($request);
 
-        return view('admin.news_categories.index', $data);
+        return view('admin.news_category.index', $data);
     }
 
     /**
@@ -50,7 +50,7 @@ class NewsCategoryController extends Controller
     {
         $data = $this->newsCategoryService->create($newsCategory);
 
-        return view('admin.news_categories.create', $data);
+        return view('admin.news_category.create', $data);
     }
 
     /**
@@ -63,7 +63,7 @@ class NewsCategoryController extends Controller
     {
         $data = $this->newsCategoryService->edit($newsCategory);
 
-        return view('admin.news_categories.edit', $data);
+        return view('admin.news_category.edit', $data);
     }
 
     /**

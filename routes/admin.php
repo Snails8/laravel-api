@@ -23,7 +23,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
 
     // サービス利用会社管理
-    Route::resource('hr_companies', HrCompanyController::class)->names('admin.hr_company');
+    Route::resource('hr_company', HrCompanyController::class)->names('admin.hr_company');
 
     // お知らせ管理
     Route::resource('news', NewsController::class)->except([
@@ -31,7 +31,7 @@ Route::middleware('auth:admin')->group(function () {
     ])->names('admin.news');
 
     // お知らせカテゴリ管理
-    Route::resource('news_categories', NewsCategoryController::class)->except([
+    Route::resource('news_category', NewsCategoryController::class)->except([
         'show',
     ])->names('admin.news_category');
 
@@ -41,23 +41,23 @@ Route::middleware('auth:admin')->group(function () {
     ])->names('admin.usage_case');
 
     // 自社情報管理
-    Route::resource('companies', CompanyController::class)->only([
+    Route::resource('company', CompanyController::class)->only([
         'edit', 'update'
     ])->names('admin.company');
 
     // 事務所管理
-    Route::resource('offices', OfficeController::class)->except([
+    Route::resource('office', OfficeController::class)->except([
         'show'
     ])->names('admin.office');
 
     // ユーザー管理(スタッフ)
-    Route::resource('users', UserController::class)->except([
+    Route::resource('user', UserController::class)->except([
         'show'
     ])->names('admin.user');
 
     // お問い合わせ管理
-    Route::resource('contacts', ContactController::class)->only([
-        'index', 'show', 'edit'
+    Route::resource('contact', ContactController::class)->only([
+        'index', 'show',
     ])->names('admin.contact');
 
     // Standard 認証

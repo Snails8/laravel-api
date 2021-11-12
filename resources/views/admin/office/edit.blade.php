@@ -5,7 +5,7 @@
   {{ Form::open(['route' => ['admin.office.update', 'office' => $office->id], 'method' => 'put']) }}
   @csrf
   @method('PUT')
-  @include('admin.offices._form')
+  @include('.admin.office._form')
   {{ Form::close() }}
   <div class="my-3 pt-3 border-top">
     <a class="btn btn-outline-secondary" href="{{ route('admin.office.index') }}" >一覧に戻る</a>

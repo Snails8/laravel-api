@@ -50,7 +50,7 @@ class HrCompanyController extends Controller
             'title'  => $title,
         ];
 
-        return view('admin.hr_companies.index', $data);
+        return view('admin.hr_company.index', $data);
     }
 
     /**
@@ -70,7 +70,7 @@ class HrCompanyController extends Controller
             'title'  => $title,
         ];
 
-        return view('admin.hr_companies.show', $data);
+        return view('admin.hr_company.show', $data);
     }
 
     /**
@@ -88,7 +88,7 @@ class HrCompanyController extends Controller
             'title'    => $title,
         ];
 
-        return view('admin.hr_companies.create', $data);
+        return view('admin.hr_company.create', $data);
     }
 
     /**
@@ -106,7 +106,7 @@ class HrCompanyController extends Controller
             'title' => $title,
         ];
 
-        return view('admin.hr_companies.edit', $data);
+        return view('admin.hr_company.edit', $data);
     }
 
     /**

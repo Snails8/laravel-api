@@ -40,7 +40,7 @@ class ContactController extends Controller
             'title'    => $title,
         ];
 
-        return view('admin.contacts.index', $data);
+        return view('admin.contact.index', $data);
     }
 
     /**
@@ -56,7 +56,7 @@ class ContactController extends Controller
             'contact' => $contact,
         ];
 
-        return view('admin.contacts.show', $data);
+        return view('admin.contact.show', $data);
     }
 
     /**

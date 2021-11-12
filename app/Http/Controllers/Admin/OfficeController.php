@@ -51,7 +51,7 @@ class OfficeController extends Controller
             'title'   => $title,
         ];
 
-        return view('admin.offices.index', $data);
+        return view('admin.office.index', $data);
     }
 
     /**
@@ -69,7 +69,7 @@ class OfficeController extends Controller
             'title'    => $title,
         ];
 
-        return view('admin.offices.create', $data);
+        return view('admin.office.create', $data);
     }
 
     /**
@@ -87,7 +87,7 @@ class OfficeController extends Controller
             'title'  => $title,
         ];
 
-        return view('admin.offices.edit', $data);
+        return view('admin.office.edit', $data);
     }
 
     /**

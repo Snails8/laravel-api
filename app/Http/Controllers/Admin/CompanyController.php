@@ -38,7 +38,7 @@ class CompanyController extends Controller
     {
         $data = $this->companyService->edit($company);
 
-        return view('admin.companies.edit', $data);
+        return view('admin.company.edit', $data);
     }
 
     /**
