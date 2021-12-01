@@ -9,6 +9,7 @@
         "ext-gd": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
+        "aws/aws-sdk-php": "^3.204",
         "barryvdh/laravel-debugbar": "^3.6",
         "bensampo/laravel-enum": "^3.3",
         "fideloper/proxy": "^4.4",
