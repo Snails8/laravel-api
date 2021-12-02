@@ -268,6 +268,27 @@ class UtilityService
     }
 
     /**
+     * 多次元配列から単配列に変換
+     * $str = array_flatten($value);
+     * @param $array
+     * @return array
+     */
+    public function array_flatten($array): array
+    {
+        $result = [];
+
+        foreach ($array as $val) {
+            if (is_array($val)) {
+                $result = array_merge($result, $this->array_flatten($val));
+            } else {
+                $result[] = $val;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * s3URL取得
      * @param string $path
      * @return string
