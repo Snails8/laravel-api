@@ -47,6 +47,8 @@ jobs:
       - name: rewrite task-definition
         run: sed -i -e s/SED_TARGET_AWS_ACCOUNT_ID/${{ secrets.AWS_ACCOUNT_ID }}/g .aws/ecs/migration-task-definition.json &&
           sed -i -e s/SED_TARGET_AWS_ACCOUNT_ID/${{ secrets.AWS_ACCOUNT_ID }}/g .aws/ecs/task-definition.json &&
+          sed -i -e s/SED_TARGET_APP_NAME/${{ env.APP_NAME }}/g .aws/ecs/migration-task-definition.json &&
+          sed -i -e s/SED_TARGET_APP_NAME/${{ env.APP_NAME }}/g .aws/ecs/task-definition.json &&
           sed -i -e s/SED_TARGET_LOKI_ID/${{ secrets.LOKI_ID }}/g .aws/ecs/task-definition.json &&
           sed -i -e s/SED_TARGET_LOKI_SECRET/${{ secrets.LOKI_SECRET }}/g .aws/ecs/task-definition.json
 
