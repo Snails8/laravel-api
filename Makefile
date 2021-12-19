@@ -16,14 +16,18 @@ create-project:
 	docker-compose exec app composer create-project --prefer-dist laravel/laravel .
 	docker-compose exec app composer require predis/predis
 install:
+	cp .env.example .env
 	docker-compose up -d --build
 	docker-compose exec app composer install
-	docker-compose exec app cp .env.example .env
+	docker-compose exec app npm install
+	docker-compose exec app npm run dev
 	docker-compose exec app php artisan key:generate
 	docker-compose exec app php artisan migrate:fresh --seed
+	docker-compose exec app chmod -R 777 storage
+	docker-compose exec app chmod -R 777 bootstrap/cache
 reinstall:
-    @make destroy
-    @make install
+	@make destroy
+	@make install
 stop:
 	docker-compose stop
 restart:
@@ -36,7 +40,7 @@ destroy:
 ps:
 	docker-compose ps
 app:
-	docker-compose exec app bash
+	docker-compose exec app /bin/ash
 fresh:
 	docker-compose exec app php artisan migrate:fresh --seed
 seed:
@@ -54,9 +58,9 @@ cache:
 cache-clear:
 	docker-compose exec app php artisan optimize:clear
 cs:
-	docker-compose exec app ./vendor/bin/phpcs
+	docker-compose exec app vendor/bin/phpcs
 cbf:
-	docker-compose exec app ./vendor/bin/phpcbf
+	docker-compose exec app vendor/bin/phpcbf
 db:
 	docker-compose exec db bash
 sql:
