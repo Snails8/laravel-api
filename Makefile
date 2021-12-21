@@ -5,6 +5,7 @@
 # $ make apply-(dev or prod or etc.)
 
 DC := docker-compose exec app
+ARG := $1
 
 up:
 	docker-compose up -d
@@ -73,3 +74,7 @@ npm:
 yarn:
 	docker-compose exec node yarn
 	docker-compose exec node yarn dev
+c-%:
+	docker-compose exec app php artisan make:controller ${@:c-%=%}
+sample-%:
+	echo ${@:%=%}
