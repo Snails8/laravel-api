@@ -1,18 +1,6 @@
 ## setup
 ```
-$ cp .env.example .env
-
-$ docker-compose build
-$ docker-compose up -d
-$ docker-compose exec app composer install
-$ docker-compose exec app npm install
-$ docker-compose exec app npm run dev
-
-$ docker-compose exec app php artisan key:generate
-$ docker-compose exec app php artisan migrate:refresh --seed
-
-$ docker-compose exec app chmod -R 777 storage
-$ docker-compose exec app chmod -R 777 bootstrap/cache
+$ make install
 ```
 ## 開発時 コマンド
 ```
@@ -29,6 +17,17 @@ $ docker-compose up
 // 各種ライブラリ変更時
 $ docker-compose exec app composer install
 $ docker-compose exec app npm install
+```
+
+## オレオレコマンド
+``` 
+// controller主体crud
+php artisan make:controller XxxController --resource
+
+// 即席CRUD(Service主体)
+$ docker-comose exec app php artisan make:controller XxxController --model=XXX
+$ docker-comose exec app php artisan make:service XxxService 
+$ docker-comose exec app php artisan make:crudtest XxxTest
 
 ```
 
