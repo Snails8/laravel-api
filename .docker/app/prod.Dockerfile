@@ -9,9 +9,9 @@ RUN apk update && \
     npm install npm@latest -g
 
 # add extension
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-xpm &&
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-xpm && \
     docker-php-ext-install mbstring pdo pdo_pgsql gd && \
-    docker-php-ext-enable mbstring \
+    docker-php-ext-enable mbstring
 
 COPY .docker/app/conf/php.ini /usr/local/etc/php/php.ini
 COPY .docker/app/conf/docker.conf /usr/local/etc/php-fpm.d/docker.conf
