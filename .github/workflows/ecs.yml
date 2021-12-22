@@ -1,7 +1,7 @@
 on:
   push:
-#    branches: [ develop ]
-    branches: [ main ]
+    branches: [ develop ]
+#    branches: [ main ]
 
 name: Deploy to Amazon ECS
 env:
