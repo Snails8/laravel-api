@@ -10,7 +10,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install --no-install-recommends -y zlib1g-dev libfreetype6-dev libpng-dev libjpeg62-turbo-dev libwebp-dev libxpm-dev && \
     apt-get clean && \
     rm -rf /var/cache/apt && \
-    npm install npm@latest -g \
+    npm install npm@latest -g
 
 # add extension
 RUN docker-php-ext-install mbstring pdo pdo_pgsql && \
