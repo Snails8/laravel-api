@@ -8,14 +8,13 @@ DC := docker-compose exec app
 ARG := $1
 
 up:
-	docker-compose up -d
-build:
-	docker-compose build
+	docker-compose up --build
 
 create-project:
 	docker-compose up -d --build
 	docker-compose exec app composer create-project --prefer-dist laravel/laravel .
 	docker-compose exec app composer require predis/predis
+
 install:
 	cp .env.example .env
 	docker-compose up -d --build
@@ -26,14 +25,18 @@ install:
 	docker-compose exec app php artisan migrate:fresh --seed
 	docker-compose exec app chmod -R 777 storage
 	docker-compose exec app chmod -R 777 bootstrap/cache
+
 reinstall:
 	@make destroy
 	@make install
+
 stop:
 	docker-compose stop
+
 restart:
 	docker-compose down
 	docker-compose up -d
+
 down:
 	docker-compose down
 destroy:
