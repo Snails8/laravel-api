@@ -10,9 +10,12 @@ class TrustProxies extends Middleware
     /**
      * The trusted proxies for this application.
      *
+     * ECSで構築する際のHTTPS linkの許可
+     * https://readouble.com/laravel/6.x/ja/requests.html#configuring-trusted-proxies
+     *
      * @var array|string|null
      */
-    protected $proxies;
+    protected $proxies = '*';
 
     /**
      * The headers that should be used to detect proxies.
