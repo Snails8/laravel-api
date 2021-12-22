@@ -8,10 +8,10 @@ RUN apk update && \
     apk add --no-cache --virtual .php-builds oniguruma-dev postgresql-dev nodejs npm git curl zip unzip && \
     npm install npm@latest -g
 
-# add extention
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-xpm && \
-    docker-php-ext-install -j$(nproc) gd && \
-    docker-php-ext-install mbstring pdo pdo_pgsql json
+# add extension
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-xpm &&
+    docker-php-ext-install mbstring pdo pdo_pgsql gd && \
+    docker-php-ext-enable mbstring \
 
 COPY .docker/app/conf/php.ini /usr/local/etc/php/php.ini
 COPY .docker/app/conf/docker.conf /usr/local/etc/php-fpm.d/docker.conf
