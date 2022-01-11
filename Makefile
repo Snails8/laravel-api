@@ -1,9 +1,3 @@
-# usage:
-# $ make ecr_repo
-# $ make init-(dev or prod or etc.)
-# $ make plan-(dev or prod or etc.)
-# $ make apply-(dev or prod or etc.)
-
 DC := docker-compose exec app
 ARG := $1
 
@@ -74,6 +68,9 @@ node:
 npm:
 	docker-compose exec node npm install
 	docker-compose exec node npm run dev
+
+watch:
+	docker-compose exec app npm run watch
 yarn:
 	docker-compose exec node yarn
 	docker-compose exec node yarn dev
