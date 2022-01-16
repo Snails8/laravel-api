@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
-use App\Http\Controllers\PlanController;
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\FlowController;
 use App\Http\Controllers\NewsController;
@@ -32,19 +31,6 @@ Route::get('/', [TopController::class, 'index'])->name('top');
 //Auth::routes();
 // 〇〇 とは
 
-
-// 機能
-
-
-// 導入の流れ
-Route::prefix('plan')->group(function () {
-    Route::get('/', [PlanController::class, 'index'])->name('plan.index');
-});
-
-// 料金(プラン)
-Route::prefix('flow')->group(function () {
-    Route::get('/', [FlowController::class, 'index'])->name('flow.index');
-});
 
 // 導入事例
 Route::resource('case', CaseController::class)->only([
