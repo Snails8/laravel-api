@@ -1,28 +1,10 @@
 DC := docker-compose exec app
-ARG := $1
-
+a := $1
+# ====================================================================
+# docker command
+# ====================================================================
 up:
 	docker-compose up --build
-
-create-project:
-	docker-compose up -d --build
-	docker-compose exec app composer create-project --prefer-dist laravel/laravel .
-	docker-compose exec app composer require predis/predis
-
-install:
-	cp .env.example .env
-	docker-compose up -d --build
-	docker-compose exec app composer install
-	docker-compose exec app npm install
-	docker-compose exec app npm run dev
-	docker-compose exec app php artisan key:generate
-	docker-compose exec app php artisan migrate:fresh --seed
-	docker-compose exec app chmod -R 777 storage
-	docker-compose exec app chmod -R 777 bootstrap/cache
-
-reinstall:
-	@make destroy
-	@make install
 
 stop:
 	docker-compose stop
@@ -38,46 +20,91 @@ destroy:
 	docker-compose down --rmi all --volumes
 
 app:
-	docker-compose exec app /bin/bash
+	${DC} /bin/bash
+# ====================================================================
+# setup command
+# ====================================================================
+create-project:
+	docker-compose up -d --build
+	${DC} composer create-project --prefer-dist laravel/laravel .
+	${DC} composer require predis/predis
+
+install:
+	cp .env.example .env
+	docker-compose up -d --build
+	${DC} composer install
+	${DC} npm install
+	${DC} npm run dev
+	${DC} php artisan key:generate
+	docker-compose exec app php artisan migrate:fresh --seed
+	docker-compose exec app chmod -R 777 storage
+	docker-compose exec app chmod -R 777 bootstrap/cache
+
+reinstall:
+	@make destroy
+	@make install
+
+# ====================================================================
+# default FlameWork command
+# ====================================================================
+controller:
+	${DC} php artisan make:controller ${a}Controller
+	${DC} php artisan make:test Controller/${a}ControllerTest
+
+model:
+	${DC} php artisan make:model ${a}
+
+migration:
+	${DC} docker-compose exec app php artisan make:migration
 
 migrate:
-	docker-compose exec app php artisan migrate:fresh --seed
+	${DC} php artisan migrate:fresh --seed
 
 seed:
-	docker-compose exec app php artisan db:seed
+	${DC} php artisan db:seed
 
-test-seed:
-	docker-compose exec app php artisan migrate:refresh --database=testing --seed
-
-watch:
-	docker-compose exec app npm run watch
-
-tinker:
-	docker-compose exec app php artisan tinker
-
-dump:
-	docker-compose exec app php artisan dump-server
+test-migrate:
+	${DC} php artisan migrate:refresh --database=testing --seed
 
 test:
-	docker-compose exec app php ./vendor/bin/phpunit
+	${DC} php ./vendor/bin/phpunit
 
-cache:
-	sh clear-cache.sh
+# ===== あんま使わない  ==================================================
+tinker:
+	${DC} php artisan tinker
+
+dump:
+	${DC} php artisan dump-server
 
 cs:
-	docker-compose exec app vendor/bin/phpcs
+	${DC} vendor/bin/phpcs
 
 cbf:
-	docker-compose exec app vendor/bin/phpcbf
+	${DC} vendor/bin/phpcbf
 
 sql:
 	docker-compose exec db bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
 
-
+# ====================================================================
+# front
+# ====================================================================
 yarn:
 	docker-compose exec node yarn
 	docker-compose exec node yarn dev
+
+watch:
+	${DC} npm run watch
+
+
+# ====================================================================
+# オレオレコマンド
+# ====================================================================
+cache:
+	sh clear-cache.sh
+
+
+
+
+
 c-%:
-	docker-compose exec app php artisan make:controller ${@:c-%=%}
-sample-%:
-	echo ${@:%=%}
+	${DC} php artisan make:controller ${a}
