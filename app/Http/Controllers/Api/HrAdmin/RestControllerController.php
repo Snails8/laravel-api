@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\HrAdmin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Blog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -15,8 +15,8 @@ class RestControllerController extends Controller
 {
     public function index(): JsonResponse
     {
-        $data = $this->getUsers();
-//        $data = $this->getArrayUsers();
+        $data = $this->getBlogs();
+//        $data = $this->getArrayBlogs();
 
         return response()->json($data, 200);
     }
@@ -24,18 +24,18 @@ class RestControllerController extends Controller
     /**
      * @return Collection
      */
-    private function getUsers(): Collection
+    private function getBlogs(): Collection
     {
-        return User::query()->get();
+        return Blog::query()->get();
     }
 
     /**
      * @return array
      */
-    private function getArrayUsers(): array
+    private function getArrayBlogs(): array
     {
         $text = 'sample text';
-        $users = User::query()->get();
+        $users = Blog::query()->get();
 
         $data = [
             'users' => $users,
