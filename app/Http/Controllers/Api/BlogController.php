@@ -43,10 +43,10 @@ class BlogController extends Controller
     }
 
     /**
-     * @param Item $item
+     * @param Blog $item
      * @return mixed
      */
-    public function destroy(Item $item)
+    public function destroy(Blog $item)
     {
         return $item->delete();
     }
