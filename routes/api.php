@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HrAdmin\Rest\IndexController;
+use App\Http\Controllers\Api\HrAdmin\Rest\CreateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,10 @@ use App\Http\Controllers\Api\HrAdmin\Rest\IndexController;
 //    return $request->user();
 //});
 
-Route::apiResource('user', IndexController::class);
+// TODO::404
+
+Route::get('users', [IndexController::class, 'index']);
+Route::post('users', [CreateController::class, 'store']);
 
 //    | Domain | Method    | URI             | Name         | Action                                          | Middleware |
 //    +--------+-----------+-----------------+--------------+-------------------------------------------------+------------+
