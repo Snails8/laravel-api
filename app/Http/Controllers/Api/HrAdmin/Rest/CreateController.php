@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 class CreateController extends Controller
 {
     /**
-     * @param Request $request
+     * @param BlogPostRequest $request
      * @return JsonResponse
      */
     public function store(BlogPostRequest $request): JsonResponse
@@ -27,4 +27,12 @@ class CreateController extends Controller
     }
 }
 
-// TODO::API のvalidation
+// API のvalidation  -> request class 作成によって可能
+//{
+//    "message": "The given data was invalid.",
+//    "errors": {
+//    "title": [
+//        "名前は必ず入力してください。"
+//      ]
+//    }
+//}
