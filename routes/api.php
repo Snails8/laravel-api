@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\HrAdmin\Rest\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::apiResource('user', IndexController::class);
+
+//    | Domain | Method    | URI             | Name         | Action                                          | Middleware |
+//    +--------+-----------+-----------------+--------------+-------------------------------------------------+------------+
+//    |        | GET|HEAD  | api/user        | user.index   | App\Http\Controllers\Api\UserController@index   | api        |
+//    |        | POST      | api/user        | user.store   | App\Http\Controllers\Api\UserController@store   | api        |
+//    |        | GET|HEAD  | api/user/{user} | user.show    | App\Http\Controllers\Api\UserController@show    | api        |
+//    |        | PUT|PATCH | api/user/{user} | user.update  | App\Http\Controllers\Api\UserController@update  | api        |
+//    |        | DELETE    | api/user/{user} | user.destroy | App\Http\Controllers\Api\UserController@destroy | api        |
+//    +--------+-----------+-----------------+--------------+-------------------------------------------------+------------+

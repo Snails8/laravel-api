@@ -13,6 +13,9 @@ Route::prefix('auth')->group(function () {
 
 Route::get('/users', [UserController::class, 'getHrUsers']);
 
+
+Route::apiResource('user', IndexController::class);
+
 Route::middleware('auth:api_hr_admin')->group(function () {
     // 認証判定
     Route::get('/user', function () {

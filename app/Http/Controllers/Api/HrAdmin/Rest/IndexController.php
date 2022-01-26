@@ -15,8 +15,8 @@ class IndexController extends Controller
 {
     public function index(): JsonResponse
     {
-        $data = $this->getBlogs();
-//        $data = $this->getArrayBlogs();
+//        $data = $this->getBlogs();
+        $data = $this->getArrayBlogs();
 
         return response()->json($data, 200);
     }
