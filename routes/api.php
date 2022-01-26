@@ -2,12 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\HrAdmin\Rest\IndexController;
-use App\Http\Controllers\Api\HrAdmin\Rest\CreateController;
-use App\Http\Controllers\Api\HrAdmin\Rest\UpdateController;
-use App\Http\Controllers\Api\HrAdmin\Rest\PatchController;
-use App\Http\Controllers\Api\HrAdmin\Rest\ShowController;
-use App\Http\Controllers\Api\HrAdmin\Rest\DestroyController;
+use App\Http\Controllers\Api\Test\Rest\IndexController;
+use App\Http\Controllers\Api\Test\Rest\CreateController;
+use App\Http\Controllers\Api\Test\Rest\UpdateController;
+use App\Http\Controllers\Api\Test\Rest\PatchController;
+use App\Http\Controllers\Api\Test\Rest\ShowController;
+use App\Http\Controllers\Api\Test\Rest\DestroyController;
 
 /*
 |--------------------------------------------------------------------------

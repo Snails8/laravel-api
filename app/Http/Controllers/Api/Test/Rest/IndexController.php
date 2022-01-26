@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\HrAdmin\Rest;
+namespace App\Http\Controllers\Api\Test\Rest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;

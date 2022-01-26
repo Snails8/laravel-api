@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HrAdmin\Auth\LoginController;
 use App\Http\Controllers\Api\HrAdmin\UserController;
-use App\Http\Controllers\Api\HrAdmin\Rest\IndexController;
+use App\Http\Controllers\Api\HrAdmin\Test\IndexController;
 
 Route::prefix('auth')->group(function () {
     Route::post('/login', [LoginController::class, 'login']);
