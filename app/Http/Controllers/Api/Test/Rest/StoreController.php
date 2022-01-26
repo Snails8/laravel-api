@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class CreateController extends Controller
+class StoreController extends Controller
 {
     /**
      * @param BlogPostRequest $request

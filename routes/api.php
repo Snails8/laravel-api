@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Test\Rest\IndexController;
-use App\Http\Controllers\Api\Test\Rest\CreateController;
+use App\Http\Controllers\Api\Test\Rest\StoreController;
 use App\Http\Controllers\Api\Test\Rest\UpdateController;
 use App\Http\Controllers\Api\Test\Rest\PatchController;
 use App\Http\Controllers\Api\Test\Rest\ShowController;
@@ -28,7 +28,7 @@ use App\Http\Controllers\Api\Test\Rest\DestroyController;
 
 Route::get('users', [IndexController::class, 'index']);
 Route::get('users/{id}', [ShowController::class, 'show'])->name('api.blog.show');
-Route::post('users', [CreateController::class, 'store'])->name('api.blog.post');
+Route::post('users', [StoreController::class, 'store'])->name('api.blog.post');
 Route::put('users/{id}', [UpdateController::class, 'update'])->name('api.blog.update');
 Route::patch('users/{id}', [PatchController::class, 'patch'])->name('api.blog.patch');
 Route::delete('users/{id}', [DestroyController::class, 'destroy'])->name('api.blog.destroy');
