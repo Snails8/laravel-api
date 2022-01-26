@@ -14,15 +14,16 @@ class UpdateController extends Controller
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, int $id): JsonResponse
+    public function patch(Request $request, int $id): JsonResponse
     {
         $blog = Blog::query()->find($id);
 
-        $blog->title   = $request->title;
-        $blog->detail  = $request->detail;
+        $blog->title   = $request->title ?? $blog->title;
+        $blog->detail  = $request->detail ?? $blog->detail;
 
         return $blog->update()
             ? response()->json($blog, 200)
             : response()->json([], 500);
     }
 }
+// TODO::検証不足

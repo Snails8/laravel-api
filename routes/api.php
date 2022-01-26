@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HrAdmin\Rest\IndexController;
 use App\Http\Controllers\Api\HrAdmin\Rest\CreateController;
 use App\Http\Controllers\Api\HrAdmin\Rest\UpdateController;
+use App\Http\Controllers\Api\HrAdmin\Rest\PatchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,8 @@ use App\Http\Controllers\Api\HrAdmin\Rest\UpdateController;
 
 Route::get('users', [IndexController::class, 'index']);
 Route::post('users', [CreateController::class, 'store'])->name('api.blog.post');
-Route::post('users/{id}', [UpdateController::class, 'update'])->name('api.blog.update');
+Route::put('users/{id}', [UpdateController::class, 'update'])->name('api.blog.update');
+Route::patch('users/{id}', [PatchController::class, 'patch'])->name('api.blog.patch');
 
 //    | Domain | Method    | URI             | Name         | Action                                          | Middleware |
 //    +--------+-----------+-----------------+--------------+-------------------------------------------------+------------+
