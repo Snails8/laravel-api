@@ -15,10 +15,12 @@ class IndexController extends Controller
 {
     public function index(): JsonResponse
     {
-//        $data = $this->getBlogs();
-        $data = $this->getArrayBlogs();
+//        $data = [];
+//        $data = 'sample';
+        $data = $this->getBlogs();
+//        $data = $this->getArrayBlogs();
 
-        return response()->json($data, 200);
+        return $data ? response()->json($data, 200) : response()->json($data, 204) ;
     }
 
     /**
@@ -35,58 +37,68 @@ class IndexController extends Controller
     private function getArrayBlogs(): array
     {
         $text = 'sample text';
-        $users = Blog::query()->get();
+        $blogs = Blog::query()->get();
 
         $data = [
-            'users' => $users,
+            'blogs' => $blogs,
             'text' => $text,
         ];
 
         return $data;
     }
 }
+// | 200 | OK           |
+// | 204 | Not Content  | null , ''. []
+// | 500 |  Internal Server Error
 
-        // front 側では以下のように受け取れる
-//  return {
-//    props: {
-//      users: users
-//    }
-//  }
-//
-//
-//
+
+
+//    $data = Blogs::query->get();
+
+//  直接配列が変える
 //  [
 //    {
-//      id: 1,
-//      name: 'たにし',
-//      kana: 'タニシ',
-//      email: 'sample@gmail.com',
-//      email_verified_at: '2021-11-12T00:30:40.000000Z',
-//      role: 'master',
-//      post: '',
-//      office_id: 1,
-//      created_at: '2021-11-12T00:30:40.000000Z',
-//      updated_at: '2021-11-12T00:30:40.000000Z'
-//    }
-//  ]
-//
-
-
-//{
-//    users: [
+//        "id": 1,
+//        "title": "sample",
+//        "detail": "sample detail",
+//        "created_at": null,
+//        "updated_at": null
+//    },
 //    {
-//        id: 1,
-//      name: 'たにし',
-//      kana: 'タニシ',
-//      email: 'sample@gmail.com',
-//      email_verified_at: '2021-11-12T00:30:40.000000Z',
-//      role: 'master',
-//      post: '',
-//      office_id: 1,
-//      created_at: '2021-11-12T00:30:40.000000Z',
-//      updated_at: '2021-11-12T00:30:40.000000Z'
-//    }
-//  ],
-//  text: 'sample text'
+//        "id": 2,
+//        "title": "test",
+//        "detail": "test detail",
+//        "created_at": null,
+//        "updated_at": null
+//    },
+//   ...// 直接配列で変える
+//  ]
+
+//  よくあるパターン
+//  $data = [’blogs’ ⇒ $blogs,  ‘title’ ⇒ $title];
+//{
+//    "blogs": [
+//        {
+//            "id": 1,
+//            "title": "sample",
+//            "detail": "sample detail",
+//            "created_at": null,
+//            "updated_at": null
+//        },
+//        {
+//            "id": 2,
+//            "title": "test",
+//            "detail": "test detail",
+//            "created_at": null,
+//            "updated_at": null
+//        },
+//    ....//
+//    ],
+//    "title": "sample text"
 //}
 
+
+//  $data = "sample"
+
+// そのまま文字列に
+//  "sample"
