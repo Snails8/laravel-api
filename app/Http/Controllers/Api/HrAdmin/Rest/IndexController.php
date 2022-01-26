@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\HrAdmin;
+namespace App\Http\Controllers\Api\HrAdmin\Rest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 /**
  * resr api の簡易版 json の挙動検証用
  */
-class RestControllerController extends Controller
+class IndexController extends Controller
 {
     public function index(): JsonResponse
     {
