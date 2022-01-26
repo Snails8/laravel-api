@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HrAdmin\Auth\LoginController;
 use App\Http\Controllers\Api\HrAdmin\UserController;
-use App\Http\Controllers\Api\HrAdmin\RestControllerController;
+use App\Http\Controllers\Api\HrAdmin\Rest\IndexController;
 
 Route::prefix('auth')->group(function () {
     Route::post('/login', [LoginController::class, 'login']);
@@ -21,7 +21,7 @@ Route::middleware('auth:api_hr_admin')->group(function () {
 
     Route::post('/users/create', [UserController::class, 'create'])->name('hr_admin.user.store');
 
-    Route::apiResource('user', RestControllerController::class);
+    Route::apiResource('user', IndexController::class);
 
 //    | Domain | Method    | URI             | Name         | Action                                          | Middleware |
 //    +--------+-----------+-----------------+--------------+-------------------------------------------------+------------+
