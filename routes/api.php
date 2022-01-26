@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\HrAdmin\Rest\CreateController;
 use App\Http\Controllers\Api\HrAdmin\Rest\UpdateController;
 use App\Http\Controllers\Api\HrAdmin\Rest\PatchController;
 use App\Http\Controllers\Api\HrAdmin\Rest\ShowController;
+use App\Http\Controllers\Api\HrAdmin\Rest\DestroyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::get('users/{id}', [ShowController::class, 'show'])->name('api.blog.show')
 Route::post('users', [CreateController::class, 'store'])->name('api.blog.post');
 Route::put('users/{id}', [UpdateController::class, 'update'])->name('api.blog.update');
 Route::patch('users/{id}', [PatchController::class, 'patch'])->name('api.blog.patch');
+Route::delete('users/{id}', [DestroyController::class, 'destroy'])->name('api.blog.destroy');
 
 //    | Domain | Method    | URI             | Name         | Action                                          | Middleware |
 //    +--------+-----------+-----------------+--------------+-------------------------------------------------+------------+
