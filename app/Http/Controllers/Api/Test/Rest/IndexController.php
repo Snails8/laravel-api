@@ -7,17 +7,36 @@ use App\Models\Blog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 /**
  * resr api の簡易版 json の挙動検証用
  */
 class IndexController extends Controller
 {
-    public function index(): JsonResponse
+    /**
+     * URI  http://localhost/api/users?fields=title,sample
+     *      http://localhost/api/users?fields               -> fields => null
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function index(Request $request): JsonResponse
     {
+        // User が任意で値を取得できるような設計
+        $params = $request->query() ?? '';  //  'fields' => 'title,sample',"
+
+        Log::debug($params['fields']);
+
+        // クエリに応じて単体で取得できる処理
+        if ($params['fields']) {
+            $data = Blog::query()->select([$params['fields']])->get();
+        }
+
+//        $data = 1000;
 //        $data = [];
 //        $data = ['sample' => 'hoge'];
-        $data = $this->getBlogs();
+//        $data = $this->getBlogs();
 //        $data = $this->getArrayBlogs();
 
         return $data ? response()->json($data, 200) : response()->json($data, 204) ;
