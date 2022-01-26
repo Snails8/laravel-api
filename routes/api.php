@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HrAdmin\Rest\IndexController;
 use App\Http\Controllers\Api\HrAdmin\Rest\CreateController;
+use App\Http\Controllers\Api\HrAdmin\Rest\UpdateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ use App\Http\Controllers\Api\HrAdmin\Rest\CreateController;
 
 Route::get('users', [IndexController::class, 'index']);
 Route::post('users', [CreateController::class, 'store'])->name('api.blog.post');
+Route::post('users/{id}', [UpdateController::class, 'update'])->name('api.blog.update');
 
 //    | Domain | Method    | URI             | Name         | Action                                          | Middleware |
 //    +--------+-----------+-----------------+--------------+-------------------------------------------------+------------+
