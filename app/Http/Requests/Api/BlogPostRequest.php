@@ -14,7 +14,7 @@ class BlogPostRequest extends FormRequest
     public function authorize()
     {
         $paths = [
-                '',
+                'api.blog.post',
         ];
 
         return (in_array($this->route()->action['as'], $paths));
@@ -30,17 +30,8 @@ class BlogPostRequest extends FormRequest
         $rules = [
 
             // sample
-            'name'          => 'required|string|max:255',
-            'tel'           => 'required|regex:/^[0-9]{2,4}[0-9]{2,4}[0-9]{3,4}$/',
-            'email'         => 'required|email',
-            'zipcode1'      => 'required|regex:/^[0-9]{3}$/',
-            'zipcode2'      => 'required|regex:/^[0-9]{4}$/',
-            'reserve_date'  => 'required|date',
-            'is_email'      => 'required|integer',
-            // プルダウン系 (0 => 選択してください系 のやつ
-            'reserve_time'  => 'integer|min:1',
-            // 複数選択checkbox
-            'interests'     => 'required|array',
+            'title'            => 'required|string|max:255',
+            'detail'           => '',
         ];
 
         return $rules;
@@ -53,30 +44,12 @@ class BlogPostRequest extends FormRequest
     {
 
         $messages = [
-            'name.required'              => '名前は必ず入力してください。',
-            'name.string'                => '数字や記号は除外してください。',
-            'name.max'                   => '255文字以内で入力してください。',
-            'tel.required'               => '電話番号は必ず入力してください。',
-            'tel.regex'                  => '有効な電話番号の形式ではありません。',
-            'email.required'             => 'メールアドレスは必ず入力してください。',
-            'email.email'                => '有効なメールアドレスの形式ではありません。',
-            'zipcode1.required'          => '郵便番号1は必ず入力してください。',
-            'zipcode1.regex'             => '郵便番号は数字3桁で入力してください。',
-            'zipcode2.required'          => '郵便番号2は必ず入力してください。',
-            'zipcode2.regex'             => '郵便番号は数字4桁で入力してください。',
-            'is_email.required'          => 'メール配信は必ず何か選択してください。',
-            'is_email.integer'           => 'メール配信の入力値が有効な形式ではありません。',
-
-            //date
-            'reserve_date.required'      => '希望日は必ず入力してください。',
-            'reserve_date.date'          => '日付形式で入力してください。',
-            // プルダウン系 (0 => 選択してください系 のやつ
-            'reserve_time.integer'       => '入力値が有効な形式ではありません。',
-            'reserve_time.min'           => '希望時間は必ず選択してください。',
-
-            // 複数選択checkbox
-            'interests.required'         => '興味ある内容は必ず何か選択してください。',
-            'interests.array'            => '興味のある内容の入力値が有効な形式ではありません。',
+            'title.required'              => '名前は必ず入力してください。',
+            'title.string'                => '数字や記号は除外してください。',
+            'title.max'                   => '255文字以内で入力してください。',
+            'detail.required'              => '名前は必ず入力してください。',
+            'detail.string'                => '数字や記号は除外してください。',
+            'detail.max'                   => '255文字以内で入力してください。',
         ];
 
         return $messages;

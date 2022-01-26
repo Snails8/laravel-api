@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\HrAdmin\Rest;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\BlogPostRequest;
 use App\Models\Blog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class CreateController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(BlogPostRequest $request): JsonResponse
     {
         Log::debug($request);
 
@@ -25,3 +26,5 @@ class CreateController extends Controller
             : response()->json([], 500);
     }
 }
+
+// TODO::API のvalidation

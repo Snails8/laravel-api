@@ -23,7 +23,7 @@ use App\Http\Controllers\Api\HrAdmin\Rest\CreateController;
 // TODO::404
 
 Route::get('users', [IndexController::class, 'index']);
-Route::post('users', [CreateController::class, 'store']);
+Route::post('users', [CreateController::class, 'store'])->name('api.blog.post');
 
 //    | Domain | Method    | URI             | Name         | Action                                          | Middleware |
 //    +--------+-----------+-----------------+--------------+-------------------------------------------------+------------+
