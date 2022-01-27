@@ -12,16 +12,50 @@ class DestroyController extends Controller
      * @param Blog $item
      * @return mixed
      */
-    public function destroy(Blog $item)
+    public function destroy(int $id)
     {
-        return $item->delete();
+        $blog = Blog::query()->find($id);
+
+        $blog?->delete();   // 存在しない場合実行させない
+
+        // 成功時は204,
+        return $blog
+            ? response()->json($blog, 204)
+            : response()->json($this->getErrors($id), 404);
+    }
+
+    /**
+     * 存在しない存在しないリソースへのアクセスが来た場合、404 とerrorをjsonで返す
+     * @param int $id
+     * @return array[]
+     */
+    private function getErrors(int $id)
+    {
+        $data = [
+            'error' => [
+                "code"    => 1000,
+                "message" =>  "record not found: id=".$id
+            ],
+        ];
+
+        return $data;
     }
 }
 
-
-// TODO::存在しないリソースへの通信 200 ok
-// http://localhost/api/users/11
-
-
-// TODO::成功時  200 ok
+// ------------------------------------------------
+// 削除 成功時  204 Not Content
+// ------------------------------------------------
 // データは消えている(message 無いからわからん)
+// ------------------------------------------------
+
+// ------------------------------------------------
+// 存在しないリソースへの通信 404 Not Found
+// http://localhost/api/users/111
+// ------------------------------------------------
+// {
+//    "error": {
+//    "code": 1000,
+//        "message": "record not found: id=211"
+//     }
+//  }
+
