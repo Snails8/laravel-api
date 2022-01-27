@@ -30,7 +30,9 @@ class IndexController extends Controller
 
         // クエリに応じて単体で取得できる処理
         if ($params) {
-            $data = Blog::query()->select([$params])->get();
+            $columns = explode(',', $params);   // カラムが存在すれば返却, TODO::クエリで指定したカラムが 無いと500履く
+
+            $data = Blog::query()->select($columns)->get();
         } else {
             $data = $this->getBlogs();
         }
