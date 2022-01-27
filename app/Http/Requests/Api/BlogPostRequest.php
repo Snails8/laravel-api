@@ -14,7 +14,8 @@ class BlogPostRequest extends ApiRequest
     public function authorize()
     {
         $paths = [
-                'api.blog.post',
+            'api.blog.post',
+            'api.blog.update'
         ];
 
         return (in_array($this->route()->action['as'], $paths));
