@@ -71,7 +71,7 @@ class IndexController extends Controller
 // | 200 | OK           |
 // | 204 | Not Content  | null , ''. []
 // | 500 |  Internal Server Error
-
+//  TODO::304 Not Modified：条件付きGETでキャッシュを使わせたい場合
 
 // ---------------------------------------------
 //    配列で送る
