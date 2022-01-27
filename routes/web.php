@@ -9,17 +9,9 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ReserveController;
 
 
-use App\Http\Controllers\Test\QueryTestController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\Test\Query\QueryTestController;
+use App\Http\Controllers\Test\Query\AllTestController;
+
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -75,4 +67,5 @@ Route::prefix('reserve')->group(function () {
 
 // ----------------------------  test   ----------------------------------------------------------------------
 
+Route::get('all', [AllTestController::class, 'index'])->name('test.all');
 Route::get('query', [QueryTestController::class, 'index'])->name('test.query');
