@@ -4,28 +4,19 @@
 {{--    <div class="row container-fluid pe-0">--}}
       <div class="col-md-auto me-auto nav">
         <div class="navbar-brand nav-item">
-          <a class="navbar-brand" href="{{ route('top') }}">HRT</a>
+          <a class="navbar-brand" href="{{ route('top') }}">Laravel検証環境</a>
         </div>
         <a class="nav-item nav-link navbar-menu" href="">
-          <div>HRTとは</div>
+          <div>hoge</div>
         </a>
         <a class="nav-item nav-link navbar-menu" href="">
-          <div>機能</div>
+          <div>fuga</div>
         </a>
         <a class="nav-item nav-link navbar-menu" href="">
-          <div>導入の流れ</div>
+          <div>piyo</div>
         </a>
-        <a class="nav-item nav-link navbar-menu" href="#">
-          <div>導入事例</div>
-        </a>
-        <a class="nav-item nav-link navbar-menu" href="#">
-          <div>お知らせ/イベント</div>
-        </a>
-        <a class="nav-item nav-link navbar-menu" href="#">
-          <div>もっと知りたい</div>
-        </a>
-
       </div>
+
       <div class="col-md-auto ms-auto">
         <div class="user-info">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navDropdown" aria-controls="navDropdown" aria-expanded="false" aria-label="Toggle navigation">

@@ -20,13 +20,6 @@ use App\Http\Controllers\Test\Query\AllTestController;
 Route::get('/', [TopController::class, 'index'])->name('top');
 
 //Auth::routes();
-// 〇〇 とは
-
-
-// 導入事例
-Route::resource('case', CaseController::class)->only([
-    'index', 'show'
-])->names('case');
 
 // お知らせイベント
 Route::prefix('news')->group(function () {
