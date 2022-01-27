@@ -12,6 +12,6 @@ class QueryTestController extends Controller
         $params = $request->query();
 
 
-        return view('test.query');
+        return view('_tests.query');
     }
 }

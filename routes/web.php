@@ -3,14 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\CaseController;
-use App\Http\Controllers\FlowController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\StaticPageController;
-use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ReserveController;
 
+
+use App\Http\Controllers\Test\QueryTestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,3 +72,7 @@ Route::prefix('reserve')->group(function () {
 
 // LP
 //Route::get('', [LandingPageController::class, ''])->name('');
+
+// ----------------------------  test   ----------------------------------------------------------------------
+
+Route::get('query', [QueryTestController::class, 'index'])->name('test.query');
