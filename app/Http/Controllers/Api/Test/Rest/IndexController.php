@@ -24,23 +24,25 @@ class IndexController extends Controller
     public function index(Request $request): JsonResponse
     {
         // User が任意で値を取得できるような設計
-        $params = $request->query() ?? '';  //  'fields' => 'title,sample',"
+        $params = $request->query()['fields'] ?? '';  //  'fields' => 'title,sample',"
 
-        Log::debug($params['fields']);
+        Log::debug($params);
 
         // クエリに応じて単体で取得できる処理
-        if ($params['fields']) {
-            $data = Blog::query()->select([$params['fields']])->get();
+        if ($params) {
+            $data = Blog::query()->select([$params])->get();
+        } else {
+            $data = $this->getBlogs();
         }
 
 //        $data = 1000;
 //        $data = [];
 //        $data = ['sample' => 'hoge'];
-//        $data = $this->getBlogs();
 //        $data = $this->getArrayBlogs();
 
         return $data ? response()->json($data, 200) : response()->json($data, 204) ;
     }
+
 
     /**
      * @return Collection
