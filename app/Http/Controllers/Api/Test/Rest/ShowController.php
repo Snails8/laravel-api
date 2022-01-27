@@ -15,9 +15,21 @@ class ShowController extends Controller
      * @param int $id
      * @return JsonResponse
      */
-    public function show(int $id): JsonResponse
+    public function show(Request $request, int $id): JsonResponse
     {
-        $blog = Blog::query()->find($id);
+        // User が任意で値を取得できるような設計
+        $params = $request->query()['fields'] ?? '';  //  'fields' => 'title,sample',"
+
+
+
+        // クエリに応じて単体で取得できる処理
+        if ($params) {
+            $columns = explode(',', $params);   // カラムが存在すれば返却, TODO::クエリで指定したカラムが 無いと500履く
+
+            $blog = Blog::query()->select($columns)->find($id);
+        } else {
+            $blog = Blog::query()->find($id);
+        }
 
         return $blog
             ? response()->json($blog, 201)
@@ -43,5 +55,3 @@ class ShowController extends Controller
 
 //   ex) TODO::存在しないリソースへのアクセスの場合
 //   HTTP  500  Internal Server Error
-
-//  TODO::ほしいカラムをクエリで問い合わせることができるような仕組み

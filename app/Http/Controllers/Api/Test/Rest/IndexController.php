@@ -26,8 +26,6 @@ class IndexController extends Controller
         // User が任意で値を取得できるような設計
         $params = $request->query()['fields'] ?? '';  //  'fields' => 'title,sample',"
 
-        Log::debug($params);
-
         // クエリに応じて単体で取得できる処理
         if ($params) {
             $columns = explode(',', $params);   // カラムが存在すれば返却, TODO::クエリで指定したカラムが 無いと500履く
