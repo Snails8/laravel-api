@@ -33,7 +33,7 @@ class ShowController extends Controller
         $blog = $blog ?? $this->getErrors($id);
 
         return $blog
-            ? response()->json($blog, 201)
+            ? response()->json($blog, 200)
             : response()->json([], 404);
     }
 
