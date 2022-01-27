@@ -11,7 +11,24 @@ class QueryTestController extends Controller
     {
         $params = $request->query();
 
-
         return view('_tests.query');
     }
 }
+// ------------------------------------------------------
+//   http://localhost/query?fields=name,kana の場合
+// ------------------------------------------------------
+//  array:1 [▼
+//      "fields" => "name,kana"
+//  ]
+// ------------------------------------------------------
+
+
+
+// ------------------------------------------------------
+// http://localhost/query?fields=name,kana&test=hoge,huga の場合
+// ------------------------------------------------------
+//  array:2 [▼
+//      "fields" => "name,kana"
+//      "test" => "hoge,huga"
+//  ]
+// ------------------------------------------------------
