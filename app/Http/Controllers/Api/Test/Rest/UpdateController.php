@@ -20,20 +20,7 @@ class UpdateController extends Controller
     {
         $blog = Blog::query()->find($id);
 
-
-
-        $blog->fill($request->validated() )->save();
-//        $blog?->update($request->all());
-
-//        $validated = $request->validated();
-//
-//        Log::debug($validated);
-//
-//        if ($validated) {
-//            $blog->fill($validated)->save();
-//        }
-
-
+        $blog?->fill($request->validated())->save();
 
         return $blog
             ? response()->json($blog, 200)
@@ -57,9 +44,27 @@ class UpdateController extends Controller
         return $data;
     }
 }
+// ------------------------------------------------------------
+// json を返却するので 200
+// ------------------------------------------------------------
+//  {
+//    "id": 1,
+//    "title": "test",
+//    "detail": "updated",
+//    "created_at": null,
+//    "updated_at": "2022-01-28T00:44:49.000000Z"
+//  }
 
-// TODO::update 挙動修正
 
 //  403 Forbiddon
 //  HTTP 403、またはエラーメッセージ Forbiddenは、HTTPステータスコードの一つ。ページが存在するものの、特定のアクセス者にページを表示する権限が付与されず、アクセスが拒否されたことを示すもの
 //  validation の $rules で許可していないと発生する
+// ------------------------------------------------------------
+// 存在しないid
+// ------------------------------------------------------------
+//  {
+//    "error": {
+//    "code": 1000,
+//        "message": "record not found: id=15"
+//    }
+//  }
