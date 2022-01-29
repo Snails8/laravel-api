@@ -50,7 +50,8 @@ class ShowController extends Controller
     private function getErrors(int $id): array
     {
         $data = [
-            "message"           =>  "record not found: id=".$id,
+            "title"             =>  "Recode not found",
+            "detail"            => "record not found: id=".$id . "Please check id",
             "documentation_url" => 'http://docs.example.com/api/v1/authentication',
             // "error_user_msg": ".. ユーザー向けエラーメッセージ ..."
         ];

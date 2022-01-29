@@ -22,8 +22,15 @@ class StoreController extends Controller
         $blog = Blog::create($request->all());
 
         return $blog
-            ? response()->json($blog, 201)
-            : response()->json([], 500);
+            ? response()->json($blog, 201)->withHeaders([
+                'Content-Type'     => 'application/json',
+                'Content-Language' => 'en',
+                'Location'         => 'https://localhost/v2.0/blogs',])
+            : response()->json([], 500)->withHeaders([
+                'Content-Type'     => 'application/problem+json',
+                'Content-Language' => 'en',
+                'Location'         => 'invalid',
+            ]);
     }
 }
 

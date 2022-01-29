@@ -40,16 +40,13 @@ class IndexController extends Controller
 //        $data = ['sample' => 'hoge'];
 //        $data = $this->getArrayBlogs();
 
-        return $data ? response()->json($data, 200) : response()->json($data, 204) ;
-    }
-
-
-    /**
-     * @return Collection
-     */
-    private function getBlogs(): Collection
-    {
-        return Blog::query()->get();
+        return $data ? response()->json($data, 200)->withHeaders([
+            'Content-Type'     => 'application/json',
+            'Content-Language' => 'en'])
+            : response()->json($data, 204)->withHeaders([
+                'Content-Type'     => 'application/problem+json',
+                'Content-Language' => 'en',
+            ]);
     }
 
     /**

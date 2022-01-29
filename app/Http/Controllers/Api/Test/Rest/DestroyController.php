@@ -21,7 +21,7 @@ class DestroyController extends Controller
         // 成功時は204,
         return $blog
             ? response()->json($blog, 204)->withHeaders([
-                'Content-Type'     => 'application/problem+json',
+                'Content-Type'     => 'application/json',
                 'Content-Language' => 'en',
                 'Location'         => 'http://localhost/v2.0/blogs',])
             : response()->json($this->getErrors($id), 404)->withHeaders([

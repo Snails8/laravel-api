@@ -23,7 +23,11 @@ class UpdateController extends Controller
         $blog?->fill($request->validated())->save();
 
         return $blog
-            ? response()->json($blog, 200)->header('Location', 'https://localhost/v2.0/users')
+            ? response()->json($blog, 200)->withHeaders([
+                'Content-Type'     => 'application/json',
+                'Content-Language' => 'en',
+                'Location'         => 'https://localhost/v2.0/blogs',
+            ])
             : response()->json($this->getErrors($id), 404)->withHeaders([
                 'Content-Type'     => 'application/problem+json',
                 'Content-Language' => 'en',
@@ -39,8 +43,9 @@ class UpdateController extends Controller
     private function getErrors(int $id): array
     {
         $data = [
-            "message"           =>  "record not found: id=".$id,
-            "documentation_url" => 'http://docs.example.com/api/v1/authentication',
+            "title"             =>  "Resource noy Found",
+            "detail"            =>  "record not found: id=".$id . "Please check id",
+            "documentation_url" => 'https://docs.example.com/api/v1/authentication',
             // "error_user_msg": ".. ユーザー向けエラーメッセージ ..."
         ];
 
