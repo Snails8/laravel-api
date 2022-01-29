@@ -64,10 +64,18 @@ return [
         ],
 
         'pgsql' => [
+            'read' => [
+                'host' => env('DB_READ_HOST', '127.0.0.1'),
+                'port' => env('DB_PORT', '5432'),
+            ],
+            'write' => [
+                'host' => env('DB_WRITE_HOST', '127.0.0.1'),
+                'port' => env('DB_PORT', '5432'),
+            ],
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
+//            'host' => env('DB_HOST', '127.0.0.1'),      Aurora を使用しない場合、分離する必要はない。使用するなら分離しないと落ちる
+//            'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
