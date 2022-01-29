@@ -20,7 +20,10 @@ class DestroyController extends Controller
 
         // 成功時は204,
         return $blog
-            ? response()->json($blog, 204)
+            ? response()->json($blog, 204)->withHeaders([
+                'Content-Type'     => 'application/problem+json',
+                'Content-Language' => 'en',
+                'Location'         => 'http://localhost/v2.0/blogs',])
             : response()->json($this->getErrors($id), 404)->withHeaders([
                 'Content-Type'     => 'application/problem+json',
                 'Content-Language' => 'en',
@@ -51,14 +54,24 @@ class DestroyController extends Controller
 // データは消えている(message 無いからわからん)
 // ------------------------------------------------
 
-// ------------------------------------------------
-// 存在しないリソースへの通信 404 Not Found
-// http://localhost/api/users/111
-// ------------------------------------------------
-// {
-//    "error": {
-//    "code": 1000,
-//        "message": "record not found: id=211"
-//     }
+
+
+//  ----header--------------------------------------
+//  HTTP 1.1          422 Unprocessable Entity(処理ができないもの)
+//  Content-Type:     application/problem+json
+//  Content-Language: en
+//  Location:         invaild
+//  ------------------------------------------------
+//
+//  ----body-----------------------------------------
+//  {
+//	   "message": "record not found: id=$id "
+//	   "documentation_url": "https://sample-document-url/v2.0/hoge",
+//	   // "error_user_msg": ".. ユーザー向けエラーメッセージ ..."
+//	   "errors": [
+//        'name': '正しい値ではありません'
+//		   ...//
+//	   ]
 //  }
+//------------------------------------------------
 
