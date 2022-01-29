@@ -23,17 +23,21 @@ abstract class ApiRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         $data = [
-            'message' => __('The given data was invalid.'),
-            'errors'  => $validator->errors()->toArray(),
+            'message'           => __('The given data was invalid.'),
+            "documentation_url" => 'http://docs.example.com/api/v1/authentication',
+//            "error_user_msg"    => ".. ユーザー向けエラーメッセージ ...",  ドメインによってはドメインによってはerror_user_msg を含ませる
+            'errors'            => $validator->errors()->toArray(),
         ];
 
-        throw new HttpResponseException(response()->json($data, 422));
+        throw new HttpResponseException(response()->json($data, 422)->header('Location', 'invalid'));
     }
 }
 
 // 422 Unprocessable Entity(処理ができないもの)
 // コードや文法、リクエストは間違っていないが、意味が間違っているため、
 // うまく処理ができないもののこと
+
+// header で不足分お情報を追加
 
 // __(string)はローカライズ考慮
 // localeの制御や、言語ファイルの準備などが必要

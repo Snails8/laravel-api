@@ -42,15 +42,12 @@ class ShowController extends Controller
      * @param int $id
      * @return array[]
      */
-    private function getErrors(int $id)
+    private function getErrors(int $id): array
     {
         $data = [
-            'error' => [
-                "developerMessage" => "record not found: id=".$id,
-                "userMessage"      =>  "id=".$id."のデータが存在しません！",
-                "code"             =>  404,
-                "info"             => "https://sample-document-url/v2.0",
-            ],
+            "message"           =>  "record not found: id=".$id,
+            "documentation_url" => 'http://docs.example.com/api/v1/authentication',
+            // "error_user_msg": ".. ユーザー向けエラーメッセージ ..."
         ];
 
         return $data;

@@ -29,13 +29,12 @@ class DestroyController extends Controller
      * @param int $id
      * @return array[]
      */
-    private function getErrors(int $id)
+    private function getErrors(int $id): array
     {
         $data = [
-            'error' => [
-                "code"    => 1000,
-                "message" =>  "record not found: id=".$id
-            ],
+            "message"           =>  "record not found: id=".$id,
+            "documentation_url" => 'http://docs.example.com/api/v1/authentication',
+            // "error_user_msg": ".. ユーザー向けエラーメッセージ ..."
         ];
 
         return $data;

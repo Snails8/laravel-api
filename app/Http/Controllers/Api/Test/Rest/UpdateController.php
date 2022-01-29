@@ -23,8 +23,8 @@ class UpdateController extends Controller
         $blog?->fill($request->validated())->save();
 
         return $blog
-            ? response()->json($blog, 200)
-            : response()->json($this->getErrors($id), 404);
+            ? response()->json($blog, 200)->header('Location', 'https://localhost/v2.0/users')
+            : response()->json($this->getErrors($id), 404)->header('Location', 'invalid');
     }
 
     /**
@@ -32,11 +32,12 @@ class UpdateController extends Controller
      * @param int $id
      * @return array[]
      */
-    private function getErrors(int $id)
+    private function getErrors(int $id): array
     {
         $data = [
-            "message" =>  "record not found: id=".$id,
+            "message"           =>  "record not found: id=".$id,
             "documentation_url" => 'http://docs.example.com/api/v1/authentication',
+            // "error_user_msg": ".. ユーザー向けエラーメッセージ ..."
         ];
 
         return $data;
@@ -45,6 +46,7 @@ class UpdateController extends Controller
 // ------------------------------------------------------------
 // json を返却するので 200
 // ------------------------------------------------------------
+//
 //  {
 //    "id": 1,
 //    "title": "test",

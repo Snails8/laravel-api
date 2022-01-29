@@ -20,4 +20,20 @@ class PatchController extends Controller
             ? response()->json($blog, 200)
             : response()->json([], 500);
     }
+
+    /**
+     * 存在しない存在しないリソースへのアクセスが来た場合、404 とerrorをjsonで返す
+     * @param int $id
+     * @return array[]
+     */
+    private function getErrors(int $id): array
+    {
+        $data = [
+            "message"           =>  "record not found: id=".$id,
+            "documentation_url" => 'http://docs.example.com/api/v1/authentication',
+            // "error_user_msg": ".. ユーザー向けエラーメッセージ ..."
+        ];
+
+        return $data;
+    }
 }
