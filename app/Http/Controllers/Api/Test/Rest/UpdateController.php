@@ -5,12 +5,20 @@ namespace App\Http\Controllers\Api\Test\Rest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\BlogPostRequest;
 use App\Models\Blog;
+use App\Services\Utility\ApiErrorService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class UpdateController extends Controller
 {
+    private $apiErrorService;
+
+    public function __construct(ApiErrorService $apiErrorService)
+    {
+        $this->apiErrorService = $apiErrorService;
+    }
+
     /**
      * @param BlogPostRequest $request
      * @param int $id
@@ -28,28 +36,11 @@ class UpdateController extends Controller
                 'Content-Language' => 'en',
                 'Location'         => 'https://localhost/v2.0/blogs',
             ])
-            : response()->json($this->getErrors($id), 404)->withHeaders([
+            : response()->json($this->apiErrorService->getNotFoundError($id), 404)->withHeaders([
                 'Content-Type'     => 'application/problem+json',
                 'Content-Language' => 'en',
                 'Location'         => 'invalid',
             ]);
-    }
-
-    /**
-     * 存在しない存在しないリソースへのアクセスが来た場合、404 とerrorをjsonで返す
-     * @param int $id
-     * @return array[]
-     */
-    private function getErrors(int $id): array
-    {
-        $data = [
-            "title"             =>  "Resource noy Found",
-            "detail"            =>  "record not found: id=".$id . "Please check id",
-            "documentation_url" => 'https://docs.example.com/api/v1/authentication',
-            // "error_user_msg": ".. ユーザー向けエラーメッセージ ..."
-        ];
-
-        return $data;
     }
 }
 // ------------------------------------------------------------

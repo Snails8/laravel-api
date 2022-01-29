@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Services\CompanyService;
 use App\Services\UtilityService;
+use App\Services\Utility\ApiErrorService;
+
 use App\Services\Admin\UserService as AdminUserService;
 use App\Services\Admin\NewsService as AdminNewsService;
 use App\Services\Admin\CompanyService as AdminCompanyService;
@@ -22,7 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // utility
         $this->app->bind('utility', UtilityService::class);
+        $this->app->bind('ApiError', ApiErrorService::class);
+
+
         $this->app->bind('company', CompanyService::class);
         // admin
         $this->app->bind('AdminUser', AdminUserService::class);

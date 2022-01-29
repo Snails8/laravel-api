@@ -4,15 +4,24 @@ namespace App\Http\Controllers\Api\Test\Rest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Services\Utility\ApiErrorService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class DestroyController extends Controller
 {
+    private $apiErrorService;
+
+    public function __construct(ApiErrorService $apiErrorService)
+    {
+        $this->apiErrorService = $apiErrorService;
+    }
+
     /**
-     * @param Blog $item
-     * @return mixed
+     * @param int $id
+     * @return JsonResponse
      */
-    public function destroy(int $id)
+    public function destroy(int $id): JsonResponse
     {
         $blog = Blog::query()->find($id);
 
@@ -24,27 +33,11 @@ class DestroyController extends Controller
                 'Content-Type'     => 'application/json',
                 'Content-Language' => 'en',
                 'Location'         => 'http://localhost/v2.0/blogs',])
-            : response()->json($this->getErrors($id), 404)->withHeaders([
+            : response()->json($this->apiErrorService->getNotFoundError($id), 404)->withHeaders([
                 'Content-Type'     => 'application/problem+json',
                 'Content-Language' => 'en',
                 'Location'         => 'invalid',
             ]);
-    }
-
-    /**
-     * 存在しない存在しないリソースへのアクセスが来た場合、404 とerrorをjsonで返す
-     * @param int $id
-     * @return array[]
-     */
-    private function getErrors(int $id): array
-    {
-        $data = [
-            "message"           =>  "record not found: id=".$id,
-            "documentation_url" => 'http://docs.example.com/api/v1/authentication',
-            // "error_user_msg": ".. ユーザー向けエラーメッセージ ..."
-        ];
-
-        return $data;
     }
 }
 

@@ -5,13 +5,22 @@ namespace App\Http\Controllers\Api\Test\Rest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\BlogPostRequest;
 use App\Models\Blog;
+use App\Services\Utility\ApiErrorService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class ShowController extends Controller
 {
+    private $apiErrorService;
+
+    public function __construct(ApiErrorService $apiErrorService)
+    {
+        $this->apiErrorService = $apiErrorService;
+    }
+
     /**
+     * @param Request $request
      * @param int $id
      * @return JsonResponse
      */
@@ -29,34 +38,14 @@ class ShowController extends Controller
             $blog = Blog::query()->find($id);
         }
 
-        // 存在しない存在しないリソースへのアクセスが来た場合、404 とerrorをjsonで返す
-        $blog = $blog ?? $this->getErrors($id);
-
         return $blog
             ? response()->json($blog, 200)->withHeaders([
                 'Content-Type'     => 'application/json',
                 'Content-Language' => 'en',])
-            : response()->json($this->getErrors($id), 404)->withHeaders([
+            : response()->json($this->apiErrorService->getNotFoundError($id), 404)->withHeaders([
                 'Content-Type'     => 'application/problem+json',
                 'Content-Language' => 'en',
             ]);
-    }
-
-    /**
-     * 存在しない存在しないリソースへのアクセスが来た場合、404 とerrorをjsonで返す
-     * @param int $id
-     * @return array[]
-     */
-    private function getErrors(int $id): array
-    {
-        $data = [
-            "title"             =>  "Recode not found",
-            "detail"            => "record not found: id=".$id . "Please check id",
-            "documentation_url" => 'http://docs.example.com/api/v1/authentication',
-            // "error_user_msg": ".. ユーザー向けエラーメッセージ ..."
-        ];
-
-        return $data;
     }
 }
 
