@@ -46,8 +46,10 @@ class ShowController extends Controller
     {
         $data = [
             'error' => [
-                "code"    => 1000,
-                "message" =>  "record not found: id=".$id
+                "developerMessage" => "record not found: id=".$id,
+                "userMessage"      =>  "id=".$id."のデータが存在しません！",
+                "code"             =>  404,
+                "info"             => "https://sample-document-url/v2.0",
             ],
         ];
 
