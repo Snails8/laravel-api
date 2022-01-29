@@ -21,7 +21,11 @@ class DestroyController extends Controller
         // 成功時は204,
         return $blog
             ? response()->json($blog, 204)
-            : response()->json($this->getErrors($id), 404);
+            : response()->json($this->getErrors($id), 404)->withHeaders([
+                'Content-Type'     => 'application/problem+json',
+                'Content-Language' => 'en',
+                'Location'         => 'invalid',
+            ]);
     }
 
     /**

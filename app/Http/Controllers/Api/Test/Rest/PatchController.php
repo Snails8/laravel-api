@@ -18,7 +18,11 @@ class PatchController extends Controller
 
         return $blog->update()
             ? response()->json($blog, 200)
-            : response()->json([], 500);
+            : response()->json($this->getErrors(), 404)->withHeaders([
+                'Content-Type'     => 'application/problem+json',
+                'Content-Language' => 'en',
+                'Location'         => 'invalid',
+            ]);
     }
 
     /**

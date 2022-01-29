@@ -24,7 +24,11 @@ class UpdateController extends Controller
 
         return $blog
             ? response()->json($blog, 200)->header('Location', 'https://localhost/v2.0/users')
-            : response()->json($this->getErrors($id), 404)->header('Location', 'invalid');
+            : response()->json($this->getErrors($id), 404)->withHeaders([
+                'Content-Type'     => 'application/problem+json',
+                'Content-Language' => 'en',
+                'Location'         => 'invalid',
+            ]);
     }
 
     /**

@@ -34,7 +34,11 @@ class ShowController extends Controller
 
         return $blog
             ? response()->json($blog, 200)
-            : response()->json([], 404);
+            : response()->json($this->getErrors($id), 404)->withHeaders([
+                'Content-Type'     => 'application/problem+json',
+                'Content-Language' => 'en',
+                'Location'         => 'invalid',
+            ]);
     }
 
     /**
