@@ -23,33 +23,60 @@ abstract class ApiRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         $data = [
-            'message'           => __('The given data was invalid.'),
+            'title'             => __('The given data was invalid.'),
+            'detail'            => $validator->errors()->toArray(),
             "documentation_url" => 'http://docs.example.com/api/v1/authentication',
-//            "error_user_msg"    => ".. ユーザー向けエラーメッセージ ...",  ドメインによってはドメインによってはerror_user_msg を含ませる
-            'errors'            => $validator->errors()->toArray(),
+            // "error_user_msg"    => ".. ユーザー向けエラーメッセージ ...",  ドメインによってはドメインによってはerror_user_msg を含ませる
         ];
 
-        throw new HttpResponseException(response()->json($data, 422)->header('Location', 'invalid'));
+        throw new HttpResponseException(response()->json($data, 422)->withHeaders([
+            'Content-Type'     => 'application/problem+json',
+            'Content-Language' => 'en',
+        ]));
     }
 }
 
-// 422 Unprocessable Entity(処理ができないもの)
-// コードや文法、リクエストは間違っていないが、意味が間違っているため、
-// うまく処理ができないもののこと
+/**
+     422 Unprocessable Entity(処理ができないもの)
+     コードや文法、リクエストは間違っていないが、意味が間違っているため、
+     うまく処理ができないもののこと
 
-// header で不足分お情報を追加
+     header で不足分お情報を追加
 
-// __(string)はローカライズ考慮
-// localeの制御や、言語ファイルの準備などが必要
+    ----header--------------------------------------
+    HTTP 1.1          422 Unprocessable Entity(処理ができないもの)
+    Content-Type:     application/problem+json
+    Content-Language: en
+    Location:         invaild
+    ------------------------------------------------
 
-// config/app.php
-//：
-//    'locale' => 'ja',
-//：
+    ----body-----------------------------------------
+    {
+        "title": "The given data was invalid.",
+        "detail": {
+        "title": [
+            "名前は必ず入力してください。"
+        ]
+        },
+        "documentation_url": "http://docs.example.com/api/v1/authentication"
+    }
+    ------------------------------------------------
 
-// resources/lang/ja.json
-//{
-//    ：
-//    "The given data was invalid.": "送信データのチェックで不備が見つかりました。",
-//    ：
-//}
+
+
+     __(string)はローカライズ考慮
+     localeの制御や、言語ファイルの準備などが必要
+
+     config/app.php
+    ：
+        'locale' => 'ja',
+    ：
+
+     resources/lang/ja.json
+    {
+        ：
+        "The given data was invalid.": "送信データのチェックで不備が見つかりました。",
+        ：
+    }
+
+ * */
