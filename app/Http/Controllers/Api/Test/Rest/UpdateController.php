@@ -35,10 +35,8 @@ class UpdateController extends Controller
     private function getErrors(int $id)
     {
         $data = [
-            'error' => [
-                "code"    => 1000,
-                "message" =>  "record not found: id=".$id
-            ],
+            "message" =>  "record not found: id=".$id,
+            "documentation_url" => 'http://docs.example.com/api/v1/authentication',
         ];
 
         return $data;
@@ -64,7 +62,6 @@ class UpdateController extends Controller
 // ------------------------------------------------------------
 //  {
 //    "error": {
-//    "code": 1000,
 //        "message": "record not found: id=15"
 //    }
 //  }

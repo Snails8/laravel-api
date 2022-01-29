@@ -31,6 +31,10 @@ abstract class ApiRequest extends FormRequest
     }
 }
 
+// 422 Unprocessable Entity(処理ができないもの)
+// コードや文法、リクエストは間違っていないが、意味が間違っているため、
+// うまく処理ができないもののこと
+
 // __(string)はローカライズ考慮
 // localeの制御や、言語ファイルの準備などが必要
 
