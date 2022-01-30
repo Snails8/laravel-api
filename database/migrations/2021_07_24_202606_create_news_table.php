@@ -20,13 +20,18 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->default('')->comment('タイトル');
+            $table->integer('news_category_id')->unsigned();
+
+            $table->string('title', 100)->default('')->comment('タイトル');
             $table->longText('body')->default('')->comment('内容');
             $table->dateTime('public_date')->comment('公開日');
             $table->string('image')->default('')->nullable()->comment('画像');
             $table->text('description')->default('')->comment('description');
             $table->boolean('is_public')->default(true)->comment('公開判定');
             $table->timestamps();
+
+            // 外部キー制約
+            $table->foreign('news_category_id')->references('id')->on('news_categories')->onDelete('cascade');
         });
     }
 
