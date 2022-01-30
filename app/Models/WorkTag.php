@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-/**
- * 実装例
- */
-class Work extends Model
+class WorkTag extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function workTags(): BelongsToMany
+    /**
+     * @return BelongsToMany
+     */
+    public function works(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\WorkTags')->withTimestamps();
+        return $this->belongsToMany('App\Models\Work')->withTimestamps();
     }
 }
