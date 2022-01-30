@@ -47,19 +47,19 @@ jobs:
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_APP:$IMAGE_TAG"
       # Rewrite task-definition
       - name: rewrite task-definition
-        run: sed -i -e s/SED_TARGET_AWS_ACCOUNT_ID/${{ secrets.AWS_ACCOUNT_ID }}/g .aws/ecs/migration-task-definition.json &&
-          sed -i -e s/SED_TARGET_AWS_ACCOUNT_ID/${{ secrets.AWS_ACCOUNT_ID }}/g .aws/ecs/task-definition.json &&
-          sed -i -e s/SED_TARGET_APP_NAME/${{ env.APP_NAME }}/g .aws/ecs/migration-task-definition.json &&
-          sed -i -e s/SED_TARGET_APP_NAME/${{ env.APP_NAME }}/g .aws/ecs/task-definition.json &&
-          sed -i -e s/SED_TARGET_LOKI_ID/${{ secrets.LOKI_ID }}/g .aws/ecs/task-definition.json &&
-          sed -i -e s/SED_TARGET_LOKI_SECRET/${{ secrets.LOKI_SECRET }}/g .aws/ecs/task-definition.json
+        run: sed -i -e s/SED_TARGET_AWS_ACCOUNT_ID/${{ secrets.AWS_ACCOUNT_ID }}/g .aws/ecs/dev/migration-task-definition.json &&
+          sed -i -e s/SED_TARGET_AWS_ACCOUNT_ID/${{ secrets.AWS_ACCOUNT_ID }}/g .aws/ecs/dev/task-definition.json &&
+          sed -i -e s/SED_TARGET_APP_NAME/${{ env.APP_NAME }}/g .aws/ecs/dev/migration-task-definition.json &&
+          sed -i -e s/SED_TARGET_APP_NAME/${{ env.APP_NAME }}/g .aws/ecs/dev/task-definition.json &&
+          sed -i -e s/SED_TARGET_LOKI_ID/${{ secrets.LOKI_ID }}/g .aws/ecs/dev/task-definition.json &&
+          sed -i -e s/SED_TARGET_LOKI_SECRET/${{ secrets.LOKI_SECRET }}/g .aws/ecs/dev/task-definition.json
 
       # Migration
       - name: migration task def
         id: migration-task-def
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: .aws/ecs/migration-task-definition.json
+          task-definition: .aws/ecs/dev/migration-task-definition.json
           cluster: ${{ env.APP_NAME }}
 
       - name: migrate
@@ -74,7 +74,7 @@ jobs:
         id: render-web-container
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: .aws/ecs/task-definition.json
+          task-definition: .aws/ecs/dev/task-definition.json
           container-name: nginx
           image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-northeast-1.amazonaws.com/${{ env.APP_NAME }}-nginx:latest
 
