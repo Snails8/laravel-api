@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
-use App\Http\Controllers\CaseController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ContactController;
@@ -12,6 +11,7 @@ use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\Test\Query\QueryTestController;
 use App\Http\Controllers\Test\Query\AllTestController;
 
+use App\Http\Controllers\Test\Relation\HasManyController;
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -62,3 +62,5 @@ Route::prefix('reserve')->group(function () {
 
 Route::get('all', [AllTestController::class, 'index'])->name('test.all');
 Route::get('query', [QueryTestController::class, 'index'])->name('test.query');
+
+Route::get('hasmany', [HasManyController::class, 'index'])->name('test.relation.hasmany');
