@@ -22,7 +22,6 @@ class WorksTableSeeder extends Seeder
                 'title'    => 'テスト',
                 'image'    => '',
                 'introduction'  => 'aaaaaaaaaaaaaaaaaaaaaaaaa',
-                'hr_company_id' => 1,
             ],
         ]);
     }
