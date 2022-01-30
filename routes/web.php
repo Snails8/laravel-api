@@ -14,6 +14,7 @@ use App\Http\Controllers\Test\Query\AllTestController;
 use App\Http\Controllers\Test\Relation\HasManyController;
 
 use App\Http\Controllers\Test\Algorithm\ArrayController;
+use App\Http\Controllers\Test\Algorithm\Sort\QuickSortController;
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -66,4 +67,6 @@ Route::get('all', [AllTestController::class, 'index'])->name('test.all');
 Route::get('query', [QueryTestController::class, 'index'])->name('test.query');
 
 Route::get('hasmany', [HasManyController::class, 'index'])->name('test.relation.hasmany');
+
 Route::get('algorithm', [ArrayController::class, 'index'])->name('test.algorithm.array');
+Route::get('sort', [QuickSortController::class, 'index'])->name('test.algorithm.quick_sort');
