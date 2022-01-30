@@ -26,8 +26,8 @@ class CreateWorkWorkTagTable extends Migration
 //            $table->unsignedBigInteger('tag_id');
 
             // 指定したカラムに外部キー制約を定義
-            $table->foreign('work_id')->references('id')->on('works')->onDelete('cascade');
-            $table->foreign('work_tag_id')->references('id')->on('work_tags')->onDelete('cascade');
+//            $table->foreign('work_id')->references('id')->on('works')->onDelete('cascade');
+//            $table->foreign('work_tag_id')->references('id')->on('work_tags')->onDelete('cascade');
 
             $table->timestamps();
         });

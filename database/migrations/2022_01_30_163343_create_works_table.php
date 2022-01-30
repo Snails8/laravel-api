@@ -4,9 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/**
- * 実装例
- */
 class CreateWorksTable extends Migration
 {
     /**
@@ -34,7 +31,6 @@ class CreateWorksTable extends Migration
 //            $table->string('h1')        ->nullable()->default('')->comment('見出し1');
 //            $table->text('detail1')->nullable()->default('')->comment('見出し1の内容');
 
-            $table->integer('hr_company_id')->comment('リレーションのキー');
             $table->timestamps();
         });
     }
