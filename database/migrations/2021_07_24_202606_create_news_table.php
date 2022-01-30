@@ -31,7 +31,7 @@ class CreateNewsTable extends Migration
             $table->timestamps();
 
             // 外部キー制約
-            $table->foreign('news_category_id')->references('id')->on('news_categories')->onDelete('cascade');
+//            $table->foreign('news_category_id')->references('id')->on('news_categories')->onDelete('cascade');
         });
     }
 

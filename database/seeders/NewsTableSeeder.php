@@ -17,6 +17,7 @@ class NewsTableSeeder extends Seeder
     {
         DB::table('news')->insert([
             [
+                'news_category_id' => 1,
                 'title'  => 'お知らせサンプル',
                 'body'  => '夏季休暇のため、8月13日、14日、15日は休業とさせていただきます',
                 'public_date' => Carbon::now(),
