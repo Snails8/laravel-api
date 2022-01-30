@@ -11,8 +11,8 @@ class HasManyController extends Controller
 {
     public function index(): View
     {
-        $newsLists = News::query()->with('news_category')->get();
+        $newsLists = News::query()->with(['newsCategory'])->get();
 
-        return view('_test.relation');
+        return view('_tests.relation');
     }
 }
