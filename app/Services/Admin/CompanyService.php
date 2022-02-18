@@ -11,15 +11,6 @@ use Illuminate\Support\Facades\Log;
 
 class CompanyService
 {
-    protected $companyRepository;
-
-    /**
-     * @param CompanyRepository $companyRepository
-     */
-    public function __construct(CompanyRepository $companyRepository)
-    {
-        $this->companyRepository = $companyRepository;
-    }
 
     public function edit(Company $company): array
     {
