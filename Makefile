@@ -76,11 +76,18 @@ test:
 
 
 make crud:
+	make controller
+	make request
 	mkdir resources/views/${a}
 	touch resources/views/${a}/index.blade.php
 	touch resources/views/${a}/create.blade.php
 	touch resources/views/${a}/edit.blade.php
 	touch resources/views/${a}/_form.blade.php
+	cp -R resources/views/_template/index.blade.php resources/views/${a}/index.blade.php
+	cp -R resources/views/_template/create.blade.php resources/views/${a}/create.blade.php
+	cp -R resources/views/_template/edit.blade.php resources/views/${a}/edit.blade.php
+	cp -R resources/views/_template/_form.blade.php resources/views/${a}/_form.blade.php
+
 # ===== あんま使わない  ==================================================
 tinker:
 	${DC} php artisan tinker
