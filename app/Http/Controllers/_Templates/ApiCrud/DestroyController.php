@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Test\Rest;
+namespace App\Http\Controllers\_Templates\ApiCrud;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
