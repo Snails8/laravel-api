@@ -57,7 +57,7 @@ model:
 	${DC} php artisan make:model ${a}
 
 request:
-	${DC} php artisan make:controller ${a}PostRequest
+	${DC} php artisan make:request ${a}PostRequest
 
 migration:
 	${DC} docker-compose exec app php artisan make:migration
