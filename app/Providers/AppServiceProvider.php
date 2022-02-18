@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\CompanyService;
+use App\Services\CrudService;
 use App\Services\UtilityService;
 use App\Services\Utility\ApiErrorService;
 
@@ -27,9 +28,9 @@ class AppServiceProvider extends ServiceProvider
         // utility
         $this->app->bind('utility', UtilityService::class);
         $this->app->bind('ApiError', ApiErrorService::class);
+        $this->app->bind('crud', CrudService::class);
 
 
-        $this->app->bind('company', CompanyService::class);
         // admin
         $this->app->bind('AdminUser', AdminUserService::class);
         $this->app->bind('AdminNews', AdminNewsService::class);
