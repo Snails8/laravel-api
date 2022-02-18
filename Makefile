@@ -74,6 +74,13 @@ test-migrate:
 test:
 	${DC} php ./vendor/bin/phpunit
 
+
+make crud:
+	mkdir resources/views/${a}
+	touch resources/views/${a}/index.blade.php
+	touch resources/views/${a}/create.blade.php
+	touch resources/views/${a}/edit.blade.php
+	touch resources/views/${a}/_form.blade.php
 # ===== あんま使わない  ==================================================
 tinker:
 	${DC} php artisan tinker
