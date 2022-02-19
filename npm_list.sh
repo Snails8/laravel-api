@@ -1,0 +1,1 @@
+npm install vuejs-datepicker --save
