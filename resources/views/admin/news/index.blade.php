@@ -43,6 +43,7 @@
         <td>{{ $news->public_date->format('Y-m-d') }}</td>
         <td>{{ $news->title }}</td>
         <td class="display">
+
           <is-public-component
               :update-id="{{ $news->id }}"
               :is-public="{{ (int)$news->is_public }}"

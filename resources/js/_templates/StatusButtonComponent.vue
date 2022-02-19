@@ -1,5 +1,5 @@
 <template>
-  <button v-bind:class="['btn', column ? 'btn-primary' : 'btn-danger']" v-on:click="handleClick">{{ status[column] }}</button>
+  <button v-bind:class="['btn', column ? 'btn-primary' : 'btn-danger']" v-on:click="handleClick">{{ status[is_status] }}</button>
 </template>
 <script>
 const axios = require('axios');
@@ -7,12 +7,17 @@ export default{
   props: {
     objectId: Number,
     isStatus: Number,
-    column: String,
     target: String,
+    column: String,
+    falseText: String,
+    trueText: String
   },
 
   data(){
     return{
+      object_id: Number(this.objectId),
+      is_status: Number(this.isStatus),
+
       status:{
         0: '契約中',
         1: '契約済'
@@ -27,24 +32,25 @@ export default{
       this.column ^= 1;
 
       // DBの型に合わせる
-      let status = (this.column);
+      let status = (this.is_status);
 
       let data = {
         column : status,
       };
 
-      axios.put('/ajax/' + this.target + '/' + this.objectId + '/' + this.column , {data} );
+      axios.put('/ajax/' + this.target + '/' + this.object_id + '/' + this.column , {data} );
     }
   }
 }
 </script>
 
 
-<!--<is-public-component-->
+<!--TODO:: 値がうまく渡らない -->
+<!--<status-button-component-->
 <!--    :object-id="{{ $news->id }}"-->
 <!--    :is-public="{{ (int)$news->is_public }}"-->
-<!--    :target="{{ json_encode('news') }}" >-->
-<!--    :column="is_public"  -->
-<!--    :falseText="非公開"  -->
-<!--    :trueText="公開中"   -->
-<!--</is-public-component>   -->
+<!--    :target="{{ json_encode('news') }}"-->
+<!--    column="is_public"-->
+<!--    false-text="非公開"-->
+<!--    true-text="公開中"-->
+<!--&gt;-->
