@@ -22,7 +22,7 @@ class CreateController extends Controller
      */
     public function create(Sample $sample): View
     {
-        $title = '関連書式: 決済案内(買) 新規登録';
+        $title = 'テスト 新規登録';
 
         $data = [
             'sample'   => $sample,
