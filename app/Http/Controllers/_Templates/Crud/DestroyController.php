@@ -28,21 +28,7 @@ class DestroyController extends Controller
      */
     public function destroy(Sample $sample): RedirectResponse
     {
-        DB::beginTransaction();
-        try {
-            $sample->delete();
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-
-            Log::critical($e->getMessage());
-            session()->flash('critical_error_message', '削除中に問題が発生しました。');
-
-            return redirect()->back()->withInput();
-        }
-
-        session()->flash('flash_message', $sample->name.'を削除しました');
+        $this->crudService->destroy($sample);
 
         return redirect()->route('samples.index');
     }

@@ -100,4 +100,18 @@ class CrudController extends Controller
         return redirect()->route('samples.index');
     }
 
+    /**
+     * 削除
+     * @Method DELETE
+     * @param  Sample  $sample
+     * @return RedirectResponse
+     * @throws \Exception
+     */
+    public function destroy(Sample $sample): RedirectResponse
+    {
+        $this->crudService->destroy($sample);
+
+        return redirect()->route('samples.index');
+    }
+
 }
