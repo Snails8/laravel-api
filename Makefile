@@ -53,7 +53,7 @@ reinstall:
 # ====================================================================
 controller:
 	${DC} php artisan make:controller ${a}Controller
-	${DC} php artisan make:test Controller/${a}ControllerTest
+	#${DC} php artisan make:test Controller/${a}ControllerTest
 
 model:
 	${DC} php artisan make:model ${a}
@@ -75,13 +75,6 @@ test-migrate:
 
 test:
 	${DC} php ./vendor/bin/phpunit
-
-
-make crud-api:
-	make controller
-	cp -R ._module/Controller/Crud/CurdController
-	sed -i -e "s/sample/${a}/g"  app/Http/Controllers/
-	make request
 
 # ===== あんま使わない  ==================================================
 tinker:
@@ -125,9 +118,10 @@ c-%:
 # app/Http/Controllers/Admin/WorkController を作成したい場合 make crud-api a=Admin/Controller sed=work SED=Work
 make crud-api:
 	make controller
-	cp -R ._module/Controller/Crud/CurdController
-	sed -i -e "s/sample/${a}/g"  app/Http/Controllers/
-	make request
+	cp -R ._module/Controller/Crud/CurdController.php app/Http/Controllers/${a}Controller.php
+	sed -i '' -e "s/sample/${a}/g"  app/Http/Controllers/${a}Controller.php
+	sed -i '' -e "s/_Template\/\${a}Controller/g" app/Http/Controllers/${a}Controller.php
+	#make request
 
 # ex) views/admin/works で作成したい場合 crud-view a=admin/works sed=work
 make crud-view:
