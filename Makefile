@@ -1,6 +1,7 @@
 DC := docker-compose exec app
 a := $1
-A := $2
+sed := $2
+SED := $3
 # ====================================================================
 # docker command
 # ====================================================================
@@ -76,25 +77,11 @@ test:
 	${DC} php ./vendor/bin/phpunit
 
 
-make crud-view:
-	#make controller
-	#cp -R ._module/Controller/Crud/CurdController
-	#sed -i -e "s/sample/${a}/g"  app/Http/Controllers/
-	#make request
-	mkdir resources/views/${a}s
-	touch resources/views/${a}s/index.blade.php
-	touch resources/views/${a}s/create.blade.php
-	touch resources/views/${a}s/edit.blade.php
-	touch resources/views/${a}s/_form.blade.php
-	cp -R ._module/views/blade/crud/index.blade.php  resources/views/${a}s/index.blade.php
-	cp -R ._module/views/blade/crud/create.blade.php resources/views/${a}s/create.blade.php
-	cp -R ._module/views/blade/crud/edit.blade.php   resources/views/${a}s/edit.blade.php
-	cp -R ._module/views/blade/crud/_form.blade.php  resources/views/${a}s/_form.blade.php
-	sed -i '' -e "s/sample/${a}/g" resources/views/${a}s/index.blade.php
-	sed -i '' -e "s/sample/${a}/g" resources/views/${a}s/create.blade.php
-	sed -i '' -e "s/sample/${a}/g" resources/views/${a}s/edit.blade.php
-	sed -i '' -e "s/sample/${a}/g" resources/views/${a}s/_form.blade.php
-
+make crud-api:
+	make controller
+	cp -R ._module/Controller/Crud/CurdController
+	sed -i -e "s/sample/${a}/g"  app/Http/Controllers/
+	make request
 
 # ===== あんま使わない  ==================================================
 tinker:
@@ -129,16 +116,31 @@ watch:
 cache:
 	sh clear-cache.sh
 
-
-
 sed:
 	sed -i -e "s/sample/${a}/g" -e "s/Sample/${A}/g" sample.txt
-
-
-
-
 
 c-%:
 	${DC} php artisan make:controller ${a}
 
+# app/Http/Controllers/Admin/WorkController を作成したい場合 make crud-api a=Admin/Controller sed=work SED=Work
+make crud-api:
+	make controller
+	cp -R ._module/Controller/Crud/CurdController
+	sed -i -e "s/sample/${a}/g"  app/Http/Controllers/
+	make request
 
+# ex) views/admin/works で作成したい場合 crud-view a=admin/works sed=work
+make crud-view:
+	mkdir resources/views/${a}
+	touch resources/views/${a}/index.blade.php
+	touch resources/views/${a}/create.blade.php
+	touch resources/views/${a}/edit.blade.php
+	touch resources/views/${a}/_form.blade.php
+	cp -R ._module/views/blade/crud/index.blade.php  resources/views/${a}/index.blade.php
+	cp -R ._module/views/blade/crud/create.blade.php resources/views/${a}/create.blade.php
+	cp -R ._module/views/blade/crud/edit.blade.php   resources/views/${a}/edit.blade.php
+	cp -R ._module/views/blade/crud/_form.blade.php  resources/views/${a}/_form.blade.php
+	sed -i '' -e "s/sample/${sed}/g" resources/views/${a}/index.blade.php
+	sed -i '' -e "s/sample/${sed}/g" resources/views/${a}/create.blade.php
+	sed -i '' -e "s/sample/${sed}/g" resources/views/${a}/edit.blade.php
+	sed -i '' -e "s/sample/${sed}/g" resources/views/${a}/_form.blade.php
