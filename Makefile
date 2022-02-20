@@ -1,5 +1,6 @@
 DC := docker-compose exec app
 a := $1
+A := $2
 # ====================================================================
 # docker command
 # ====================================================================
@@ -76,17 +77,24 @@ test:
 
 
 make crud:
-	make controller
-	make request
-	mkdir resources/views/${a}
-	touch resources/views/${a}/index.blade.php
-	touch resources/views/${a}/create.blade.php
-	touch resources/views/${a}/edit.blade.php
-	touch resources/views/${a}/_form.blade.php
-	cp -R resources/views/_templates/index.blade.php resources/views/${a}/index.blade.php
-	cp -R resources/views/_templates/create.blade.php resources/views/${a}/create.blade.php
-	cp -R resources/views/_templates/edit.blade.php resources/views/${a}/edit.blade.php
-	cp -R resources/views/_templates/_form.blade.php resources/views/${a}/_form.blade.php
+	#make controller
+	#cp -R ._module/Controller/Crud/CurdController
+	#sed -i -e "s/sample/${a}/g"  app/Http/Controllers/
+	#make request
+	mkdir resources/views/${a}s
+	touch resources/views/${a}s/index.blade.php
+	touch resources/views/${a}s/create.blade.php
+	touch resources/views/${a}s/edit.blade.php
+	touch resources/views/${a}s/_form.blade.php
+	cp -R resources/views/_templates/index.blade.php resources/views/${a}s/index.blade.php
+	cp -R resources/views/_templates/create.blade.php resources/views/${a}s/create.blade.php
+	cp -R resources/views/_templates/edit.blade.php resources/views/${a}s/edit.blade.php
+	cp -R resources/views/_templates/_form.blade.php resources/views/${a}s/_form.blade.php
+	sed -i -e "s/sample/${a}/g"  resources/views/${a}s/index.blade.php
+	sed -i -e "s/sample/${a}/g"  resources/views/${a}s/create.blade.php
+	sed -i -e "s/sample/${a}/g"  resources/views/${a}s/edit.blade.php
+	sed -i -e "s/sample/${a}/g"  resources/views/${a}s/_form.blade.php
+
 
 # ===== あんま使わない  ==================================================
 tinker:
@@ -123,7 +131,14 @@ cache:
 
 
 
+sed:
+	sed -i -e "s/sample/${a}/g" -e "s/Sample/${A}/g" sample.txt
+
+
+
 
 
 c-%:
 	${DC} php artisan make:controller ${a}
+
+
