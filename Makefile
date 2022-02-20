@@ -76,7 +76,7 @@ test:
 	${DC} php ./vendor/bin/phpunit
 
 
-make crud:
+make crud-view:
 	#make controller
 	#cp -R ._module/Controller/Crud/CurdController
 	#sed -i -e "s/sample/${a}/g"  app/Http/Controllers/
@@ -86,14 +86,14 @@ make crud:
 	touch resources/views/${a}s/create.blade.php
 	touch resources/views/${a}s/edit.blade.php
 	touch resources/views/${a}s/_form.blade.php
-	cp -R resources/views/_templates/index.blade.php resources/views/${a}s/index.blade.php
-	cp -R resources/views/_templates/create.blade.php resources/views/${a}s/create.blade.php
-	cp -R resources/views/_templates/edit.blade.php resources/views/${a}s/edit.blade.php
-	cp -R resources/views/_templates/_form.blade.php resources/views/${a}s/_form.blade.php
-	sed -i -e "s/sample/${a}/g"  resources/views/${a}s/index.blade.php
-	sed -i -e "s/sample/${a}/g"  resources/views/${a}s/create.blade.php
-	sed -i -e "s/sample/${a}/g"  resources/views/${a}s/edit.blade.php
-	sed -i -e "s/sample/${a}/g"  resources/views/${a}s/_form.blade.php
+	cp -R ._module/views/blade/crud/index.blade.php  resources/views/${a}s/index.blade.php
+	cp -R ._module/views/blade/crud/create.blade.php resources/views/${a}s/create.blade.php
+	cp -R ._module/views/blade/crud/edit.blade.php   resources/views/${a}s/edit.blade.php
+	cp -R ._module/views/blade/crud/_form.blade.php  resources/views/${a}s/_form.blade.php
+	sed -i '' -e "s/sample/${a}/g" resources/views/${a}s/index.blade.php
+	sed -i '' -e "s/sample/${a}/g" resources/views/${a}s/create.blade.php
+	sed -i '' -e "s/sample/${a}/g" resources/views/${a}s/edit.blade.php
+	sed -i '' -e "s/sample/${a}/g" resources/views/${a}s/_form.blade.php
 
 
 # ===== あんま使わない  ==================================================
