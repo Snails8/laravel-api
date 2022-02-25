@@ -30,6 +30,7 @@ create-project:
 	docker-compose up -d --build
 	${DC} composer create-project --prefer-dist laravel/laravel .
 	${DC} composer require predis/predis
+	${DC} php artisan stub:publish
 
 install:
 	cp .env.example .env
@@ -53,7 +54,7 @@ reinstall:
 # ====================================================================
 controller:
 	${DC} php artisan make:controller ${a}Controller
-	#${DC} php artisan make:test Controller/${a}ControllerTest
+	${DC} php artisan make:test Controller/${a}ControllerTest
 
 model:
 	${DC} php artisan make:model ${a}
@@ -61,8 +62,11 @@ model:
 request:
 	${DC} php artisan make:request ${a}PostRequest
 
+seeder:
+	${DC} php artisan make:seed ${a}TableSeeder
+
 migration:
-	${DC} docker-compose exec app php artisan make:migration
+	${DC} php artisan make:migration ${a}_table
 
 migrate:
 	${DC} php artisan migrate:fresh --seed
@@ -75,6 +79,9 @@ test-migrate:
 
 test:
 	${DC} php ./vendor/bin/phpunit
+
+test-filter:
+	${DC} php ./vendor/bin/phpunit --filter=${a}
 
 # ===== あんま使わない  ==================================================
 tinker:
@@ -91,6 +98,14 @@ cbf:
 
 sql:
 	docker-compose exec db bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
+
+design:
+	docker-compose down
+	docker-compose build
+	docker-compose up -d
+	docker-compose exec app php artisan migrate:fresh --seed
+	docker-compose exec app npm run dev
+	sh clear-cache.sh
 
 # ====================================================================
 # front
@@ -109,27 +124,52 @@ watch:
 cache:
 	sh clear-cache.sh
 
-sed:
-	sed -i -e "s/sample/${a}/g" -e "s/Sample/${A}/g" sample.txt
-
 c-%:
 	${DC} php artisan make:controller ${a}
 
-# app/Http/Controllers/Admin/WorkController を作成したい場合 make crud-api a=Admin/Controller sed=work SED=Work
-make crud-api:
-	make controller
-	cp -R ._module/Controller/Crud/CurdController.php app/Http/Controllers/${a}Controller.php
-	sed -i '' -e "s/sample/${a}/g"  app/Http/Controllers/${a}Controller.php
-	sed -i '' -e "s/_Template\/\${a}Controller/g" app/Http/Controllers/${a}Controller.php
-	#make request
+# app/Http/Controllers/Admin/WorkController を作成したい場合
+# make crud module=Admin/Work sed=work SED=Work namespace=Admin\Work namespace=Ajax\\\\\\Test
+crud:
+	mkdir app/Http/Controllers/${module}
+	cp -R ._module/Controllers/Crud/IndexController.php   app/Http/Controllers/${module}/${SED}IndexController.php
+	cp -R ._module/Controllers/Crud/CreateController.php  app/Http/Controllers/${module}/${SED}${a}CreateController.php
+	cp -R ._module/Controllers/Crud/EditController.php    app/Http/Controllers/${module}/${SED}EditController.php
+	cp -R ._module/Controllers/Crud/StoreController.php   app/Http/Controllers/${module}/${SED}StoreController.php
+	cp -R ._module/Controllers/Crud/UpdateController.php  app/Http/Controllers/${module}/${SED}UpdateController.php
+	cp -R ._module/Controllers/Crud/DestroyController.php app/Http/Controllers/${module}/${SED}DestroyController.php
+
+	sed -i '' -e "s/sample/${sed}/g"           app/Http/Controllers/${module}/${SED}IndexController.php
+	sed -i '' -e "s/Sample/${SED}/g"           app/Http/Controllers/${module}/${SED}IndexController.php
+	sed -i '' -e "s@_Templates@${namespace}@g" app/Http/Controllers/${module}/${SED}IndexController.php
+	sed -i '' -e "s/sample/${sed}/g"           app/Http/Controllers/${module}/${SED}CreateController.php
+	sed -i '' -e "s/Sample/${SED}/g"           app/Http/Controllers/${module}/${SED}CreateController.php
+	sed -i '' -e "s@_Templates@${namespace}@g" app/Http/Controllers/${module}/${SED}CreateController.php
+	sed -i '' -e "s/sample/${sed}/g"           app/Http/Controllers/${module}/${SED}EditController.php
+	sed -i '' -e "s/Sample/${SED}/g"           app/Http/Controllers/${module}/${SED}EditController.php
+	sed -i '' -e "s@_Templates@${namespace}@g" app/Http/Controllers/${module}/${SED}EditController.php
+	sed -i '' -e "s/sample/${sed}/g"           app/Http/Controllers/${module}/${SED}StoreController.php
+	sed -i '' -e "s/Sample/${SED}/g"           app/Http/Controllers/${module}/${SED}StoreController.php
+	sed -i '' -e "s@_Templates@${namespace}@g" app/Http/Controllers/${module}/${SED}StoreController.php
+	sed -i '' -e "s/sample/${sed}/g"           app/Http/Controllers/${module}/${SED}UpdateController.php
+	sed -i '' -e "s/Sample/${SED}/g"           app/Http/Controllers/${module}/${SED}UpdateController.php
+	sed -i '' -e "s@_Templates@${namespace}@g" app/Http/Controllers/${module}/${SED}UpdateController.php
+	sed -i '' -e "s/sample/${sed}/g"           app/Http/Controllers/${module}/${SED}DestroyController.php
+	sed -i '' -e "s/Sample/${SED}/g"           app/Http/Controllers/${module}/${SED}DestroyController.php
+	sed -i '' -e "s@_Templates@${namespace}@g" app/Http/Controllers/${module}/${SED}DestroyController.php
+
+
+# app/Http/Controllers/Admin/WorkController を作成したい場合
+# make crud a=Admin/Work sed=work SED=Work namespace=Admin\Work
+crud-api-fast:
+	cp -R ._module/Controllers/Crud/CrudController.php app/Http/Controllers/${a}/${SED}Controller.php
+	sed -i '' -e "s/sample/${sed}/g"  app/Http/Controllers/${a}/${SED}Controller.php
+	sed -i '' -e "s/Sample/${SED}/g"  app/Http/Controllers/${a}/${SED}Controller.php
+	#sed -i '' -e "s/_Template\/\${a}Controller/g" app/Http/Controllers/${a}Controller.php
+
 
 # ex) views/admin/works で作成したい場合 crud-view a=admin/works sed=work
-make crud-view:
+crud-view:
 	mkdir resources/views/${a}
-	touch resources/views/${a}/index.blade.php
-	touch resources/views/${a}/create.blade.php
-	touch resources/views/${a}/edit.blade.php
-	touch resources/views/${a}/_form.blade.php
 	cp -R ._module/views/blade/crud/index.blade.php  resources/views/${a}/index.blade.php
 	cp -R ._module/views/blade/crud/create.blade.php resources/views/${a}/create.blade.php
 	cp -R ._module/views/blade/crud/edit.blade.php   resources/views/${a}/edit.blade.php
