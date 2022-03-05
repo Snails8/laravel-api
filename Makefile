@@ -65,6 +65,9 @@ request:
 seeder:
 	${DC} php artisan make:seed ${a}TableSeeder
 
+factory:
+	${DC} php artisan make:factory ${a}
+
 migration:
 	${DC} php artisan make:migration ${a}_table
 
